@@ -1,0 +1,31 @@
+inherit_from: .rubocop_todo.yml
+
+inherit_gem:
+  rubocop-fjord:
+    - config/rubocop.yml
+    - config/rails.yml
+
+require:
+  - rubocop-rails
+  - rubocop-performance
+  - rubocop-minitest
+
+Metrics/BlockLength:
+  Exclude:
+    - test/**/*
+
+AllCops:
+  TargetRubyVersion: 3.1
+  NewCops: enable
+  Exclude:
+    - '**/templates/**/*'
+    - '**/vendor/**/*'
+    - app/views/**/*
+    - config/**/*
+    - config.ru
+    - node_modules/**/*
+    - db/migrate/*
+    - db/schema.rb
+    - storage/**/*
+    - tmp/**/*
+    - bin/**/*
