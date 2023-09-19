@@ -29,3 +29,6 @@ AllCops:
     - storage/**/*
     - tmp/**/*
     - bin/**/*
+
+Rails/I18nLocaleTexts:
+  Enabled: false
