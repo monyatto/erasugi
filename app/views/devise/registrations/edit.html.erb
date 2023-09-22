@@ -4,7 +4,7 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :email, 'メールアドレス' %><br />
+    <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
@@ -13,12 +13,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name, '名前' %><br />
+    <%= f.label :name %><br />
     <%= f.text_field :name, autocomplete: "name" %>
   </div>
 
   <div class="field">
-    <%= f.label :password, '新しいパスワード' %> <i>(パスワードを変更しない場合は、空白のままにしてください)</i><br />
+    <%= f.label :password %> <i>(パスワードを変更しない場合は、空白のままにしてください)</i><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
     <% if @minimum_password_length %>
       <br />
@@ -27,17 +27,17 @@
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation, '新しいパスワード（確認）' %><br />
+    <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
-    <%= f.label :current_password, '現在のパスワード' %> <i>(パスワードを変更をするためには、現在のパスワードも必要です)</i><br />
+    <%= f.label :current_password %> <i>(パスワードを変更をするためには、現在のパスワードも必要です)</i><br />
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "更新する" %>
+    <%= f.submit "Update" %>
   </div>
 <% end %>
 
