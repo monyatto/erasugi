@@ -1,10 +1,10 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2>登録情報変更</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email, 'メールアドレス' %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
@@ -13,31 +13,36 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.label :name, '名前' %><br />
+    <%= f.text_field :name, autocomplete: "name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password, '新しいパスワード' %> <i>(パスワードを変更しない場合は、空白のままにしてください)</i><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
     <% if @minimum_password_length %>
       <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
+      <em><%= @minimum_password_length %>文字以上</em>
     <% end %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation, '新しいパスワード（確認）' %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.label :current_password, '現在のパスワード' %> <i>(パスワードを変更をするためには、現在のパスワードも必要です)</i><br />
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "更新する" %>
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<h2>アカウント削除</h2>
+アカウントを削除するには以下のボタンを押してください。
+<div><%= button_to "削除する", registration_path(resource_name), data: { confirm: "本当にアカウントを削除してよろしいでしょうか?", turbo_confirm: "本当にアカウントを削除してよろしいでしょうか?" }, method: :delete %></div>
 
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>
+<%= link_to "戻る", :back %>
