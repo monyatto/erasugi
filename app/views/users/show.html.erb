@@ -1,0 +1,13 @@
+<h2>登録情報</h2>
+
+<p>
+  <strong>メールアドレス: </strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>ユーザー名:</strong>
+  <%= @user.name %>
+</p>
+
+<p><%= link_to '登録情報編集', edit_user_registration_path%></p>
