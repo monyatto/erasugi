@@ -9,7 +9,11 @@ class PostsController < ApplicationController
   end
 
   # GET /posts/1 or /posts/1.json
-  def show; end
+  def show
+    @reactions_types = ReactionsType.all
+    @reactions_counts = @post.reactions.group(:reactions_type_id).count
+    @reactions_counts.default = 0
+  end
 
   # GET /posts/new
   def new

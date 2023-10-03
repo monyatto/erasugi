@@ -5,6 +5,8 @@
 <div>
   <%= link_to "Edit this post", edit_post_path(@post) %> |
   <%= link_to "Back to posts", posts_path %>
-
+  <% @reactions_types.each do |reactions_type| %>
+    <%= button_to "#{reactions_type.name}（#{@reactions_counts[reactions_type.id]}）", reactions_path(post_id: @post.id, reactions_type_id: reactions_type.id), method: :post %>
+  <% end %>
   <%= button_to "Destroy this post", @post, method: :delete %>
 </div>

@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-class Post < ApplicationRecord
-  belongs_to :user
+class ReactionsType < ApplicationRecord
   has_many :reactions, dependent: :destroy
 end
