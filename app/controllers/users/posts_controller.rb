@@ -9,7 +9,7 @@ class Users::PostsController < ApplicationController
   private
 
   def correct_user
-    @user = User.find(params[:user_id])
+    @user = User.find_by(public_uid: params[:user_id])
     redirect_to(posts_path) unless current_user?(@user)
   end
 
