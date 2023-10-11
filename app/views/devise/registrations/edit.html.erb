@@ -37,12 +37,12 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "更新する" %>
+    <%= f.submit "更新する", class:"btn" %>
   </div>
 <% end %>
 
 <h2>アカウント削除</h2>
 アカウントを削除するには以下のボタンを押してください。
-<div><%= button_to "削除する", registration_path(resource_name), data: { confirm: "本当にアカウントを削除してよろしいでしょうか?", turbo_confirm: "本当にアカウントを削除してよろしいでしょうか?" }, method: :delete %></div>
+<div><%= button_to "削除する", registration_path(resource_name), data: { confirm: "本当にアカウントを削除してよろしいでしょうか?", turbo_confirm: "本当にアカウントを削除してよろしいでしょうか?" }, method: :delete, class:"btn" %></div>
 
-<%= link_to "戻る", :back %>
+<%= link_to "戻る", :back, class: "link" %>
