@@ -1,12 +1,13 @@
-<p style="color: green"><%= notice %></p>
+<p style="color: green" class="m-4 p-2"><%= notice %></p>
 
-<%= render @post %>
-
-<div>
-  <%= link_to "Edit this post", edit_post_path(@post) %> |
-  <%= link_to "Back to posts", posts_path %>
-  <% @reactions_types.each do |reactions_type| %>
-    <%= button_to "#{reactions_type.name}（#{@reactions_counts[reactions_type.id]}）", reactions_path(post_id: @post.id, reactions_type_id: reactions_type.id), method: :post %>
-  <% end %>
-  <%= button_to "Destroy this post", @post, method: :delete %>
+<div class="font-sans text-center m-20">
+  <div class="text-[60px] font-sans m-4 mb-10"><%= @post.content %></div>
+  <div class="flex justify-center">
+    <% @reactions_types.each do |reactions_type| %>
+      <%= button_to "#{reactions_type.name}（#{@reactions_counts[reactions_type.id]}）", reactions_path(post_id: @post.id, reactions_type_id: reactions_type.id), {method: :post, class: "btn text-lg m-10 w-24 h-24 rounded-full drop-shadow-md bg-white"} %>
+    <% end %>
+  </div>
+    <%= link_to "編集", edit_post_path(@post), class:"btn" %>
+    <%= link_to "戻る", posts_path, class:"btn" %>
+    <%= button_to "削除", @post, method: :delete, class: "btn-danger" %>
 </div>

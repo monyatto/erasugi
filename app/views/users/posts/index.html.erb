@@ -1,14 +1,9 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Posts</h1>
-
 <div id="posts">
   <% @posts.each do |post| %>
-      <%= render 'posts/post', post: post %>
     <p>
-      <%= link_to "Show this post", post %>
+      <%= link_to post.content, post %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New post", new_post_path %>
+<%= link_to "新規投稿", new_post_path, class: "link" %>
