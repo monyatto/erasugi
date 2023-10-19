@@ -7,6 +7,7 @@
   <title>Konva Sprite Demo</title>
 </head>
 <body>
+<%= turbo_frame_tag @post do %>
 <div id="container" style="position: absolute; width: 100%; height: 100%;"></div>
 <div class="font-sans text-center m-20" style="position: relative;">
   <div class="text-[60px] font-sans m-4 mb-10" style="position: relative;"><%= @post.content %></div>
@@ -19,6 +20,7 @@
     <%= link_to "戻る", posts_path, class:"btn" %>
     <%= button_to "削除", @post, method: :delete, class: "btn-danger" %>
 </div>
+<% end %>
 
 <script>
     window.onload = function() {

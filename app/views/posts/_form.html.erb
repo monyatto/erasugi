@@ -1,3 +1,5 @@
+<%= turbo_frame_tag @post do %>
+
 <%= form_with(model: post) do |form| %>
   <% if post.errors.any? %>
     <div style="color: red">
@@ -17,6 +19,9 @@
   </div>
 
   <div>
-    <%= form.submit class:"btn"%>
+    <%= form.submit class:"btn" %>
+    <%= link_to "キャンセル", @post, class: "btn" %>
   </div>
+<% end %>
+
 <% end %>
