@@ -13,6 +13,11 @@ class PostsController < ApplicationController
     @reactions_types = ReactionsType.all
     @reactions_counts = @post.reactions.group(:reactions_type_id).count
     @reactions_counts.default = 0
+    @filename_and_count = filename_and_count
+
+    @reaction_1_counts = Post.find(params[:id]).reactions.where(reactions_type_id: 1).count
+    @reaction_2_counts = Post.find(params[:id]).reactions.where(reactions_type_id: 2).count
+    @reaction_3_counts = Post.find(params[:id]).reactions.where(reactions_type_id: 3).count
   end
 
   # GET /posts/new
@@ -72,5 +77,13 @@ class PostsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def post_params
     params.require(:post).permit(:content, :user_id)
+  end
+
+  def filename_and_count
+    array = []
+    @reactions_types.each_with_index do |reaction_type, i|
+      array << [reaction_type.image, @post.reactions.where(reactions_type_id: i + 1).count]
+    end
+    array
   end
 end
