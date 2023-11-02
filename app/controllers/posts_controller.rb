@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   # GET /posts or /posts.json
   def index
     one_week_ago = Time.current.advance(weeks: -1)
-    @posts = Post.where('created_at > ?', one_week_ago).order('RANDOM()').limit(Post::POSTS_PER_PAGE)
+    @posts = Post.where('created_at > ?', one_week_ago).order('RANDOM()')
   end
 
   # GET /posts/1 or /posts/1.json
