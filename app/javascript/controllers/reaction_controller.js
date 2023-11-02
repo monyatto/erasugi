@@ -22,20 +22,11 @@ export default class extends Controller {
         });
         this.layer = new Konva.Layer();
         this.stage.add(this.layer);
-        let targetArray  = null;
 
         fetch('/api/posts')
             .then(response => response.json())
             .then(data => {
-                for (let post of data.posts) {
-                    for (let reaction of post.reactions) {
-                        if (reaction.hasOwnProperty(this.targetPostId)) {
-                            targetArray = reaction[this.targetPostId];
-                            break;
-                        }
-                    }
-                }
-                this.determineReactionType(targetArray)
+                this.determineReactionType(data.reactions[this.targetPostId])
                 const postsPerPage = data.posts_per_page;
             })
             .catch((error) => {
