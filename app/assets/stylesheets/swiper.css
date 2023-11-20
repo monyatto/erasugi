@@ -1,0 +1,19 @@
+.swiper {
+    /*スライダーの幅と高さを調整*/
+    width: 100vw;
+    height: 80vh;
+}
+
+.swiper-slide {
+    /*スライド要素の幅と高さを調整*/
+    width: 100%;
+    height: 100%;
+
+    /*テキストの位置調整*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*①各スライドに以下クラスを追加で付与*/
+/*②スライド背景色を設定*/

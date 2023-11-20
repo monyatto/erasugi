@@ -9,21 +9,20 @@
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   <%= javascript_importmap_tags %>
 </head>
-
 <body>
 <div class="navbar bg-base-100" style="display: flex; justify-content: center;" >
   <div class="navbar-start">
-    <%= link_to 'えらすぎ', posts_path, class: "font-sans btn btn-ghost normal-case text-xl" %>
+    <%= link_to 'えらすぎ', posts_path, class: "font-sans btn btn-ghost normal-case text-xl", data: { turbo: false } %>
   </div>
-  <div class="navbar-center">
+  <div class="navbar-center z-10">
     <div class="dropdown">
       <label tabindex="0" class="btn btn-ghost btn-circle">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
       </label>
-      <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+      <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 ">
         <% if user_signed_in? %>
-          <li><%= link_to 'みんなの投稿一覧', posts_path, class: 'navbar-link' %></li>
-          <li><%= link_to "#{current_user.name}の投稿一覧", user_posts_path(current_user), class: 'navbar-link' %></li>
+          <li><%= link_to 'みんなの投稿一覧', posts_path, class: 'navbar-link', data: { turbo: false } %></li>
+          <li><%= link_to "#{current_user.name}の投稿一覧", user_posts_path(current_user), class: 'navbar-link', data: { turbo: false } %></li>
           <li><%= link_to '登録情報', user_path(current_user), class: 'navbar-link' %></li>
           <li><%= link_to 'ユーザー一覧', users_path, class: 'navbar-link' %></li>
           <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'navbar-link'  %></li>

@@ -1,9 +1,6 @@
 <h1>新規投稿</h1>
-
-<%= turbo_frame_tag "test" do %>
 <%= render "form", post: @post, class: "textarea textarea-bordered" %>
 <br>
-<% end %>
 <div>
   <%= link_to "戻る", posts_path, class: "link" %>
 </div>

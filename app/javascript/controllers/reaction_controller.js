@@ -4,78 +4,103 @@ import Konva from 'konva';
 export default class extends Controller {
     stage = null;
     layer = null;
-    reactionCount = null;
-    navbarHeight = null;
-    availableHeight = null;
-
-    targetPostId = location.pathname.split('/')[2];
+    imageCache = {};
+    reactionTypeToImage = {
+        1: '/assets/test.png',
+        2: '/assets/test1.png',
+        3: '/assets/test2.png',
+    };
 
     connect() {
-        this.reactionCount = document.getElementById('reactionCount').dataset.count;
-        this.navbarHeight = document.querySelector('.navbar').offsetHeight;
-        this.availableHeight = window.innerHeight - this.navbarHeight;
-
-        this.stage = new Konva.Stage({
-            container: 'container',
-            width: window.innerWidth,
-            height: this.availableHeight,
+        this.preloadImages(Object.values(this.reactionTypeToImage));
+        window.addEventListener('postIdChanged', (e) => {
+            this.displayExistingReaction(e.detail)
         });
-        this.layer = new Konva.Layer();
-        this.stage.add(this.layer);
-        let targetArray  = null;
+        let event = new Event('DOMContentLoaded');
+        window.dispatchEvent(event);
+    }
+
+    preloadImages(imageUrls) {
+        imageUrls.forEach(url => {
+            const img = new Image();
+            img.onload = () => {
+                this.imageCache[url] = img;
+            };
+            img.src = url;
+        });
+    }
+
+    displayExistingReaction(targetPostId){
+        const availableHeight = window.innerHeight - document.querySelector('.navbar').offsetHeight;
+        if (!this.stage) {
+            this.stage = new Konva.Stage({
+                container: 'container',
+                width: window.innerWidth,
+                height: availableHeight,
+            });
+        }
+        if (!this.layer) {
+            this.layer = new Konva.Layer();
+            this.stage.add(this.layer);
+        } else {
+            this.layer.destroyChildren();
+        }
 
         fetch('/api/posts')
             .then(response => response.json())
             .then(data => {
-                this.determineReactionType(data.reactions[this.targetPostId])
-                const postsPerPage = data.posts_per_page;
+                this.determineReactionType(data.reactions[targetPostId])
             })
             .catch((error) => {
                 console.error('Error:', error);
-            });
+            })
     }
 
     onButtonClick(event) {
-        const reactionTypeId = parseInt(event.target.dataset.reactionTypeId);
-        let reactionTypes = [];
-        reactionTypes.push(reactionTypeId)
-        this.determineReactionType(reactionTypes);
+        this.determineReactionType([parseInt(event.target.dataset.reactionTypeId)]);
     }
 
     async determineReactionType(reactionTypes) {
         for (let i = 0; i < reactionTypes.length; i++) {
-            if (reactionTypes[i] === 1) {
-                await this.displayReaction(`/assets/test.png`);
-            } else if (reactionTypes[i] === 2) {
-                await this.displayReaction(`/assets/test1.png`);
-            } else if (reactionTypes[i] === 3) {
-                await this.displayReaction(`/assets/test2.png`);
+            const imageSrc = this.reactionTypeToImage[reactionTypes[i]];
+            if (imageSrc) {
+                await this.displayReaction(imageSrc);
             }
         }
     }
 
     async displayReaction(imageSrc) {
         return new Promise((resolve, reject) => {
-            const imageObj = new Image();
-            imageObj.onload = () => {
-                const sprite = new Konva.Sprite({
-                    x: Math.floor(Math.random() * (window.innerWidth)) -150,
-                    y: Math.floor(Math.random() * (this.availableHeight - 300 )),
-                    image: imageObj,
-                    animation: 'idle',
-                    animations: {
-                        idle: [0, 0, 300, 300, 300, 0, 300, 300]
-                    },
-                    frameRate: 7,
-                    frameIndex: 0
-                });
-                this.layer.add(sprite);
-                sprite.start();
-                sprite.moveToTop();
-                this.layer.draw();
+            if (this.imageCache[imageSrc]) {
+                this.createSprite(this.imageCache[imageSrc]);
                 resolve();
+            } else {
+                const imageObj = new Image();
+                imageObj.onload = () => {
+                    this.imageCache[imageSrc] = imageObj;
+                    this.createSprite(imageObj);
+                    resolve();
+                }
+                imageObj.src = imageSrc;
             }
-            imageObj.src = imageSrc;
         });
+    }
+
+    createSprite(imageObj) {
+        const sprite = new Konva.Sprite({
+            x: Math.floor(Math.random() * (window.innerWidth)) -150,
+            y: Math.floor(Math.random() * (this.stage.height() - 300 )),
+            image: imageObj,
+            animation: 'idle',
+            animations: {
+                idle: [0, 0, 300, 300, 300, 0, 300, 300]
+            },
+            frameRate: 7,
+            frameIndex: 0
+        });
+        this.layer.add(sprite);
+        sprite.start();
+        sprite.moveToTop();
+        this.layer.draw();
     }
 }
