@@ -13,11 +13,15 @@ export default class extends Controller {
 
     connect() {
         this.preloadImages(Object.values(this.reactionTypeToImage));
-        window.addEventListener('postIdChanged', (e) => {
-            this.displayExistingReaction(e.detail)
-        });
-        let event = new Event('DOMContentLoaded');
-        window.dispatchEvent(event);
+        if (document.querySelector('.swiper')) {
+            window.addEventListener('postIdChanged', (e) => {
+                this.displayExistingReaction(e.detail)
+            });
+            let event = new Event('DOMContentLoaded');
+            window.dispatchEvent(event);
+        } else {
+            this.displayExistingReaction(location.pathname.split('/')[2])
+        }
     }
 
     preloadImages(imageUrls) {
