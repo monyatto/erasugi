@@ -1,11 +1,33 @@
-<%= turbo_frame_tag "test", data: { turbo_action: :advance } do %>
-  <div id="posts">
-  <% @posts.each do |post| %>
-    <p>
-      <%= link_to post.content, post %>
-    </p>
-  <% end %>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="turbolinks-visit-control" content="reload">
+  <%= stylesheet_link_tag "swiper"%>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+  <title>サンプル</title>
+</head>
+<body class="h-[100vh]">
+<div id="container" style="position: absolute;"></div>
+<div class="swiper" data-controller="scroll reaction">
+  <div class="swiper-wrapper mt-44">
+    <% @posts.each do |post| %>
+      <div class="swiper-slide" data-post-id="<%= post.id %>">
+        <div class="text-[60px]">
+          <%= post.content %>
+        </div>
+        <div class="flex justify-center">
+          <% @reactions_types.each do |reactions_type| %>
+            <%= button_to "#{reactions_type.name}", reactions_path(post_id: post.id, reactions_type_id: reactions_type.id), {method: :post, class: "btn text-lg m-10 w-24 h-24 rounded-full drop-shadow-md bg-white", id: "test", data: { action: "click->reaction#onButtonClick", reaction_type_id: reactions_type.id}} %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
-
-<%= link_to "新規投稿", new_post_path, post: @post, class: "link" %>
-<% end %>
+<div class="swiper-button-next"></div>
+<div class="swiper-button-prev"></div>
+</body>
+</html>

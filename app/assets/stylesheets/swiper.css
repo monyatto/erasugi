@@ -1,0 +1,29 @@
+.swiper {
+    width: 100vw;
+    height: 80vh;
+}
+
+.swiper-slide {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-button-disabled {
+    opacity: 0 !important;
+}
+
+[class^=swiper-button ]{
+    transform:rotate(90deg);
+    left: 49.5% !important;
+}
+.swiper-button-prev{
+    top: 10% !important;
+}
+.swiper-button-next{
+    top: 90% !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    --swiper-navigation-color: #C0C0C0 !important;
+}

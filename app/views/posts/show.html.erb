@@ -4,14 +4,11 @@
   <meta charset="utf-8" />
   <title>Konva Sprite Demo</title>
 </head>
-<body>
-<%= turbo_frame_tag "test" do %>
+<body class="h-[100vh]" data-action="scroll->scroll#scrollEvent">
   <div id="container" style="position: absolute;"></div>
-  <div id="reactionCount" data-count="<%= @reaction_1_counts %>"></div>
-  <div id="filename_and_count" data-count="<%= @filename_and_count %>"></div>
   <div class="font-sans text-center p-20" style="position: relative;" data-controller="reaction">
     <div class="text-[60px] font-sans p-4 pb-10" style="position: relative;"><%= @post.content %></div>
-    <div class="flex justify-center" style="position: relative;">
+    <div class="flex justify-center" style="position: relative" data-post-id="<%= @post.id %>">
       <% @reactions_types.each do |reactions_type| %>
         <%= button_to "#{reactions_type.name}", reactions_path(post_id: @post.id, reactions_type_id: reactions_type.id), {method: :post, class: "btn text-lg m-10 w-24 h-24 rounded-full drop-shadow-md bg-white", id: "test", data: { action: "click->reaction#onButtonClick", reaction_type_id: reactions_type.id}} %>
       <% end %>
@@ -20,6 +17,5 @@
     <%= link_to "戻る", posts_path, class:"btn" %>
     <%= button_to "削除", @post, method: :delete, class: "btn-danger" %>
   </div>
-<% end %>
 </body>
 </html>
