@@ -1,19 +1,29 @@
 .swiper {
-    /*スライダーの幅と高さを調整*/
     width: 100vw;
     height: 80vh;
 }
 
 .swiper-slide {
-    /*スライド要素の幅と高さを調整*/
     width: 100%;
     height: 100%;
-
-    /*テキストの位置調整*/
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-/*①各スライドに以下クラスを追加で付与*/
-/*②スライド背景色を設定*/
+.swiper-button-disabled {
+    opacity: 0 !important;
+}
+
+[class^=swiper-button ]{
+    transform:rotate(90deg);
+    left: 49.5% !important;
+}
+.swiper-button-prev{
+    top: 10% !important;
+}
+.swiper-button-next{
+    top: 90% !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    --swiper-navigation-color: #C0C0C0 !important;
+}
