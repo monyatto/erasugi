@@ -20,7 +20,8 @@ export default class extends Controller {
             let event = new Event('DOMContentLoaded');
             window.dispatchEvent(event);
         } else {
-            this.displayExistingReaction(location.pathname.split('/')[2])
+            const postId = document.querySelector('[data-post-id]').getAttribute('data-post-id');
+            this.displayExistingReaction(postId)
         }
     }
 
