@@ -10,18 +10,21 @@ export default class extends Controller {
         2: '/assets/test1.png',
         3: '/assets/test2.png',
     };
+    postId =  document.querySelector('[data-post-id]').getAttribute('data-post-id');
 
     connect() {
         this.preloadImages(Object.values(this.reactionTypeToImage));
         if (document.querySelector('.swiper')) {
+            document.addEventListener('turbo:load', () => {
+                this.displayExistingReaction(this.postId)
+            });
             window.addEventListener('postIdChanged', (e) => {
                 this.displayExistingReaction(e.detail)
             });
             let event = new Event('DOMContentLoaded');
             window.dispatchEvent(event);
         } else {
-            const postId = document.querySelector('[data-post-id]').getAttribute('data-post-id');
-            this.displayExistingReaction(postId)
+            this.displayExistingReaction(this.postId)
         }
     }
 

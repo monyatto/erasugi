@@ -1,9 +1,18 @@
-<div id="posts">
-  <% @posts.each do |post| %>
-    <p>
-      <%= link_to post.content, post %>
-    </p>
-  <% end %>
+<div class="flex justify-center">
+  <table class="table-fixed">
+    <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><%= post.content %></td>
+        <td><%= post.created_at.to_date.strftime("%Y年%m月%d日") %></td>
+        <td><%= link_to "詳細", post_path(post.public_uid) %></td>
+        <td><%= link_to "編集", edit_post_path(post.public_uid) %></td>
+        <td><%= button_to "削除", post, method: :delete, data: { turbo_confirm: "本当に削除しますか？" } %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
 </div>
-
-<%= link_to "新規投稿", new_post_path, class: "link" %>
+<div class="flex justify-center">
+  <%= link_to "新規投稿", new_post_path, class: "link" %>
+</div>

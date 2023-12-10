@@ -3,5 +3,3 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import { register } from "swiper/element/bundle";
 register();
-
-Turbo.session.drive = false;

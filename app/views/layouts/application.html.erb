@@ -3,6 +3,7 @@
 <head>
   <title>Erasugi</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="turbo-visit-control" content="reload">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
@@ -12,7 +13,7 @@
 <body>
 <div class="navbar bg-base-100" style="display: flex; justify-content: center;" >
   <div class="navbar-start">
-    <%= link_to 'えらすぎ', posts_path, class: "font-sans btn btn-ghost normal-case text-xl", data: { turbo: false } %>
+    <%= link_to 'えらすぎ', posts_path, class: "font-sans btn btn-ghost normal-case text-xl" %>
   </div>
   <div class="navbar-center z-10">
     <div class="dropdown">
@@ -21,8 +22,8 @@
       </label>
       <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 ">
         <% if user_signed_in? %>
-          <li><%= link_to 'みんなの投稿一覧', posts_path, class: 'navbar-link', data: { turbo: false } %></li>
-          <li><%= link_to "#{current_user.name}の投稿一覧", user_posts_path(current_user), class: 'navbar-link', data: { turbo: false } %></li>
+          <li><%= link_to 'みんなの投稿一覧', posts_path, class: 'navbar-link' %></li>
+          <li><%= link_to "#{current_user.name}の投稿一覧", user_posts_path(current_user), class: 'navbar-link' %></li>
           <li><%= link_to '登録情報', user_path(current_user), class: 'navbar-link' %></li>
           <li><%= link_to 'ユーザー一覧', users_path, class: 'navbar-link' %></li>
           <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'navbar-link'  %></li>
