@@ -4,6 +4,10 @@ import Swiper from 'swiper';
 
 export default class extends Controller {
     connect() {
+        document.addEventListener('turbo:load', () => {
+            this.initializeSwiper();
+        });
+
         window.addEventListener('DOMContentLoaded', () => {
             this.initializeSwiper();
         });
@@ -27,8 +31,6 @@ export default class extends Controller {
                 },
             },
         });
-
-        // ページ読み込み時にもイベントを発火
         this.dispatchPostIdChanged(swiper);
     }
 
@@ -38,7 +40,6 @@ export default class extends Controller {
         let postID = activeSlide.dataset.postId;
         let event = new CustomEvent('postIdChanged', { detail: postID });
 
-        // カスタムイベントを発火
         window.dispatchEvent(event);
     }
 }
