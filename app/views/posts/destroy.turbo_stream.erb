@@ -1,0 +1,2 @@
+<%= turbo_stream.remove "post_#{@post.id}" %>
+<%= turbo_stream.prepend "flash", partial: "layouts/flash" %>

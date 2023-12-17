@@ -5,7 +5,7 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.order('RANDOM()').limit(Post::POSTS_PER_PAGE)
+    @posts = Post.all
     @reactions_types = ReactionsType.all
   end
 
@@ -26,11 +26,12 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-
+    @reactions_types = ReactionsType.all
     respond_to do |format|
       if @post.save
-        format.html { redirect_to post_url(@post), notice: 'Post was successfully created.' }
-        format.json { render :show, status: :created, location: @post }
+        # format.turbo_stream { flash.now[:notice] = '投稿成功時のメッセージ' }
+        format.html { redirect_to post_url(@post), notice: 'えらすぎを投稿しました' }
+        # redirect_to post_path(@post), notice: 'ねこを登録しました。'
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @post.errors, status: :unprocessable_entity }
@@ -42,8 +43,10 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to post_url(@post), notice: 'Post was successfully updated.' }
-        format.json { render :show, status: :ok, location: @post }
+        format.turbo_stream { flash.now[:notice] = 'えらすぎを編集しました' }
+        redirect_to post_url(@posts)
+        # format.html { redirect_to post_url(@post), notice: 'えらすぎを編集しました' }
+        # format.json { render :show, status: :ok, location: @post }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @post.errors, status: :unprocessable_entity }
@@ -54,9 +57,9 @@ class PostsController < ApplicationController
   # DELETE /posts/1 or /posts/1.json
   def destroy
     @post.destroy
-
     respond_to do |format|
-      format.html { redirect_to user_posts_path(current_user), notice: 'Post was successfully destroyed.' }
+      format.turbo_stream { flash.now[:notice] = 'えらすぎを削除しました' }
+      format.html { redirect_to user_posts_path(current_user), notice: 'えらすぎを削除しました' }
       format.json { head :no_content }
     end
   end
