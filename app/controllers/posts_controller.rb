@@ -31,7 +31,6 @@ class PostsController < ApplicationController
       if @post.save
         # format.turbo_stream { flash.now[:notice] = '投稿成功時のメッセージ' }
         format.html { redirect_to post_url(@post), notice: 'えらすぎを投稿しました' }
-        # redirect_to post_path(@post), notice: 'ねこを登録しました。'
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @post.errors, status: :unprocessable_entity }

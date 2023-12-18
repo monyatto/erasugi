@@ -14,6 +14,8 @@
 <div class="swiper" data-controller="scroll reaction">
   <div class="swiper-wrapper mt-44">
     <% @posts.each do |post| %>
+<!--      こっちで個々にreactionを管理する-->
+<!--      stimiulusのイベントでvisibleとかあるかも？-->
       <div class="swiper-slide" data-post-id="<%= post.id %>">
         <div class="text-[60px]">
           <%= post.content %>
