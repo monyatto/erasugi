@@ -33,7 +33,6 @@ class PostsController < ApplicationController
         format.html { redirect_to post_url(@post), notice: 'えらすぎを投稿しました' }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -42,13 +41,11 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.turbo_stream { flash.now[:notice] = 'えらすぎを編集しました' }
-        redirect_to post_url(@posts)
-        # format.html { redirect_to post_url(@post), notice: 'えらすぎを編集しました' }
-        # format.json { render :show, status: :ok, location: @post }
+        format.html { redirect_to post_url(@post), notice: 'えらすぎを編集しました' }
+        # format.turbo_stream { flash.now[:notice] = 'えらすぎを編集しました' }
+
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -57,9 +54,8 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     respond_to do |format|
-      format.turbo_stream { flash.now[:notice] = 'えらすぎを削除しました' }
       format.html { redirect_to user_posts_path(current_user), notice: 'えらすぎを削除しました' }
-      format.json { head :no_content }
+      # format.turbo_stream { flash.now[:notice] = 'えらすぎを削除しました' }
     end
   end
 
