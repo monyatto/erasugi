@@ -2,7 +2,7 @@
   <table class="table-fixed">
     <tbody>
     <% @posts.each do |post| %>
-      <tr id="<%= dom_id post %>">
+      <tr>
         <td><%= post.content %></td>
         <td><%= post.created_at.to_date.strftime("%Y年%m月%d日") %></td>
         <td><%= link_to "詳細", post_path(post.public_uid) %></td>
