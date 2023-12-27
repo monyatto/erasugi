@@ -2,34 +2,19 @@ import { Controller } from "@hotwired/stimulus"
 import Konva from 'konva';
 
 export default class extends Controller {
-    stage = null;
+    static values = { post: String }
+    Stage = null;
     layer = null;
     imageCache = {};
+
     reactionTypeToImage = {
         1: '/assets/test.png',
         2: '/assets/test1.png',
         3: '/assets/test2.png',
     };
-    postId =  document.querySelector('[data-post-id]').getAttribute('data-post-id');
 
-    connect() {
-        this.preloadImages(Object.values(this.reactionTypeToImage));
-        if (document.querySelector('.swiper')) {
-            document.addEventListener('turbo:load', () => {
-                this.displayExistingReaction(this.postId)
-            });
-            window.addEventListener('postIdChanged', (e) => {
-                this.displayExistingReaction(e.detail)
-            });
-            let event = new Event('DOMContentLoaded');
-            window.dispatchEvent(event);
-        } else {
-            this.displayExistingReaction(this.postId)
-        }
-    }
-
-    preloadImages(imageUrls) {
-        imageUrls.forEach(url => {
+    initialize() {
+        Object.values(this.reactionTypeToImage).forEach(url => {
             const img = new Image();
             img.onload = () => {
                 this.imageCache[url] = img;
@@ -38,26 +23,34 @@ export default class extends Controller {
         });
     }
 
+    connect() {
+        this.displayExistingReaction(this.postValue)
+        window.addEventListener('postIdChanged', (e) => {
+            let activePostId = (e.detail)
+            console.log(this.postValue)
+
+            if (this.postValue === activePostId){
+                this.displayExistingReaction(this.postValue)
+            } else {
+                this.disconnect()
+            };
+        });
+    };
+
     displayExistingReaction(targetPostId){
         const availableHeight = window.innerHeight - document.querySelector('.navbar').offsetHeight;
-        if (!this.stage) {
             this.stage = new Konva.Stage({
                 container: 'container',
                 width: window.innerWidth,
                 height: availableHeight,
             });
-        }
-        if (!this.layer) {
             this.layer = new Konva.Layer();
             this.stage.add(this.layer);
-        } else {
-            this.layer.destroyChildren();
-        }
 
         fetch('/api/posts')
             .then(response => response.json())
             .then(data => {
-                this.determineReactionType(data.reactions[targetPostId])
+                this.determineReactionType(data.reactions[targetPostId]||[])
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -69,6 +62,7 @@ export default class extends Controller {
     }
 
     async determineReactionType(reactionTypes) {
+        // 既存のリアクション表示と新しくボタンが押されたリアクション両方に対応
         for (let i = 0; i < reactionTypes.length; i++) {
             const imageSrc = this.reactionTypeToImage[reactionTypes[i]];
             if (imageSrc) {
