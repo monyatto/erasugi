@@ -24,15 +24,14 @@ export default class extends Controller {
     }
 
     connect() {
+        //一覧画面かつ投稿が先頭の場合のみに動かす
+        //htmlに一番上の目標をつけても
         this.displayExistingReaction(this.postValue)
         window.addEventListener('postIdChanged', (e) => {
+            //constでもよさそう
             let activePostId = (e.detail)
-            console.log(this.postValue)
-
             if (this.postValue === activePostId){
                 this.displayExistingReaction(this.postValue)
-            } else {
-                this.disconnect()
             };
         });
     };
@@ -47,6 +46,7 @@ export default class extends Controller {
             this.layer = new Konva.Layer();
             this.stage.add(this.layer);
 
+            //htmlに埋め込んでもいいかも？　そのほうが低コスト
         fetch('/api/posts')
             .then(response => response.json())
             .then(data => {
@@ -61,6 +61,7 @@ export default class extends Controller {
         this.determineReactionType([parseInt(event.target.dataset.reactionTypeId)]);
     }
 
+    //名前変える
     async determineReactionType(reactionTypes) {
         // 既存のリアクション表示と新しくボタンが押されたリアクション両方に対応
         for (let i = 0; i < reactionTypes.length; i++) {

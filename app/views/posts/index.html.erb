@@ -1,6 +1,6 @@
 <div class="h-[100vh]">
 <div id="container" style="position: absolute;"></div>
-<div class="swiper" id="swiper_id"  data-controller="scroll" >
+  <div class="swiper" id="swiper_id"  data-controller="scroll" data-scroll-posts-ids-value='<%= @posts.pluck(:id) %>'>
   <div class="swiper-wrapper mt-44">
     <% @posts.each do |post| %>
       <!--      画面上に表示している一個だけを送りたい どれを表示しているかはswiperしか知らない？ -->
@@ -8,12 +8,13 @@
       <!--      swiper-slide-activeクラスが現在アクティブのスライドに付与されるクラス-->
       <div class="swiper-slide">
         <div data-controller="reaction" data-reaction-post-value=<%= post.id %>>
+          <%= post.id %>
           <div class="text-[60px]">
             <%= post.content %>
           </div>
           <div class="flex justify-center">
-           <% @reactions_types.each do |reactions_type| %>
-              <%= button_to "#{reactions_type.name}", reactions_path(post_id: post.id, reactions_type_id: reactions_type.id), {method: :post, class: "btn text-lg m-10 w-24 h-24 rounded-full drop-shadow-md bg-white", id: "test", data: { action: "click->reaction#onButtonClick", reaction_type_id: reactions_type.id}} %>
+            <% @reactions_types.each do |reactions_type| %>
+              <%= button_to "#{reactions_type.name} #{post.reactions.where(reactions_type_id: reactions_type.id).count}", reactions_path(post_id: post.id, reactions_type_id: reactions_type.id), {method: :post, class: "btn text-lg m-10 w-24 h-24 rounded-full drop-shadow-md bg-white", id: "test", data: { action: "click->reaction#onButtonClick", reaction_type_id: reactions_type.id}} %>
             <% end %>
           </div>
         </div>
