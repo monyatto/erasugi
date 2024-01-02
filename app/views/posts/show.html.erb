@@ -1,7 +1,8 @@
 <div class="h-[100vh]" data-action="scroll->scroll#scrollEvent">
   <div id="container" style="position: absolute;"></div>
   <div class="font-sans text-center p-20" style="position: relative;">
-    <div data-controller="reaction" data-reaction-post-value=<%= @post.id %>>
+    <div data-controller="reaction" data-reaction-post-value=<%= @post.id %> data-reaction-first-post-id-value=<%= @post.id %> data-reaction-reactions-type-ids-value="<%= @post.associated_reaction_type_ids %>">
+      <%= @post.id %>
       <div class="text-[60px] font-sans p-4 pb-10" style="position: relative;"><%= @post.content %></div>
       <div class="flex justify-center" style="position: relative">
         <% @reactions_types.each do |reactions_type| %>

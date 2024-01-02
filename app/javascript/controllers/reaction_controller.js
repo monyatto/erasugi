@@ -2,7 +2,11 @@ import { Controller } from "@hotwired/stimulus"
 import Konva from 'konva';
 
 export default class extends Controller {
-    static values = { post: String }
+    static values = {
+        post:{ type: String },
+        firstPostId:{ type: String },
+        reactionsTypeIds:{ type: Array }
+    }
     Stage = null;
     layer = null;
     imageCache = {};
@@ -24,17 +28,21 @@ export default class extends Controller {
     }
 
     connect() {
-        //一覧画面かつ投稿が先頭の場合のみに動かす
-        //htmlに一番上の目標をつけても
-        this.displayExistingReaction(this.postValue)
+        if (this.postValue === this.firstPostIdValue) {
+            console.log(this.postValue)
+            this.displayExistingReaction(this.postValue)
+        };
         window.addEventListener('postIdChanged', (e) => {
-            //constでもよさそう
-            let activePostId = (e.detail)
-            if (this.postValue === activePostId){
-                this.displayExistingReaction(this.postValue)
-            };
+            const activePostId = e.detail;
+            if (this.postValue === activePostId) {
+                this.displayExistingReaction(this.postValue);
+            }
         });
     };
+
+    disconnect() {
+        this.stage.destroy();
+    }
 
     displayExistingReaction(targetPostId){
         const availableHeight = window.innerHeight - document.querySelector('.navbar').offsetHeight;
@@ -45,16 +53,7 @@ export default class extends Controller {
             });
             this.layer = new Konva.Layer();
             this.stage.add(this.layer);
-
-            //htmlに埋め込んでもいいかも？　そのほうが低コスト
-        fetch('/api/posts')
-            .then(response => response.json())
-            .then(data => {
-                this.determineReactionType(data.reactions[targetPostId]||[])
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            })
+            this.determineReactionType(this.reactionsTypeIdsValue)
     }
 
     onButtonClick(event) {
