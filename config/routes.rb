@@ -5,7 +5,4 @@ Rails.application.routes.draw do
   end
   resources :posts
   resources :reactions
-  namespace :api do
-    resources :posts, only: [:index]
-  end
 end

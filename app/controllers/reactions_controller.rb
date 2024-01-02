@@ -3,11 +3,11 @@
 class ReactionsController < ApplicationController
   def create
     @reaction = Reaction.new(post_id: params[:post_id], reactions_type_id: params[:reactions_type_id])
-    return unless @reaction.save!
+    nil unless @reaction.save!
 
-    respond_to do |format|
-      format.turbo_stream
-      format.html { post_path(params[:post_id]) }
-    end
+    # リアクションを押したら、サーバーに教えてサーバーからjsに伝える
+    #     # respond_to do |format|
+    #     #   format.js { render js: 'window.dispatchEvent(new CustomEvent("reaction-saved"))' } if @reaction.save
+    #     # end
   end
 end

@@ -10,4 +10,10 @@ class Post < ApplicationRecord
   def to_param
     public_uid
   end
+
+  def associated_reaction_type_ids
+    reactions.map do |reaction|
+      ReactionsType.find(reaction.reactions_type_id).id
+    end
+  end
 end
