@@ -7,8 +7,6 @@ export default class extends Controller {
         firstPostId:{ type: String },
         reactionsTypeIds:{ type: Array }
     }
-    Stage = null;
-    layer = null;
     imageCache = {};
 
     reactionTypeToImage = {
@@ -18,6 +16,7 @@ export default class extends Controller {
     };
 
     initialize() {
+        this.boundHandlePostIdChanged = this.handlePostIdChanged.bind(this);
         Object.values(this.reactionTypeToImage).forEach(url => {
             const img = new Image();
             img.onload = () => {
@@ -32,16 +31,23 @@ export default class extends Controller {
             console.log(this.postValue)
             this.displayExistingReaction(this.postValue)
         };
-        window.addEventListener('postIdChanged', (e) => {
-            const activePostId = e.detail;
-            if (this.postValue === activePostId) {
-                this.displayExistingReaction(this.postValue);
-            }
-        });
+        window.addEventListener('postIdChanged', this.boundHandlePostIdChanged);
     };
 
     disconnect() {
-        this.stage.destroy();
+        // コントローラーの二重呼び出しが影響しないように対処
+        this.postValue = undefined;
+        this.firstPostIdValue = undefined;
+        this.reactionsTypeIdsValue = undefined;
+        window.removeEventListener('postIdChanged', this.boundHandlePostIdChanged);
+    }
+
+    handlePostIdChanged(e) {
+        console.log("idが変わりました！")
+        const activePostId = (e.detail)
+        if (this.postValue === activePostId) {
+            this.displayExistingReaction(this.postValue)
+        };
     }
 
     displayExistingReaction(targetPostId){
