@@ -45,6 +45,11 @@ export default class extends Controller {
         window.removeEventListener('onButtonClick', this.boundHandleOnButtonClick);
     };
 
+    addNewReactionsTypeId(reactionTypeId) {
+        // 非同期に更新されたreactionsTypeIdsValueを反映する
+        this.reactionsTypeIdsValue = [...this.reactionsTypeIdsValue, reactionTypeId];
+    }
+された
     handlePostIdChanged(e) {
         this.activePostId = (e.detail)
         if (this.postValue === this.activePostId) {
@@ -55,6 +60,7 @@ export default class extends Controller {
     handleOnButtonClick(e) {
         if (this.postValue === this.activePostId) {
             const reactionTypeId = (e.detail)
+            this.addNewReactionsTypeId(reactionTypeId)
             this.determineReactionType(reactionTypeId)
         };
     }
