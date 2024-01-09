@@ -5,10 +5,10 @@ export default class extends Controller {
     static values = {
         post:{ type: String },
         firstPostId:{ type: String },
-        reactionsTypeIds:{ type: Array }
+        reactionsTypeIds:{ type: Array , default: [] },
     }
     imageCache = {};
-
+    activePostId = undefined;
     reactionTypeToImage = {
         1: '/assets/test.png',
         2: '/assets/test1.png',
@@ -17,6 +17,7 @@ export default class extends Controller {
 
     initialize() {
         this.boundHandlePostIdChanged = this.handlePostIdChanged.bind(this);
+        this.boundHandleOnButtonClick = this.handleOnButtonClick.bind(this);
         Object.values(this.reactionTypeToImage).forEach(url => {
             const img = new Image();
             img.onload = () => {
@@ -27,11 +28,12 @@ export default class extends Controller {
     }
 
     connect() {
+        this.activePostId = this.firstPostIdValue;
         if (this.postValue === this.firstPostIdValue) {
-            console.log(this.postValue)
             this.displayExistingReaction(this.postValue)
         };
         window.addEventListener('postIdChanged', this.boundHandlePostIdChanged);
+        window.addEventListener('onButtonClick', this.boundHandleOnButtonClick);
     };
 
     disconnect() {
@@ -40,13 +42,20 @@ export default class extends Controller {
         this.firstPostIdValue = undefined;
         this.reactionsTypeIdsValue = undefined;
         window.removeEventListener('postIdChanged', this.boundHandlePostIdChanged);
-    }
+        window.removeEventListener('onButtonClick', this.boundHandleOnButtonClick);
+    };
 
     handlePostIdChanged(e) {
-        console.log("idが変わりました！")
-        const activePostId = (e.detail)
-        if (this.postValue === activePostId) {
+        this.activePostId = (e.detail)
+        if (this.postValue === this.activePostId) {
             this.displayExistingReaction(this.postValue)
+        };
+    }
+
+    handleOnButtonClick(e) {
+        if (this.postValue === this.activePostId) {
+            const reactionTypeId = (e.detail)
+            this.determineReactionType(reactionTypeId)
         };
     }
 
@@ -62,13 +71,9 @@ export default class extends Controller {
             this.determineReactionType(this.reactionsTypeIdsValue)
     }
 
-    onButtonClick(event) {
-        this.determineReactionType([parseInt(event.target.dataset.reactionTypeId)]);
-    }
-
     //名前変える
     async determineReactionType(reactionTypes) {
-        // 既存のリアクション表示と新しくボタンが押されたリアクション両方に対応
+        // 既存のリアクション表示と新しくボタンが押されたリアクションの両方に対応
         for (let i = 0; i < reactionTypes.length; i++) {
             const imageSrc = this.reactionTypeToImage[reactionTypes[i]];
             if (imageSrc) {

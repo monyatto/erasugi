@@ -14,8 +14,8 @@
           </div>
           <div class="flex justify-center">
             <% @reactions_types.each do |reactions_type| %>
-              <%= button_to "#{reactions_type.name} #{post.reactions.where(reactions_type_id: reactions_type.id).count}", reactions_path(post_id: post.id, reactions_type_id: reactions_type.id), {method: :post, class: "btn text-lg m-10 w-24 h-24 rounded-full drop-shadow-md bg-white", id: "test", data: { action: "click->reaction#onButtonClick", reaction_type_id: reactions_type.id}} %>
-            <% end %>
+              <%= button_to "#{reactions_type.name}", reactions_path(post_id: post.id, reactions_type_id: reactions_type.id), {method: :post, remote: true, class: "btn text-lg m-10 w-24 h-24 rounded-full drop-shadow-md bg-white", id: "button"} %>
+          <% end %>
           </div>
         </div>
       </div>
