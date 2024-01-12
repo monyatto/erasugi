@@ -3,12 +3,12 @@ import Konva from 'konva';
 
 export default class extends Controller {
     static values = {
-        post:{ type: String },
+        postId:{ type: String },
         firstPostId:{ type: String },
-        reactionsTypeIds:{ type: Array , default: [] },
+        reactionsTypeIds:{ type: Array , default: [] }
     }
     imageCache = {};
-    activePostId = undefined;
+    activePostId = this.firstPostIdValue;
     reactionTypeToImage = {
         1: '/assets/test.png',
         2: '/assets/test1.png',
@@ -17,7 +17,6 @@ export default class extends Controller {
 
     initialize() {
         this.boundHandlePostIdChanged = this.handlePostIdChanged.bind(this);
-        this.boundHandleOnButtonClick = this.handleOnButtonClick.bind(this);
         Object.values(this.reactionTypeToImage).forEach(url => {
             const img = new Image();
             img.onload = () => {
@@ -28,41 +27,52 @@ export default class extends Controller {
     }
 
     connect() {
-        this.activePostId = this.firstPostIdValue;
-        if (this.postValue === this.firstPostIdValue) {
-            this.displayExistingReaction(this.postValue)
+        if (this.postIdValue === this.activePostId) {
+            this.displayExistingReaction(this.postIdValue)
         };
         window.addEventListener('postIdChanged', this.boundHandlePostIdChanged);
-        window.addEventListener('onButtonClick', this.boundHandleOnButtonClick);
     };
 
     disconnect() {
         // コントローラーの二重呼び出しが影響しないように対処
-        this.postValue = undefined;
+        this.postIdValue = undefined;
         this.firstPostIdValue = undefined;
         this.reactionsTypeIdsValue = undefined;
         window.removeEventListener('postIdChanged', this.boundHandlePostIdChanged);
-        window.removeEventListener('onButtonClick', this.boundHandleOnButtonClick);
+    };
+
+    handlePostIdChanged(e) {
+        this.activePostId = (e.detail)
+        if (this.postIdValue === this.activePostId) {
+            this.displayExistingReaction(this.postIdValue)
+        };
+    }
+
+    async onButtonClick(event) {
+        const reactionTypeId = String(event.params.reactionTypeId)
+        const response = await fetch("/reactions", {
+            method: "POST",
+            mode: "same-origin",
+            referrerPolicy: "no-referrer",
+            headers: {
+                "Content-Type": "application/json",
+                'X-CSRF-Token': document.querySelector("meta[name='csrf-token']").getAttribute("content")
+            },
+            body: JSON.stringify({
+                post_id: this.postIdValue,
+                reactions_type_id: reactionTypeId
+            }),
+        }).then((response) => {
+            if (response.ok) {
+                this.determineReactionType(reactionTypeId)
+                this.addNewReactionsTypeId(reactionTypeId)
+            }
+        })
     };
 
     addNewReactionsTypeId(reactionTypeId) {
         // 非同期に更新されたreactionsTypeIdsValueを反映する
         this.reactionsTypeIdsValue = [...this.reactionsTypeIdsValue, reactionTypeId];
-    }
-された
-    handlePostIdChanged(e) {
-        this.activePostId = (e.detail)
-        if (this.postValue === this.activePostId) {
-            this.displayExistingReaction(this.postValue)
-        };
-    }
-
-    handleOnButtonClick(e) {
-        if (this.postValue === this.activePostId) {
-            const reactionTypeId = (e.detail)
-            this.addNewReactionsTypeId(reactionTypeId)
-            this.determineReactionType(reactionTypeId)
-        };
     }
 
     displayExistingReaction(targetPostId){
@@ -79,7 +89,7 @@ export default class extends Controller {
 
     //名前変える
     async determineReactionType(reactionTypes) {
-        // 既存のリアクション表示と新しくボタンが押されたリアクションの両方に対応
+        // 既存のリアクション（複数）表示と新しくボタンが押されたリアクション（単数）の両方に対応
         for (let i = 0; i < reactionTypes.length; i++) {
             const imageSrc = this.reactionTypeToImage[reactionTypes[i]];
             if (imageSrc) {

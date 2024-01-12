@@ -3,10 +3,6 @@
 class ReactionsController < ApplicationController
   def create
     @reaction = Reaction.new(post_id: params[:post_id], reactions_type_id: params[:reactions_type_id])
-    return unless @reaction.save!
-
-    respond_to do |format|
-      format.js
-    end
+    nil unless @reaction.save!
   end
 end

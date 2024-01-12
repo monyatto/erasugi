@@ -3,5 +3,3 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import { register } from "swiper/element/bundle";
 register();
-import Rails from '@rails/ujs';
-Rails.start();
