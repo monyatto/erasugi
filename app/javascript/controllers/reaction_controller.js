@@ -27,8 +27,9 @@ export default class extends Controller {
     }
 
     connect() {
-        if (this.postIdValue === this.activePostId) {
-            this.displayExistingReaction(this.postIdValue)
+        if (this.postIdValue === this.firstPostIdValue) {
+            // 接続時に表示されている投稿のidと一致したらリアクションを表示する
+            this.setupExistingReactions(this.postIdValue)
         };
         window.addEventListener('postIdChanged', this.boundHandlePostIdChanged);
     };
@@ -44,7 +45,8 @@ export default class extends Controller {
     handlePostIdChanged(e) {
         this.activePostId = (e.detail)
         if (this.postIdValue === this.activePostId) {
-            this.displayExistingReaction(this.postIdValue)
+            // スライド切り替え時に表示された投稿のidと一致したらリアクションを表示する
+            this.setupExistingReactions(this.postIdValue)
         };
     }
 
@@ -64,7 +66,7 @@ export default class extends Controller {
             }),
         }).then((response) => {
             if (response.ok) {
-                this.determineReactionType(reactionTypeId)
+                this.renderReactionImages(reactionTypeId)
                 this.addNewReactionsTypeId(reactionTypeId)
             }
         })
@@ -75,7 +77,7 @@ export default class extends Controller {
         this.reactionsTypeIdsValue = [...this.reactionsTypeIdsValue, reactionTypeId];
     }
 
-    displayExistingReaction(targetPostId){
+    setupExistingReactions(targetPostId){
         const availableHeight = window.innerHeight - document.querySelector('.navbar').offsetHeight;
             this.stage = new Konva.Stage({
                 container: 'container',
@@ -84,12 +86,11 @@ export default class extends Controller {
             });
             this.layer = new Konva.Layer();
             this.stage.add(this.layer);
-            this.determineReactionType(this.reactionsTypeIdsValue)
+            this.renderReactionImages(this.reactionsTypeIdsValue)
     }
 
-    //名前変える
-    async determineReactionType(reactionTypes) {
-        // 既存のリアクション（複数）表示と新しくボタンが押されたリアクション（単数）の両方に対応
+    async renderReactionImages(reactionTypes) {
+        // 以前に押されたリアクション（複数）の表示と新しくボタンが押されたリアクション（単数）の両方に対応
         for (let i = 0; i < reactionTypes.length; i++) {
             const imageSrc = this.reactionTypeToImage[reactionTypes[i]];
             if (imageSrc) {
