@@ -1,11 +1,14 @@
 <div class="h-[100vh]" data-action="scroll->scroll#scrollEvent">
   <div id="container" style="position: absolute;"></div>
-  <div class="font-sans text-center p-20" style="position: relative;" data-controller="reaction">
-    <div class="text-[60px] font-sans p-4 pb-10" style="position: relative;"><%= @post.content %></div>
-    <div class="flex justify-center" style="position: relative" data-post-id="<%= @post.id %>">
-      <% @reactions_types.each do |reactions_type| %>
-        <%= button_to "#{reactions_type.name}", reactions_path(post_id: @post.id, reactions_type_id: reactions_type.id), {method: :post, class: "btn text-lg m-10 w-24 h-24 rounded-full drop-shadow-md bg-white", id: "test", data: { action: "click->reaction#onButtonClick", reaction_type_id: reactions_type.id}} %>
-      <% end %>
+  <div class="font-sans text-center p-20" style="position: relative;">
+    <div data-controller="reaction" data-reaction-post-id-value=<%= @post.id %> data-reaction-first-post-id-value=<%= @post.id %> data-reaction-reactions-type-ids-value="<%= @post.associated_reaction_type_ids %>">
+      <%= @post.id %>
+      <div class="text-[60px] font-sans p-4 pb-10" style="position: relative;"><%= @post.content %></div>
+      <div class="flex justify-center" style="position: relative">
+        <% @reactions_types.each do |reactions_type| %>
+          <button data-action="reaction#onButtonClick" data-reaction-reaction-type-id-param="<%= reactions_type.id %>" class="btn text-lg m-10 w-24 h-24 rounded-full drop-shadow-md bg-white"><%= reactions_type.name %></button>
+        <% end %>
+      </div>
     </div>
     <button data-controller="screenshot">スクリーンショットを取る</button>
     <%= link_to "編集", edit_post_path(@post), class:"btn" %>
@@ -13,4 +16,3 @@
     <%= button_to "削除", @post, method: :delete, form: { data: { turbo_confirm: "本当に削除しますか？" } } %>
   </div>
 </div>
-</html>

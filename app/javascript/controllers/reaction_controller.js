@@ -2,34 +2,22 @@ import { Controller } from "@hotwired/stimulus"
 import Konva from 'konva';
 
 export default class extends Controller {
-    stage = null;
-    layer = null;
+    static values = {
+        postId:{ type: String },
+        firstPostId:{ type: String },
+        reactionsTypeIds:{ type: Array , default: [] }
+    }
     imageCache = {};
+    activePostId = this.firstPostIdValue;
     reactionTypeToImage = {
         1: '/assets/test.png',
         2: '/assets/test1.png',
         3: '/assets/test2.png',
     };
-    postId =  document.querySelector('[data-post-id]').getAttribute('data-post-id');
 
-    connect() {
-        this.preloadImages(Object.values(this.reactionTypeToImage));
-        if (document.querySelector('.swiper')) {
-            document.addEventListener('turbo:load', () => {
-                this.displayExistingReaction(this.postId)
-            });
-            window.addEventListener('postIdChanged', (e) => {
-                this.displayExistingReaction(e.detail)
-            });
-            let event = new Event('DOMContentLoaded');
-            window.dispatchEvent(event);
-        } else {
-            this.displayExistingReaction(this.postId)
-        }
-    }
-
-    preloadImages(imageUrls) {
-        imageUrls.forEach(url => {
+    initialize() {
+        this.boundHandlePostIdChanged = this.handlePostIdChanged.bind(this);
+        Object.values(this.reactionTypeToImage).forEach(url => {
             const img = new Image();
             img.onload = () => {
                 this.imageCache[url] = img;
@@ -38,37 +26,71 @@ export default class extends Controller {
         });
     }
 
-    displayExistingReaction(targetPostId){
+    connect() {
+        if (this.postIdValue === this.firstPostIdValue) {
+            // 接続時に表示されている投稿のidと一致したらリアクションを表示する
+            this.setupExistingReactions(this.postIdValue)
+        };
+        window.addEventListener('postIdChanged', this.boundHandlePostIdChanged);
+    };
+
+    disconnect() {
+        // コントローラーの二重呼び出しが影響しないように対処
+        this.postIdValue = undefined;
+        this.firstPostIdValue = undefined;
+        this.reactionsTypeIdsValue = undefined;
+        window.removeEventListener('postIdChanged', this.boundHandlePostIdChanged);
+    };
+
+    handlePostIdChanged(e) {
+        this.activePostId = (e.detail)
+        if (this.postIdValue === this.activePostId) {
+            // スライド切り替え時に表示された投稿のidと一致したらリアクションを表示する
+            this.setupExistingReactions(this.postIdValue)
+        };
+    }
+
+    async onButtonClick(event) {
+        const reactionTypeId = String(event.params.reactionTypeId)
+        const response = await fetch("/reactions", {
+            method: "POST",
+            mode: "same-origin",
+            referrerPolicy: "no-referrer",
+            headers: {
+                "Content-Type": "application/json",
+                'X-CSRF-Token': document.querySelector("meta[name='csrf-token']").getAttribute("content")
+            },
+            body: JSON.stringify({
+                post_id: this.postIdValue,
+                reactions_type_id: reactionTypeId
+            }),
+        }).then((response) => {
+            if (response.ok) {
+                this.renderReactionImages(reactionTypeId)
+                this.addNewReactionsTypeId(reactionTypeId)
+            }
+        })
+    };
+
+    addNewReactionsTypeId(reactionTypeId) {
+        // 非同期に更新されたreactionsTypeIdsValueを反映する
+        this.reactionsTypeIdsValue = [...this.reactionsTypeIdsValue, reactionTypeId];
+    }
+
+    setupExistingReactions(targetPostId){
         const availableHeight = window.innerHeight - document.querySelector('.navbar').offsetHeight;
-        if (!this.stage) {
             this.stage = new Konva.Stage({
                 container: 'container',
                 width: window.innerWidth,
                 height: availableHeight,
             });
-        }
-        if (!this.layer) {
             this.layer = new Konva.Layer();
             this.stage.add(this.layer);
-        } else {
-            this.layer.destroyChildren();
-        }
-
-        fetch('/api/posts')
-            .then(response => response.json())
-            .then(data => {
-                this.determineReactionType(data.reactions[targetPostId])
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            })
+            this.renderReactionImages(this.reactionsTypeIdsValue)
     }
 
-    onButtonClick(event) {
-        this.determineReactionType([parseInt(event.target.dataset.reactionTypeId)]);
-    }
-
-    async determineReactionType(reactionTypes) {
+    async renderReactionImages(reactionTypes) {
+        // 以前に押されたリアクション（複数）の表示と新しくボタンが押されたリアクション（単数）の両方に対応
         for (let i = 0; i < reactionTypes.length; i++) {
             const imageSrc = this.reactionTypeToImage[reactionTypes[i]];
             if (imageSrc) {

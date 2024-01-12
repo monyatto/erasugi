@@ -3,18 +3,10 @@ import { Controller } from "@hotwired/stimulus"
 import Swiper from 'swiper';
 
 export default class extends Controller {
+    static values = { postsIds: Array }
+
     connect() {
-        document.addEventListener('turbo:load', () => {
-            this.initializeSwiper();
-        });
-
-        window.addEventListener('DOMContentLoaded', () => {
-            this.initializeSwiper();
-        });
-    }
-
-    initializeSwiper() {
-        const swiper = new Swiper(".swiper", {
+        this.swiper = new Swiper(".swiper", {
             direction: 'vertical',
             mousewheel: {
                 thresholdDelta: 100,
@@ -27,19 +19,12 @@ export default class extends Controller {
             },
             on: {
                 slideChange: () => {
-                    this.dispatchPostIdChanged(swiper);
+                    const activeIndex = this.swiper.activeIndex;
+                    const activePostId = this.postsIdsValue[activeIndex];
+                    const event = new CustomEvent('postIdChanged', {detail: String(activePostId)});
+                    window.dispatchEvent(event);
                 },
             },
         });
-        this.dispatchPostIdChanged(swiper);
-    }
-
-    dispatchPostIdChanged(swiper) {
-        let activeIndex = swiper.activeIndex;
-        let activeSlide = document.querySelectorAll('.swiper-slide')[activeIndex];
-        let postID = activeSlide.dataset.postId;
-        let event = new CustomEvent('postIdChanged', { detail: postID });
-
-        window.dispatchEvent(event);
     }
 }

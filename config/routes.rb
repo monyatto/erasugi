@@ -4,8 +4,5 @@ Rails.application.routes.draw do
     resources :posts, only: [:index], controller: "users/posts"
   end
   resources :posts
-  resources :reactions
-  namespace :api do
-    resources :posts, only: [:index]
-  end
+  resources :reactions, only: [:create]
 end
