@@ -41,9 +41,7 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to post_url(@post), notice: 'えらすぎを編集しました' }
-        # format.turbo_stream { flash.now[:notice] = 'えらすぎを編集しました' }
-
+        format.turbo_stream { flash.now[:notice] = 'えらすぎを更新しました' }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -54,8 +52,7 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to user_posts_path(current_user), notice: 'えらすぎを削除しました' }
-      # format.turbo_stream { flash.now[:notice] = 'えらすぎを削除しました' }
+      format.turbo_stream { flash.now[:notice] = 'えらすぎを削除しました' }
     end
   end
 

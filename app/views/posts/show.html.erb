@@ -11,8 +11,5 @@
       </div>
     </div>
     <button data-controller="screenshot">スクリーンショットを取る</button>
-    <%= link_to "編集", edit_post_path(@post), class:"btn" %>
-    <%= link_to "戻る", posts_path, class:"btn" %>
-    <%= button_to "削除", @post, method: :delete, form: { data: { turbo_confirm: "本当に削除しますか？" } } %>
   </div>
 </div>
