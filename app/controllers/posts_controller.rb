@@ -29,7 +29,6 @@ class PostsController < ApplicationController
     @reactions_types = ReactionsType.all
     respond_to do |format|
       if @post.save
-        # format.turbo_stream { flash.now[:notice] = '投稿成功時のメッセージ' }
         format.html { redirect_to post_url(@post), notice: 'えらすぎを投稿しました' }
       else
         format.html { render :new, status: :unprocessable_entity }
