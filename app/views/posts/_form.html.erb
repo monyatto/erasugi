@@ -1,22 +1,9 @@
 <%= form_with(model: post) do |form| %>
-  <% if @post.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-      <ul>
-        <% @post.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div>
+   <div>
     <%= form.label :content, style: "display: block" %>
     <%= form.text_area :content %>
   </div>
-
   <div>
     <%= form.submit class:"btn" %>
-    <%= link_to "キャンセル", @post, class: "btn" %>
   </div>
 <% end %>
