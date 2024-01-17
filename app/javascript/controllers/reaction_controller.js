@@ -129,6 +129,9 @@ export default class extends Controller {
             frameIndex: 0
         });
         this.layer.add(sprite);
+        if (this.layer.children.length > 100) {
+            this.layer.children[0].destroy();
+        }
         sprite.start();
         sprite.moveToTop();
         this.layer.draw();
