@@ -12,8 +12,8 @@ class Post < ApplicationRecord
   end
 
   def associated_reaction_type_ids
-    reactions.map do |reaction|
-      ReactionsType.find(reaction.reactions_type_id).id
+    reactions.includes(:reactions_type).order(created_at: :desc).limit(100).sort_by(&:created_at).map do |reaction|
+      reaction.reactions_type.id
     end
   end
 end
