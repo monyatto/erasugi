@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   end
   resources :posts
   resources :reactions, only: [:create]
+  get 'terms_of_service', to: 'top#terms_of_service'
+  get 'privacy_policy', to: 'top#privacy_policy'
 end
