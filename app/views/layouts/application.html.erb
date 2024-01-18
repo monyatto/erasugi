@@ -36,12 +36,14 @@
     </div>
   </div>
 </div>
-<div class="text-center">
-  <div id="flash">
-    <%= render "layouts/flash" %>
+<div data-controller="modal">
+  <div class="text-center">
+    <div id="flash">
+      <%= render "layouts/flash" %>
+    </div>
+    <%= yield %>
   </div>
-  <%= yield %>
+  <%= render "posts/new" %>
 </div>
-<%= render "posts/new" %>
 </body>
 </html>
