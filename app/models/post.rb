@@ -3,6 +3,10 @@
 class Post < ApplicationRecord
   belongs_to :user
   has_many :reactions, dependent: :destroy
+
+  validates :content,
+            length: { minimum: 1, maximum: 140 }
+
   POSTS_PER_PAGE = 20
 
   generate_public_uid generator: PublicUid::Generators::HexStringSecureRandom.new(20)
