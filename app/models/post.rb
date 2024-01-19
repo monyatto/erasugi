@@ -5,7 +5,8 @@ class Post < ApplicationRecord
   has_many :reactions, dependent: :destroy
 
   validates :content,
-            length: { minimum: 1, maximum: 140 }
+            presence: true,
+            length: { maximum: 140 }
 
   POSTS_PER_PAGE = 20
 
