@@ -1,7 +1,7 @@
 <div data-controller="form-character-count">
   <%= form_with(model: @post) do |form| %>
     <% if form.object.errors.any? %>
-      <div class="alert alert-danger">
+      <div class="text-red-600">
         <ul>
           <% form.object.errors.full_messages.each do |message| %>
             <li><%= message %></li>
