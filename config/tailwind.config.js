@@ -12,6 +12,15 @@ module.exports = {
       fontFamily: {
         sans: ['Zen Maru Gothic', ...defaultTheme.fontFamily.sans],
       },
+      keyframes: {
+        disappear: {
+          "0%": {opacity: 1},
+          "100%": {opacity: 0},
+        },
+      },
+      animation: {
+        disappear: "disappear 3s ease 0s 1 forwards",
+      },
     },
   },
   plugins: [
@@ -23,5 +32,5 @@ module.exports = {
   ],
   daisyui: {
     themes: ["wireframe"]
-  }
+  },
 }
