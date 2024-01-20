@@ -1,4 +1,0 @@
-<button data-action="click->modal#open" data-modal-id="newModal" class="btn absolute right-20 bottom-20">新規投稿</button>
-<%= render 'layouts/modal', modal_id: 'newModal' do %>
-  <%= render "posts/form", post: Post.new, class: "textarea textarea-bordered" %>
-<% end %>
