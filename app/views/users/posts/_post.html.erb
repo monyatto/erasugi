@@ -2,6 +2,6 @@
   <div><%= post.content %></div>
   <div><%= post.created_at.to_date.strftime("%Y年%m月%d日") %></div>
   <div><%= link_to "詳細", post_path(post.public_uid), target: "_top" %></div>
-  <div><%= link_to "編集", edit_post_path(post.public_uid) %></div>
+  <div><%= link_to "編集", edit_post_path(post) %></div>
   <div><%= button_to "削除", post, method: :delete, data: { turbo_confirm: "本当に削除しますか？" } %></div>
 <% end %>

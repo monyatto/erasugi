@@ -1,12 +1,9 @@
-<div data-controller="form-character-count" >
-  <%= form_with(model: post) do |form| %>
-    <div>
-      <%= form.label :content, style: "display: block" %>
-      <%= form.text_area :content %>
-      <p id="text-length"><%="残り#{140 - (post.content&.length || 0)}文字入力できます" %></p>
-    </div>
-    <div>
-      <%= form.submit class:"btn" %>
-    </div>
-  <% end %>
-</div>
+<%= form_with(model: post) do |form| %>
+   <div>
+    <%= form.label :content, style: "display: block" %>
+    <%= form.text_area :content %>
+  </div>
+  <div>
+    <%= form.submit class:"btn" %>
+  </div>
+<% end %>
