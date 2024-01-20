@@ -10,12 +10,12 @@
       </div>
     <% end %>
     <div>
-      <%= form.label :content, style: "display: block" %>
+      <%= form.label :あたらしいえらすぎ, style: "display: block" %>
       <%= form.text_area :content %>
-      <p id="text-length"><%="残り#{140 - (@post.content&.length || 0)}文字入力できます" %></p>
+      <p id="text-length"><%= form_character_count(@post) %></p>
     </div>
     <div>
-      <%= form.submit "Submit", class: "btn" %>
+      <%= form.submit "投稿する", class: "btn" %>
     </div>
   <% end %>
 </div>
