@@ -1,5 +1,11 @@
-<% flash.each do |type, message| %>
-  <div id="flashMessage">
+<div class=>
+<% flash.each do |flash_type, message| %>
+  <div
+    class="animate-disappear"
+    data-controller="removals"
+    data-action="animationend->removals#remove"
+  >
     <%= message %>
   </div>
 <% end %>
+</div>
