@@ -36,12 +36,12 @@
     </div>
   </div>
 </div>
-<div class="text-center">
-  <div id="flash">
-    <%= render "layouts/flash" %>
+  <div class="text-center">
+    <div id="flash">
+      <%= render "layouts/flash" %>
+    </div>
+    <%= yield %>
   </div>
-  <%= yield %>
-</div>
-<%= render "posts/new" %>
+<%= link_to '新規投稿', new_post_path, class: "btn absolute right-20 bottom-20" %>
 </body>
 </html>

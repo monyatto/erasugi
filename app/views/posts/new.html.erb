@@ -1,4 +1,3 @@
-<%= turbo_frame_tag "post_#{@post.public_uid}" , class: "flex justify-center space-x-1" do %>
 <div data-controller="form-character-count">
   <%= form_with(model: @post) do |form| %>
     <% if form.object.errors.any? %>
@@ -10,11 +9,13 @@
         </ul>
       </div>
     <% end %>
-    <div class="flex space-x-1">
-      <%= form.text_field :content %>
-      <%= form.submit class:"btn" %>
+    <div>
+      <%= form.label :content, style: "display: block" %>
+      <%= form.text_area :content %>
+      <p id="text-length"><%="残り#{140 - (@post.content&.length || 0)}文字入力できます" %></p>
     </div>
-    <p id="text-length"><%="残り#{140 - (@post.content&.length || 0)}文字入力できます" %></p>
+    <div>
+      <%= form.submit "Submit", class: "btn" %>
+    </div>
   <% end %>
 </div>
-<% end %>

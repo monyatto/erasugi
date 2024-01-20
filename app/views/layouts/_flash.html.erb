@@ -1,5 +1,5 @@
-<% if notice %>
+<% flash.each do |type, message| %>
   <div id="flashMessage">
-    <%= notice %>
+    <%= message %>
   </div>
 <% end %>
