@@ -12,9 +12,9 @@
     <% end %>
     <div class="flex space-x-1">
       <%= form.text_field :content %>
-      <%= form.submit class:"btn" %>
+      <%= form.submit "更新する", class: "btn" %>
     </div>
-    <p id="text-length"><%="残り#{140 - (@post.content&.length || 0)}文字入力できます" %></p>
+    <p id="text-length"><%= form_character_count(@post) %></p>
   <% end %>
 </div>
 <% end %>
