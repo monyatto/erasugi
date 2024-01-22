@@ -1,9 +1,11 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+test_post1:
+  content: "テスト投稿1"
+  id: 1
+  user: test_user1
+  public_uid: <%= SecureRandom.alphanumeric(20) %>
 
-one:
-  content: MyText
-  user: one
-
-two:
-  content: MyText
-  user: two
+test_post2:
+  id: 2
+  content: "テスト投稿2"
+  user: test_user2
+  public_uid: <%= SecureRandom.alphanumeric(20) %>

@@ -1,0 +1,12 @@
+test_reactions_type1:
+  id: 1
+  name: "reactions_type1"
+  image: "reactions_type1.png"
+test_reactions_type2:
+  id: 2
+  name: "reactions_type2"
+  image: "reactions_type2.png"
+test_reactions_type3:
+  id: 3
+  name: "reactions_type3"
+  image: "reactions_type3.png"
