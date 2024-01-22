@@ -1,5 +1,14 @@
 <div data-controller="form-character-count" >
   <%= form_with(model: post) do |form| %>
+    <% if form.object.errors.any? %>
+      <div class="alert alert-danger">
+        <ul>
+          <% form.object.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
     <div>
       <%= form.label :content, style: "display: block" %>
       <%= form.text_area :content %>

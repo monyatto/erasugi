@@ -1,15 +1,12 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = [ "modal" ]
-
-  open(event) {
-    const modalId = event.target.dataset.modalId;
-    const modalElement = document.getElementById(modalId);
-    modalElement.showModal();
+  static values = {
+    modalId: {type: String}
   }
+  modalElement = document.getElementById(this.modalIdValue);
 
-  close() {
-    this.modalTarget.close();
+  connect(event){
+    this.modalElement.showModal();
   }
 }
