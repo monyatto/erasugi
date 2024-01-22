@@ -1,6 +1,3 @@
 test_reaction1:
-  post_id: posts(:test_post1)
-  reactions_type_id: reactions_types(:test_reactions_type1)
-test_reaction2:
-  post_id: posts(:test_post1)
-  reactions_type_id: reactions_types(:test_reactions_type2)
+  post_id: 1
+  reactions_type_id: 1

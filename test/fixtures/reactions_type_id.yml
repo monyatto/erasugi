@@ -1,6 +1,0 @@
-test_reactions_type1:
-  name: "Like"
-  image: "like.png"
-test_reactions_type2:
-  name: "Love"
-  image: "love.png"
