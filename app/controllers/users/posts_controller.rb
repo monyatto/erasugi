@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Users::PostsController < ApplicationController
-  before_action :correct_user, only: [:index]
+  before_action :correct_user, only: %i[index]
+
   def index
     @posts = current_user.posts.order(created_at: :desc)
   end
@@ -10,7 +11,7 @@ class Users::PostsController < ApplicationController
 
   def correct_user
     @user = User.find_by(public_uid: params[:user_id])
-    redirect_to(posts_path) unless current_user?(@user)
+    redirect_to(root_url) unless current_user?(@user)
   end
 
   def current_user?(user)
