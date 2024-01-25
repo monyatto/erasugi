@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Post < ApplicationRecord
+  delegate :path, to: :image, prefix: true
   belongs_to :user
   has_many :reactions, dependent: :destroy
 
@@ -18,5 +19,9 @@ class Post < ApplicationRecord
 
   def associated_reaction_type_ids
     reactions.map(&:reactions_type_id).last(100).reverse
+  end
+
+  def image
+    @image ||= Post::Image.new(self)
   end
 end
