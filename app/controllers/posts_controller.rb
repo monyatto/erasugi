@@ -2,6 +2,7 @@
 
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
+  before_action :correct_user, only: %i[edit update destroy]
 
   # GET /posts or /posts.json
   def index
@@ -65,5 +66,14 @@ class PostsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def post_params
     params.require(:post).permit(:content, :user_id, :public_uid)
+  end
+
+  def correct_user
+    @user = User.find_by(public_uid: @post.user.public_uid)
+    redirect_to(root_url) unless current_user?(@user)
+  end
+
+  def current_user?(user)
+    user == current_user
   end
 end
