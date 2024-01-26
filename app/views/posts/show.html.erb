@@ -20,9 +20,14 @@
       </div>
     </div>
     <button data-controller="screenshot">スクリーンショットを取る</button>
-    <div class="flex justify-center">
-    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="<%= @post.content %>" data-url="<%= post_url(@post) %>" data-show-count="false">Tweet</a>
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <div class="flex justify-center space-x-5">
+      <%= link_to "https://twitter.com/intent/tweet?text=#{@post.content}&url=#{post_url(@post)}", target: "_blank", class: "bg-black rounded flex items-center justify-center", style: "width: 30px; height: 30px;" do %>
+        <%= image_tag("/logo-white.png", alt: "Logo", style: "width: 20px; height: 20px;") %>
+      <% end %>
+      <div class="line-it-button" data-lang="ja" data-type="share-b" data-env="REAL" data-url="<%= post_url(@post) %>" data-color="default" data-size="small" data-count="false" data-ver="3" style="display: none;"></div>
+      <script src="https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
     </div>
   </div>
 </div>
+
+
