@@ -78,8 +78,10 @@ export default class extends Controller {
     }
 
     setupExistingReactions(targetPostId){
-        const availableHeight = window.innerHeight - document.querySelector('.navbar').offsetHeight;
-            this.stage = new Konva.Stage({
+        const headerHeight = document.querySelector('header').offsetHeight;
+        const footerHeight = document.querySelector('footer').offsetHeight;
+        const availableHeight = window.innerHeight - headerHeight - footerHeight;
+        this.stage = new Konva.Stage({
                 container: 'container',
                 width: window.innerWidth,
                 height: availableHeight,

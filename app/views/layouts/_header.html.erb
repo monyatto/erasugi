@@ -1,0 +1,22 @@
+<div class="ms-10">
+  <%= link_to 'えらすぎ', posts_path, class: "text-xl font-bold" %>
+</div>
+<div class="me-10">
+  <div class="dropdown dropdown-end">
+    <svg tabindex="0" xmlns="http://www.w3.org/2000/svg" fill="#303030" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25"/>
+    </svg>
+    <ul tabindex="0" class="menu dropdown-content z-10 p-2 shadow bg-white rounded-box w-52 mt-4">
+      <% if user_signed_in? %>
+        <li><%= link_to 'みんなの投稿一覧', posts_path %></li>
+        <li><%= link_to "#{current_user.name}の投稿一覧", user_posts_path(current_user) %></li>
+        <li><%= link_to '登録情報', user_path(current_user) %></li>
+        <li><%= link_to 'ユーザー一覧', users_path %></li>
+        <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+      <% else %>
+        <li><%= link_to "新規登録", new_user_registration_path %></li>
+        <li><%= link_to "ログイン", new_user_session_path %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

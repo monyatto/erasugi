@@ -1,11 +1,8 @@
 .swiper {
-    width: 100vw;
     height: 80vh;
 }
-
-.swiper-slide {
-    width: 100%;
-    height: 100%;
+.swiper-slide, swiper-slide{
+    display: flex !important;
 }
 
 .swiper-button-disabled {
@@ -14,13 +11,13 @@
 
 [class^=swiper-button ]{
     transform:rotate(90deg);
-    left: 49.5% !important;
+    left: 50% !important;
 }
 .swiper-button-prev{
-    top: 10% !important;
+    top: 15% !important;
 }
 .swiper-button-next{
-    top: 90% !important;
+    top: 85% !important;
 }
 
 .swiper-button-next,
