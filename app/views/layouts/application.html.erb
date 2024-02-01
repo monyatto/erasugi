@@ -22,11 +22,7 @@
       <%= render "layouts/flash" %>
     </div>
     <%= yield %>
-    <%= link_to new_post_path, class: "fixed bottom-20 right-10 z-10" do %>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#303030" class="w-20 h-20">
-        <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-11.25a.75.75 0 0 0-1.5 0v2.5h-2.5a.75.75 0 0 0 0 1.5h2.5v2.5a.75.75 0 0 0 1.5 0v-2.5h2.5a.75.75 0 0 0 0-1.5h-2.5v-2.5Z" clip-rule="evenodd"/>
-      </svg>
-    <% end %>
+
   </main>
   <footer class="h-[10vh] flex justify-center items-center fixed bottom-0 w-full z-10 bg-white bg-opacity-80">
     <%= render "layouts/footer" %>
