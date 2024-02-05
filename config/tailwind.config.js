@@ -19,7 +19,7 @@ module.exports = {
         },
       },
       animation: {
-        disappear: "disappear 3s ease 0s 1 forwards",
+        disappear: "disappear 3s ease 2s 1 forwards",
       },
     },
   },

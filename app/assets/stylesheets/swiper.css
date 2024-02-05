@@ -1,7 +1,8 @@
 .swiper {
     height: 80vh;
 }
-.swiper-slide, swiper-slide{
+
+.swiper-slide, swiper-slide {
     display: flex !important;
 }
 
@@ -9,15 +10,18 @@
     opacity: 0 !important;
 }
 
-[class^=swiper-button ]{
-    transform:rotate(90deg);
-    left: 50% !important;
+[class^=swiper-button ] {
+    transform: rotate(90deg) translateX(-50%) !important;
+    inset: 0 !important;
+    margin: auto !important;
 }
-.swiper-button-prev{
-    top: 15% !important;
+
+.swiper-button-prev {
+    margin-top: 20vh !important;
 }
-.swiper-button-next{
-    top: 85% !important;
+
+.swiper-button-next {
+    margin-bottom: 15vh !important;
 }
 
 .swiper-button-next,

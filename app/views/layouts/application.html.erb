@@ -14,7 +14,7 @@
 </head>
 <body>
 <div class="h-screen flex flex-col">
-  <header class="h-[10vh] flex items-center justify-between fixed top-0 w-full z-10 bg-white bg-opacity-80">
+  <header class="h-[10vh] flex items-center justify-between fixed top-0 w-full z-50 bg-white bg-opacity-80">
     <%= render "layouts/header" %>
   </header>
   <main class="flex-auto pt-[10vh] pb-[10vh]">
@@ -23,7 +23,7 @@
     </div>
     <%= yield %>
   </main>
-  <footer class="h-[10vh] flex justify-center items-center fixed bottom-0 w-full z-10 bg-white bg-opacity-80">
+  <footer class="h-[10vh] flex justify-center items-center fixed bottom-0 w-full z-50 bg-white bg-opacity-80">
     <%= render "layouts/footer" %>
   </footer>
 </div>
