@@ -1,5 +1,4 @@
 <%= render "layouts/unlogin" %>
-<div id="container" style="position: absolute;"></div>
 <div class="swiper" id="swiper_id" data-controller="scroll" data-scroll-posts-ids-value='<%= @posts.pluck(:id) %>'>
   <div class="swiper-wrapper">
     <% @posts.each do |post| %>
