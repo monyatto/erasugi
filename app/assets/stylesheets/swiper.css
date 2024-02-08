@@ -1,26 +1,27 @@
 .swiper {
-    width: 100vw;
     height: 80vh;
 }
 
-.swiper-slide {
-    width: 100%;
-    height: 100%;
+.swiper-slide, swiper-slide {
+    display: flex !important;
 }
 
 .swiper-button-disabled {
     opacity: 0 !important;
 }
 
-[class^=swiper-button ]{
-    transform:rotate(90deg);
-    left: 49.5% !important;
+[class^=swiper-button ] {
+    transform: rotate(90deg) translateX(-50%) !important;
+    inset: 0 !important;
+    margin: auto !important;
 }
-.swiper-button-prev{
-    top: 10% !important;
+
+.swiper-button-prev {
+    margin-top: 25vh !important;
 }
-.swiper-button-next{
-    top: 90% !important;
+
+.swiper-button-next {
+    margin-bottom: 20vh !important;
 }
 
 .swiper-button-next,

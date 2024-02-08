@@ -1,19 +1,16 @@
 <%= render "layouts/unlogin" %>
-<div class="h-[100vh]">
-<div id="container" style="position: absolute;"></div>
-  <div class="swiper" id="swiper_id"  data-controller="scroll" data-scroll-posts-ids-value='<%= @posts.pluck(:id) %>'>
-  <div class="swiper-wrapper mt-44">
+<div class="swiper" id="swiper_id" data-controller="scroll" data-scroll-posts-ids-value='<%= @posts.pluck(:id) %>'>
+  <div class="swiper-wrapper">
     <% @posts.each do |post| %>
-      <div class="swiper-slide">
+      <div class="swiper-slide flex flex-col justify-center">
         <div data-controller="reaction" data-reaction-post-id-value=<%= post.id %> data-reaction-first-post-id-value=<%= @posts.first.id %> data-reaction-reactions-type-ids-value="<%= post.associated_reaction_type_ids %>">
-          <%= post.id %>
-          <div class="text-[60px]">
-            <%= post.content %>
+          <div class="flex justify-center m-4 mb-4">
+            <p class="text-5xl break-words text-center leading-relaxed"><%= post.content %></p>
           </div>
-          <div class="flex justify-center">
+          <div class="flex justify-evenly">
             <% @reactions_types.each do |reactions_type| %>
-              <button data-action="reaction#onButtonClick" data-reaction-reaction-type-id-param="<%= reactions_type.id %>" class="btn text-lg m-10 w-24 h-24 rounded-full drop-shadow-md bg-white"><%= reactions_type.name %></button>
-          <% end %>
+              <button data-action="reaction#onButtonClick" data-reaction-reaction-type-id-param="<%= reactions_type.id %>" class="btn text-lg w-24 h-24 rounded-full drop-shadow-md bg-white"><%= reactions_type.name %></button>
+            <% end %>
           </div>
         </div>
       </div>
@@ -22,4 +19,4 @@
 </div>
 <div class="swiper-button-next"></div>
 <div class="swiper-button-prev"></div>
-</div>
+<div class="swiper-pagination"></div>

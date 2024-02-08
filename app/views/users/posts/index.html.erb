@@ -1,5 +1,10 @@
-<div class="flex justify-center">
-  <div id="posts">
+<% if @posts.count > 0 %>
+  <div class="pt-[8vh]" id="posts">
     <%= render @posts %>
   </div>
-</div>
+<% else %>
+  <div class="h-[80vh] flex flex-col justify-center items-center">
+    <p>まだえらすぎが投稿されていません</p>
+    <p>右上の鉛筆マークから投稿してみましょう</p>
+  </div>
+<% end %>

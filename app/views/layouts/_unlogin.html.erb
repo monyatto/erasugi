@@ -1,7 +1,12 @@
-<div class="text-center">
-  <% if current_user.nil? %>
-    <p>会員登録すると過去の投稿が見れるようになります</p>
-    <%= button_to "新規登録", new_user_registration_path, method: :get, class: "btn" %>
-    <p><%= link_to '登録済みの方はログイン', new_user_session_path %></p>
-  <% end %>
-</div>
+<% if current_user.nil? %>
+  <div class="flex items-center">
+    <div class="flex flex-col justify-center items-center bg-white h-[8vh] fixed z-10 bottom-[10vh] bg-[#ededed] bg-opacity-80 w-screen sm:w-[640px]">
+      <p>会員登録すると過去の投稿が見やすくなります</p>
+      <p>
+        <%= link_to "新規登録", new_user_registration_path, class: "underline" %>
+        または
+        <%= link_to "ログイン", new_user_session_path, class: "underline" %>
+      </p>
+    </div>
+  </div>
+<% end %>

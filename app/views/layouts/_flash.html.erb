@@ -1,11 +1,16 @@
-<div class=>
-<% flash.each do |flash_type, message| %>
-  <div
-    class="animate-disappear"
-    data-controller="removals"
-    data-action="animationend->removals#remove"
-  >
-    <%= message %>
-  </div>
-<% end %>
+<div id="flash-message">
+  <% flash.each do |flash_type, message| %>
+    <div data-controller="removals" class="animate-disappear flex justify-center" data-action="animationend->removals#remove">
+      <div class="flex justify-between items-center bg-white h-[8vh] px-4 fixed z-10 w-screen sm:w-[640px]">
+        <div class="p-[2vh]">
+          <%= message %>
+        </div>
+        <div data-action="click->removals#remove" class="p-[2vh]">
+          <svg class="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="#303030" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18 18 6m0 12L6 6"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>

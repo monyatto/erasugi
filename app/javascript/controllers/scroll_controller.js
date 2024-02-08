@@ -12,7 +12,6 @@ export default class extends Controller {
                 thresholdDelta: 100,
             },
             speed: 400,
-            spaceBetween: 100,
             navigation: {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',

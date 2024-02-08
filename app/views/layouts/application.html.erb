@@ -13,39 +13,22 @@
   <%= yield :extra_head %>
 </head>
 <body>
-<div class="navbar bg-base-100" style="display: flex; justify-content: center;">
-  <div class="navbar-start">
-    <%= link_to 'えらすぎ', posts_path, class: "font-sans btn btn-ghost normal-case text-xl" %>
-  </div>
-  <div class="navbar-center z-10">
-    <div class="dropdown">
-      <label tabindex="0" class="btn btn-ghost btn-circle">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/>
-        </svg>
-      </label>
-      <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 ">
-        <% if user_signed_in? %>
-          <li><%= link_to 'みんなの投稿一覧', posts_path, class: 'navbar-link' %></li>
-          <li><%= link_to "#{current_user.name}の投稿一覧", user_posts_path(current_user), class: 'navbar-link' %></li>
-          <li><%= link_to '登録情報', user_path(current_user), class: 'navbar-link' %></li>
-          <li><%= link_to 'ユーザー一覧', users_path, class: 'navbar-link' %></li>
-          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'navbar-link' %></li>
-        <% else %>
-          <li><%= link_to "新規登録", new_user_registration_path, class: 'navbar-link' %></li>
-          <li><%= link_to "ログイン", new_user_session_path, class: 'navbar-link' %></li>
-        <% end %>
-      </ul>
+<div class="h-screen flex flex-col items-center justify-center">
+  <header class="h-[10vh] flex items-center justify-between fixed top-0 z-50 bg-white bg-opacity-80 w-screen sm:w-[640px]">
+    <%= render "layouts/header" %>
+  </header>
+  <div id="container" class="absolute"></div>
+  <main class="flex-auto w-screen h-full sm:w-[640px]">
+    <div class="pt-[10vh]"></div>
+    <div id="flash">
+      <%= render "layouts/flash" %>
     </div>
-  </div>
+    <%= yield %>
+    <div class="pb-[10vh]"></div>
+  </main>
+  <footer class="h-[10vh] flex items-center justify-center fixed bottom-0 z-50 bg-white bg-opacity-80 w-screen sm:w-[640px]">
+    <%= render "layouts/footer" %>
+  </footer>
 </div>
-<div class="text-center">
-  <div id="flash">
-    <%= render "layouts/flash" %>
-  </div>
-  <%= yield %>
-</div>
-<%= link_to '新規投稿', new_post_path, class: "btn absolute right-20 bottom-20" %>
-<%= render "layouts/footer" %>
 </body>
 </html>
