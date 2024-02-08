@@ -1,49 +1,48 @@
-<div class="h-[80vh] flex flex-col justify-center items-center w-screen">
-  <h2 class="text-xl">登録情報変更</h2>
-
+<div class="pt-[4vh]"></div>
+<div class="flex flex-col justify-center items-center">
+  <h2 class="text-xl pb-2">登録情報変更</h2>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <div class="field">
-      <%= f.label :email %><br/>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "block rounded-md w-[40vh]" %>
+      <%= f.label :email %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "block rounded-md w-full" %>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
     </div>
-
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-    <% end %>
 
     <div class="field">
       <%= f.label :name %><br/>
-      <%= f.text_field :name, autocomplete: "name", class: "block rounded-md w-[40vh]" %>
+      <%= f.text_field :name, autocomplete: "name", class: "block rounded-md w-full" %>
     </div>
 
-    <div class="field pt-4">
-      <%= f.label :password %>
+    <div class="field">
+      新しい<%= f.label :password %>
       <% if @minimum_password_length %>
         <em>※<%= @minimum_password_length %>文字以上</em>
       <% end %><br/>
-      <i class="text-sm">パスワードを変更しない場合は、空白のままにしてください</i><br/>
-      <%= f.password_field :password, autocomplete: "new-password", class: "block rounded-md w-[40vh]" %>
+      <i class="text-sm">変更しない場合は空白のままにしてください</i><br/>
+      <%= f.password_field :password, autocomplete: "new-password", class: "block rounded-md w-full" %>
     </div>
 
     <div class="field">
-      <%= f.label :password_confirmation %><br/>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "block rounded-md w-[40vh]" %>
+      新しい<%= f.label :password_confirmation %><br/>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "block rounded-md w-full" %>
     </div>
 
-    <div class="field">
-      <%= f.label :current_password %><br/> <i class="text-sm">パスワード変更には、現在のパスワードも必要です</i><br/>
-      <%= f.password_field :current_password, autocomplete: "current-password", class: "block rounded-md w-[40vh]" %>
+    <div class="field pt-4">
+      <%= f.label :current_password %>
+      <em>※必須</em><br/>
+      <%= f.password_field :current_password, autocomplete: "current-password", class: "block rounded-md w-full" %>
     </div>
 
-    <div class="actions py-4">
-      <%= f.submit "更新する", class: "btn btn-block w-[40vh] shadow-md" %>
+    <div class="actions pt-4">
+      <%= f.submit "更新する", class: "btn btn-block w-full shadow-md" %>
     </div>
   <% end %>
 
-  <div class="py-8">
+  <div class="pt-4">
     <%= button_to "アカウントを削除する", registration_path(resource_name), data: { confirm: "本当にアカウントを削除してよろしいでしょうか?", turbo_confirm: "本当にアカウントを削除してよろしいでしょうか?" }, method: :delete, class: "underline" %>
   </div>
-
 </div>
