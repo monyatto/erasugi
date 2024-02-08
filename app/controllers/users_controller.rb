@@ -4,10 +4,6 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
   before_action :correct_user, only: %i[show edit update destroy]
 
-  def index
-    @users = User.all
-  end
-
   def show
     @user = User.find_by(public_uid: params[:id])
   end
