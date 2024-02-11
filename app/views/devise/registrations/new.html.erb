@@ -1,4 +1,4 @@
-<div class="h-[80vh] flex flex-col justify-center items-center space-y-4 w-screen">
+<div class="h-[80vh] flex flex-col justify-center items-center space-y-4">
   <h2 class="text-xl">新規登録</h2>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -27,7 +27,7 @@
       <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "block rounded-md w-[40vh]" %>
     </div>
 
-    <div class="actions py-4">
+    <div class="actions pt-4">
       <%= f.submit "登録する", class: "btn btn-block w-[40vh] shadow-md" %>
     </div>
   <% end %>
