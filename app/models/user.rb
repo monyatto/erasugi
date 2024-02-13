@@ -6,6 +6,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
   has_many :posts, dependent: :destroy
 
+  validates :name,
+            presence: true,
+            length: { maximum: 10 }
+
   generate_public_uid generator: PublicUid::Generators::HexStringSecureRandom.new(20)
 
   def to_param

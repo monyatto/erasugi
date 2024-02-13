@@ -6,7 +6,7 @@
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="field">
-        <%= f.label :email %>
+        <%= f.label :email, class: "block" %>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "block rounded-md w-full" %>
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
@@ -14,7 +14,7 @@
       </div>
 
       <div class="field pt-4">
-        <%= f.label :name %><br/>
+        <%= f.label :name, class: "block" %>
         <%= f.text_field :name, autocomplete: "name", class: "block rounded-md w-full" %>
       </div>
 
@@ -24,7 +24,7 @@
         <%= f.password_field :password, autocomplete: "new-password", class: "block rounded-md w-full" %>
       </div>
 
-      <div class="field">
+      <div class="field pt-4">
         <%= f.label :password_confirmation, "新しいパスワード（確認用）", class: "block" %>
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "block rounded-md w-full" %>
       </div>
