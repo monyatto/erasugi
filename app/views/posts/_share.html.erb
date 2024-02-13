@@ -1,11 +1,12 @@
 <div class="flex justify-center space-x-5">
-  <%= link_to "https://twitter.com/intent/tweet?text=#{@post.content}%20url=#{post_url(@post)}", target: "_blank", class: "bg-black rounded flex items-center justify-center", style: "width: 30px; height: 30px;" do %>
-    <%= image_tag("/x.png", alt: "Logo", style: "width: 22px; height: 22px;") %>
+  <%= link_to "https://twitter.com/intent/tweet?text=#{@post.content}%20url=#{post_url(@post)}", target: "_blank", class: "bg-black rounded-md flex items-center justify-center", style: "width: 30px; height: 30px;" do %>
+    <%= image_tag("/x.png", alt: "Logo", style: "width: 20px; height: 20px;") %>
   <% end %>
-  <div class="line-it-button" data-lang="ja" data-type="share-b" data-env="REAL" data-url="<% post_url(@post) %>" data-color="default" data-size="small" data-count="false" data-ver="3" style="display: none;"></div>
-  <script src="https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
+  <%= link_to "https://social-plugins.line.me/lineit/share?url=#{post_url(@post)}", target: "_blank", class: "flex items-center justify-center", style: "width: 30px; height: 30px;" do %>
+    <%= image_tag("/line.png", alt: "Logo") %>
+  <% end %>
   <div data-controller="clipboard">
-    <%= link_to "#", target: "_blank", class: "bg-stone-400 rounded flex items-center justify-center", style: "width: 30px; height: 30px;", data: { action: "clipboard#copy", "clipboard-target": "url" }, value: post_url(@post) do %>
+    <%= link_to "#", target: "_blank", class: "bg-stone-400 rounded-md flex items-center justify-center", style: "width: 30px; height: 30px;", data: { action: "clipboard#copy", "clipboard-target": "url" }, value: post_url(@post) do %>
       <%= image_tag("/link.png", alt: "Logo", style: "width: 22px; height: 22px;") %>
     <% end %>
   </div>
