@@ -18,3 +18,7 @@
 * {
     font-family: 'Zen Maru Gothic', serif;
 }
+
+#error_explanation{
+    color: #dc2626;
+}
