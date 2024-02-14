@@ -1,9 +1,9 @@
 <%= render "layouts/unlogin" %>
-<div class="swiper" id="swiper_id" data-controller="scroll" data-scroll-posts-ids-value='<%= @posts.pluck(:id) %>'>
+<div class="swiper" id="swiper_id" data-controller="scroll" data-scroll-posts-ids-value="<%= @posts.pluck(:id) %>">
   <div class="swiper-wrapper">
     <% @posts.each do |post| %>
       <div class="swiper-slide flex flex-col justify-center">
-        <div data-controller="reaction" data-reaction-post-id-value=<%= post.id %> data-reaction-first-post-id-value=<%= @posts.first.id %> data-reaction-reactions-type-ids-value="<%= post.associated_reaction_type_ids %>">
+        <div data-controller="reaction" data-reaction-post-id-value="<%= post.id %>" data-reaction-first-post-id-value="<%= @posts.first.id %>" data-reaction-reactions-type-ids-value="<%= post.associated_reaction_type_ids %>">
           <div class="flex justify-center m-4 mb-4">
             <p class="text-5xl break-words text-center leading-relaxed"><%= post.content %></p>
           </div>
