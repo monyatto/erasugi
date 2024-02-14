@@ -27,6 +27,9 @@ export default class extends Controller {
   }
 
   connect() {
+    console.log(this.postIdValue)
+    console.log(this.firstPostIdValue)
+    console.log(this.reactionsTypeIdsValue)
     if (this.postIdValue === this.firstPostIdValue) {
       // 接続時に表示されている投稿のidと一致したらリアクションを表示する
       this.setupExistingReactions(this.postIdValue)
