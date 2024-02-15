@@ -15,4 +15,11 @@ class User < ApplicationRecord
   def to_param
     public_uid
   end
+
+  def self.guest
+    find_or_create_by!(email: 'guest@guest.mail') do |user|
+      user.name = 'ゲストユーザー'
+      user.password = SecureRandom.urlsafe_base64
+    end
+  end
 end
