@@ -4,7 +4,7 @@ class Users::PostsController < ApplicationController
   before_action :correct_user, only: %i[index]
 
   def index
-    @posts = current_user.posts.order(created_at: :desc)
+    @posts = current_user.posts.order(created_at: :desc).page(params[:page])
   end
 
   private

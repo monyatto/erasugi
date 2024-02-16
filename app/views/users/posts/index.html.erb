@@ -1,6 +1,9 @@
 <% if @posts.count > 0 %>
   <div class="pt-[8vh]" id="posts">
-    <%= render @posts %>
+    <%= turbo_frame_tag "posts-page-#{@posts.current_page}" do %>
+      <%= render @posts %>
+      <%= turbo_frame_tag "posts-page-#{@posts.next_page}", loading: :lazy, src: path_to_next_page(@posts) %>
+    <% end %>
   </div>
 <% else %>
   <div class="h-[80vh] flex flex-col justify-center items-center">
