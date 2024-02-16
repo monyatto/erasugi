@@ -89,3 +89,5 @@ end
 gem 'tailwindcss-rails'
 
 gem 'jsbundling-rails'
+
+gem 'kaminari'
