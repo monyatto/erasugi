@@ -3,10 +3,9 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["url"]
 
-  copy() {
+  copy(event) {
     event.preventDefault();
-    navigator.clipboard.writeText(this.urlTarget.value)
-
+    navigator.clipboard.writeText(this.urlTarget)
     this.flashMessage("URLをコピーしました");
   }
 
@@ -15,16 +14,15 @@ export default class extends Controller {
     const flashMessage = document.createElement('div');
 
     flashMessage.innerText = message;
-    flashMessage.className = "animate-disappear";
+    flashMessage.className = "animate-disappear flex items-center justify-center bg-white fixed w-screen sm:w-[640px] animate-disappear";
     flashMessage.dataset.controller = "removals";
     flashMessage.dataset.action = "animationend->removals#remove";
 
     flash.appendChild(flashMessage);
     flash.style.display = 'block';
 
-    setTimeout(function () {
+    flashMessage.addEventListener('animationend', function() {
       flashMessage.style.display = 'none';
-      flashMessage.dispatchEvent(new Event('animationend'));
-    }, 3000);
+    });
   }
 }

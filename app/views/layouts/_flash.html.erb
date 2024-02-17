@@ -1,16 +1,21 @@
 <div id="flash-message">
   <% flash.each do |flash_type, message| %>
-    <div data-controller="removals" class="animate-disappear flex justify-center" data-action="animationend->removals#remove">
-      <div class="flex justify-between items-center bg-white h-[8vh] px-4 fixed z-10 w-screen sm:w-[640px]">
-        <div class="p-[2vh]">
-          <%= message %>
-        </div>
-        <div data-action="click->removals#remove" class="p-[2vh]">
-          <svg class="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="#303030" viewBox="0 0 24 24">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18 18 6m0 12L6 6"/>
-          </svg>
+    <% if flash_type == "notice" %>
+      <div data-controller="removals" class="animate-disappear flex justify-center" data-action="animationend->removals#remove">
+        <div class="flex justify-center items-center bg-white bg-opacity-80 h-[8vh] px-4 fixed w-screen sm:w-[640px]">
+          <div class="p-[2vh]">
+            <%= message %>
+          </div>
         </div>
       </div>
-    </div>
+    <% elsif flash_type == "alert" %>
+      <div class="flex justify-center">
+        <div class="flex justify-center items-center bg-white bg-opacity-80 h-[8vh] text-red-600 px-4 fixed w-screen sm:w-[640px]">
+          <div class="p-[2vh]">
+            <%= message %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   <% end %>
 </div>
