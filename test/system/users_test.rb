@@ -3,6 +3,10 @@
 require 'application_system_test_case'
 
 class UsersTest < ApplicationSystemTestCase
+  setup do
+    @user = users(:test_user1)
+  end
+
   test 'can login' do
     visit new_user_session_path
     fill_in 'Eメール', with: 'test1@example.com'
@@ -14,9 +18,8 @@ class UsersTest < ApplicationSystemTestCase
   end
 
   test 'can logout' do
-    user = users(:test_user1)
-    sign_in user
-    visit user_posts_path(user.id)
+    sign_in @user
+    visit user_posts_path(@user.public_uid)
     find('.dropdown').click
     click_link 'ログアウト'
 
@@ -36,10 +39,20 @@ class UsersTest < ApplicationSystemTestCase
     assert_selector('#flash-message', text: 'アカウント登録が完了しました')
   end
 
+  test 'show user my page' do
+    sign_in @user
+    visit root_path
+    find('.dropdown').click
+    click_link '登録情報'
+
+    assert_current_path user_path(@user.public_uid)
+    assert_text "メールアドレス: #{@user.email}"
+    assert_text "ユーザー名: #{@user.name}"
+  end
+
   test 'destroy user' do
-    user = users(:test_user1)
-    sign_in user
-    visit edit_user_registration_path(user.id)
+    sign_in @user
+    visit edit_user_registration_path(@user.id)
     accept_alert do
       click_on 'アカウントを削除する'
     end
