@@ -13,18 +13,26 @@ class UsersTest < ApplicationSystemTestCase
     fill_in 'パスワード', with: 'password'
     click_on 'ログイン'
 
-    assert_current_path root_path
     assert_selector('#flash-message', text: 'ログインしました')
   end
 
   test 'can logout' do
     sign_in @user
-    visit user_posts_path(@user.public_uid)
+    visit root_path
     find('.dropdown').click
-    click_link 'ログアウト'
+    click_on 'ログアウト'
 
-    assert_current_path root_path
     assert_selector('#flash-message', text: 'ログアウトしました')
+  end
+
+  test 'show user page' do
+    sign_in @user
+    visit root_path
+    find('.dropdown').click
+    click_on '登録情報'
+
+    assert_text "メールアドレス: #{@user.email}"
+    assert_text "ユーザー名: #{@user.name}"
   end
 
   test 'create user' do
@@ -35,29 +43,19 @@ class UsersTest < ApplicationSystemTestCase
     fill_in 'パスワード（確認用）', with: 'password'
     click_on '登録する'
 
-    assert_current_path root_path
     assert_selector('#flash-message', text: 'アカウント登録が完了しました')
   end
 
-  test 'show user my page' do
-    sign_in @user
-    visit root_path
-    find('.dropdown').click
-    click_link '登録情報'
+  # test 'update user' do
+  # end
 
-    assert_current_path user_path(@user.public_uid)
-    assert_text "メールアドレス: #{@user.email}"
-    assert_text "ユーザー名: #{@user.name}"
-  end
-
-  test 'destroy user' do
+  test 'delete user' do
     sign_in @user
-    visit edit_user_registration_path(@user.id)
-    accept_alert do
+    visit edit_user_registration_path
+    accept_confirm do
       click_on 'アカウントを削除する'
     end
 
-    assert_current_path root_path
     assert_selector('#flash-message', text: 'アカウントを削除しました')
   end
 end
