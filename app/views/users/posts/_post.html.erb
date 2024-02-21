@@ -6,14 +6,14 @@
       </div>
       <div class="me-0 flex justify-center space-x-2">
         <div>
-          <%= button_to edit_post_path(post.public_uid), method: :get do %>
+          <%= button_to edit_post_path(post.public_uid), method: :get, id: "edit-button"  do %>
             <svg class="w-7 h-7 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
               <path stroke="#303030" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m14.3 4.8 2.9 2.9M7 7H4a1 1 0 0 0-1 1v10c0 .6.4 1 1 1h11c.6 0 1-.4 1-1v-4.5m2.4-10a2 2 0 0 1 0 3l-6.8 6.8L8 14l.7-3.6 6.9-6.8a2 2 0 0 1 2.8 0Z"/>
             </svg>
           <% end %>
         </div>
         <div>
-          <%= button_to post, method: :delete, data: { turbo_confirm: "本当に削除しますか？" } do %>
+          <%= button_to post, method: :delete, id: "delete-button", data: { turbo_confirm: "本当に削除しますか？" } do %>
             <svg class="w-7 h-7 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
               <path stroke="#303030" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m15 9-6 6m0-6 6 6m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
             </svg>
