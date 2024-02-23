@@ -25,4 +25,10 @@ class SocialSharingTest < ApplicationSystemTestCase
     switch_to_window(windows.last)
     assert_equal current_url, "https://social-plugins.line.me/lineit/share?url=#{post_url(@post)}"
   end
+
+  test 'copy url' do
+    visit post_url(@post)
+    find('#url-copy').click
+    assert_text 'URLをコピーしました'
+  end
 end
