@@ -13,7 +13,7 @@ class ReactionsTest < ApplicationSystemTestCase
     ActionController::Base.allow_forgery_protection = false
   end
 
-  test "create reaction" do
+  test 'create reaction' do
     visit post_path(@post.public_uid)
     assert_difference '@post.reactions.count' do
       sleep 1
@@ -22,4 +22,3 @@ class ReactionsTest < ApplicationSystemTestCase
     end
   end
 end
-

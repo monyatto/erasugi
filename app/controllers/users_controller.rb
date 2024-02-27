@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     if current_user.nil?
       redirect_to(new_user_session_path)
     elsif !current_user?(@user)
-      render file: Rails.root.join('public/404.html'), status: 404, layout: false, content_type: 'text/html'
+      render file: Rails.public_path.join('404.html'), status: :not_found, layout: false, content_type: 'text/html'
     end
   end
 
