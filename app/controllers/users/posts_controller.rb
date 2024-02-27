@@ -11,7 +11,7 @@ class Users::PostsController < ApplicationController
   private
 
   def set_user
-    @user = User.find_by(public_uid: params[:id])
+    @user = User.find_by(public_uid: params[:user_id])
   end
 
   def correct_user
