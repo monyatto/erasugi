@@ -91,3 +91,5 @@ gem 'tailwindcss-rails'
 gem 'jsbundling-rails'
 
 gem 'kaminari'
+
+gem 'rubocop-capybara'

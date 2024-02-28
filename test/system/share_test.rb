@@ -12,18 +12,18 @@ class SocialSharingTest < ApplicationSystemTestCase
     sign_in @user
     visit post_path(@post.public_uid)
     assert_equal "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode(@post.content)}%20#{post_url(@post)}%20#{ERB::Util.url_encode('#えらすぎ')}",
-                 find('#x-share')['href']
+                 find_by_id('x-share')['href']
   end
 
   test 'share to line' do
     sign_in @user
     visit post_path(@post.public_uid)
-    assert_equal "https://social-plugins.line.me/lineit/share?url=#{post_url(@post)}", find('#line-share')['href']
+    assert_equal "https://social-plugins.line.me/lineit/share?url=#{post_url(@post)}", find_by_id('line-share')['href']
   end
 
   test 'copy url' do
     visit post_url(@post)
-    find('#url-copy').click
+    find_by_id('url-copy').click
     assert_text 'URLをコピーしました'
   end
 end
