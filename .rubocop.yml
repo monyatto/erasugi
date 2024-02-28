@@ -9,6 +9,7 @@ require:
   - rubocop-rails
   - rubocop-performance
   - rubocop-minitest
+  - rubocop-capybara
 
 Metrics/BlockLength:
   Exclude:

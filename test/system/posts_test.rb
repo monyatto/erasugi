@@ -18,7 +18,7 @@ class PostsTest < ApplicationSystemTestCase
   test 'show posts index page' do
     visit posts_path
     assert_text @post2.content
-    find('#swiper-button-next').click
+    find_by_id('swiper-button-next').click
     assert_text @post1.content
   end
 
