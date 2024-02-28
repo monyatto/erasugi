@@ -77,6 +77,8 @@ group :development do
   gem 'rubocop-minitest', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
+  gem 'rubocop-capybara', require: false
+  gem 'brakeman', require: false
 end
 
 group :test do
@@ -91,5 +93,3 @@ gem 'tailwindcss-rails'
 gem 'jsbundling-rails'
 
 gem 'kaminari'
-
-gem 'rubocop-capybara'
