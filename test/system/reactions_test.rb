@@ -16,8 +16,9 @@ class ReactionsTest < ApplicationSystemTestCase
   test 'create reaction' do
     visit post_path(@post.public_uid)
     assert_difference '@post.reactions.count' do
-      find_by_id('loaded')
+      find_by_id('loaded', wait: 10)
       click_on @reaction_type.name
+      find_by_id('button-on', wait: 10)
     end
   end
 end
