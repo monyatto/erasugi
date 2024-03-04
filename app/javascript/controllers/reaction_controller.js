@@ -100,6 +100,7 @@ export default class extends Controller {
         await this.displayReaction(imageSrc);
       }
     }
+    document.getElementById('loading').id = "loaded";
   }
 
   async displayReaction(imageSrc) {
