@@ -101,6 +101,7 @@ export default class extends Controller {
       }
     }
     document.getElementById('loading').id = "loaded";
+    document.getElementById('button-off').id = "button-on";
   }
 
   async displayReaction(imageSrc) {
