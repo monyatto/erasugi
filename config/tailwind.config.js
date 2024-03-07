@@ -1,21 +1,21 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
   content: [
-    './public/*.html',
-    './app/helpers/**/*.rb',
-    './app/javascript/**/*.js',
-    './app/views/**/*.{erb,haml,html,slim}'
+    "./public/*.html",
+    "./app/helpers/**/*.rb",
+    "./app/javascript/**/*.js",
+    "./app/views/**/*.{erb,haml,html,slim}",
   ],
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Zen Maru Gothic', ...defaultTheme.fontFamily.sans],
+        sans: ["Zen Maru Gothic", ...defaultTheme.fontFamily.sans],
       },
       keyframes: {
         disappear: {
-          "0%": {opacity: 1},
-          "100%": {opacity: 0},
+          "0%": { opacity: 1 },
+          "100%": { opacity: 0 },
         },
       },
       animation: {
@@ -24,13 +24,13 @@ module.exports = {
     },
   },
   plugins: [
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/aspect-ratio'),
-    require('@tailwindcss/typography'),
-    require('@tailwindcss/container-queries'),
-    require("daisyui")
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/aspect-ratio"),
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/container-queries"),
+    require("daisyui"),
   ],
   daisyui: {
-    themes: ["wireframe"]
+    themes: ["wireframe"],
   },
-}
+};
