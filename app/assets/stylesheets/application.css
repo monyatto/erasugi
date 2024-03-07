@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap");
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -16,9 +16,9 @@
  */
 
 * {
-    font-family: 'Zen Maru Gothic', serif;
+  font-family: "Zen Maru Gothic", serif;
 }
 
-#error_explanation{
-    color: #dc2626;
+#error_explanation {
+  color: #dc2626;
 }
