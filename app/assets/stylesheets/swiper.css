@@ -1,30 +1,31 @@
 .swiper {
-    height: 80vh;
+  height: 80vh;
 }
 
-.swiper-slide, swiper-slide {
-    display: flex !important;
+.swiper-slide,
+swiper-slide {
+  display: flex !important;
 }
 
 .swiper-button-disabled {
-    opacity: 0 !important;
+  opacity: 0 !important;
 }
 
-[class^=swiper-button ] {
-    transform: rotate(90deg) translateX(-50%) !important;
-    inset: 0 !important;
-    margin: auto !important;
+[class^="swiper-button"] {
+  transform: rotate(90deg) translateX(-50%) !important;
+  inset: 0 !important;
+  margin: auto !important;
 }
 
 .swiper-button-prev {
-    margin-top: 25vh !important;
+  margin-top: 25vh !important;
 }
 
 .swiper-button-next {
-    margin-bottom: 20vh !important;
+  margin-bottom: 20vh !important;
 }
 
 .swiper-button-next,
 .swiper-button-prev {
-    --swiper-navigation-color: #C0C0C0 !important;
+  --swiper-navigation-color: #c0c0c0 !important;
 }

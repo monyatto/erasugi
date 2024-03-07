@@ -19,8 +19,8 @@ AllCops:
   TargetRubyVersion: 3.1
   NewCops: enable
   Exclude:
-    - '**/templates/**/*'
-    - '**/vendor/**/*'
+    - "**/templates/**/*"
+    - "**/vendor/**/*"
     - app/views/**/*
     - config/**/*
     - config.ru
