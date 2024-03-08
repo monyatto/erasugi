@@ -1,11 +1,8 @@
 # frozen_string_literal: true
-
-@user = User.create!(name: 'サンプル一郎', email: 'sample1@example.com', password: 'password')
-
-Post.create!(content: 'サンプル投稿1', user: @user)
-Post.create!(content: 'サンプル投稿2', user: @user)
-Post.create!(content: 'サンプル投稿3', user: @user)
-
-ReactionsType.create!(name: 'えらい', image: 'test.png')
-ReactionsType.create!(name: 'すごい', image: 'test1.png')
-ReactionsType.create!(name: '神', image: 'test2.png')
+# This file should contain all the record creation needed to seed the database with its default values.
+# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
+#
+# Examples:
+#
+#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
+#   Character.create(name: "Luke", movie: movies.first)
