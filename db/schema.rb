@@ -12,23 +12,7 @@
 
 ActiveRecord::Schema[7.0].define(version: 2023_11_24_061353) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "pg_graphql"
-  enable_extension "pg_stat_statements"
-  enable_extension "pgcrypto"
-  enable_extension "pgjwt"
-  enable_extension "pgsodium"
   enable_extension "plpgsql"
-  enable_extension "supabase_vault"
-  enable_extension "uuid-ossp"
-
-  # Custom types defined in this database.
-  # Note that some types may not work with other database engines. Be careful if changing database.
-  create_enum "aal_level", ["aal1", "aal2", "aal3"]
-  create_enum "code_challenge_method", ["s256", "plain"]
-  create_enum "factor_status", ["unverified", "verified"]
-  create_enum "factor_type", ["totp", "webauthn"]
-  create_enum "key_status", ["default", "valid", "invalid", "expired"]
-  create_enum "key_type", ["aead-ietf", "aead-det", "hmacsha512", "hmacsha256", "auth", "shorthash", "generichash", "kdf", "secretbox", "secretstream", "stream_xchacha20"]
 
   create_table "posts", force: :cascade do |t|
     t.text "content", null: false
