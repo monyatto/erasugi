@@ -84,5 +84,3 @@ production:
   host: <%= ENV["APP_DATABASE_HOST"] %>
   username: <%= ENV["APP_DATABASE_USER"] %>
   password: <%= ENV["APP_DATABASE_PASSWORD"] %>
-  sslmode: verify-full
-  sslrootcert: prod-ca-2021.crt
