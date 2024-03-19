@@ -32,6 +32,7 @@ module.exports = {
     require("@tailwindcss/container-queries"),
     require("daisyui"),
   ],
+  safelist: ["w-7","h-7"],
   daisyui: {
     themes: ["wireframe"],
   },
