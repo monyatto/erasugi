@@ -81,6 +81,6 @@ test:
 #
 production:
   <<: *default
-  host: <%= ENV["APP_DATABASE_HOST"] %>
-  username: <%= ENV["APP_DATABASE_USER"] %>
-  password: <%= ENV["APP_DATABASE_PASSWORD"] %>
+  database: erasugi_production
+  username: erasugi
+  password: <%= ENV["ERASUGI_DATABASE_PASSWORD"] %>

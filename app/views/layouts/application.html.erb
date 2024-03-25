@@ -1,34 +1,16 @@
 <!DOCTYPE html>
 <html>
-<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
-  <title>えらすぎ</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
-  <%= stylesheet_link_tag "tailwind", "inter-font" %>
-  <%= stylesheet_link_tag "application" %>
-  <%= stylesheet_link_tag "swiper" %>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
-  <%= javascript_importmap_tags %>
-  <%= yield :extra_head %>
-</head>
-<body>
-<div class="h-screen flex flex-col items-center justify-center">
-  <header class="h-[10vh] flex items-center justify-between fixed top-0 z-50 bg-white bg-opacity-80 w-screen sm:w-[640px]">
-    <%= render "layouts/header" %>
-  </header>
-  <div id="container" class="absolute"></div>
-  <main class="h-full w-full sm:w-[640px]">
-    <div class="pt-[10vh]"></div>
-    <div id="flash">
-      <%= render "layouts/flash" %>
-    </div>
+  <head>
+    <title>Erasugi</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
     <%= yield %>
-    <div class="pb-[10vh]"></div>
-  </main>
-  <footer class="h-[10vh] flex items-center justify-center fixed bottom-0 z-50 bg-white bg-opacity-80 w-screen sm:w-[640px]">
-    <%= render "layouts/footer" %>
-  </footer>
-</div>
-</body>
+  </body>
 </html>

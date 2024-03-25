@@ -1,6 +1,24 @@
-# えらすぎ
+# README
 
-## 概要
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-えらすぎというサービスは、気軽に褒めたり褒められないという問題を解決したい、 褒められたい人・褒めたい人向けの、 画像作成&共有サービスです。
-ユーザーは 褒めてほしいことをシェアしてリアクションをもらうことができ、定型的なリアクションのみが備わっている事が特徴です。
+Things you may want to cover:
+
+* Ruby version
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
