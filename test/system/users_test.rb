@@ -18,7 +18,7 @@ class UsersTest < ApplicationSystemTestCase
   test 'can logout' do
     sign_in @user
     visit root_path
-    find('.dropdown').click
+    find('.hamburger').click
     click_on 'ログアウト'
     assert_selector('#flash-message', text: 'ログアウトしました')
   end
@@ -26,7 +26,7 @@ class UsersTest < ApplicationSystemTestCase
   test 'show user page' do
     sign_in @user
     visit root_path
-    find('.dropdown').click
+    find('.hamburger').click
     click_on '登録情報'
     assert_text "メールアドレス: #{@user.email}"
     assert_text "ユーザー名: #{@user.name}"
