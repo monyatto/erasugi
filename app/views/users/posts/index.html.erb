@@ -1,3 +1,4 @@
+<% content_for(:title, '自分の投稿一覧') %>
 <% if @posts.count > 0 %>
   <div class="pt-[8vh]" id="posts">
     <%= turbo_frame_tag "posts-page-#{@posts.current_page}" do %>
