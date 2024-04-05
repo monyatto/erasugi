@@ -15,7 +15,7 @@
     </div>
     <div class="flex justify-evenly" id="button-off">
       <% @reactions_types.each do |reactions_type| %>
-        <button data-action="reaction#onButtonClick" data-reaction-reaction-type-id-param="<%= reactions_type.id %>" class="btn text-lg w-24 h-24 rounded-full drop-shadow-md bg-white"><%= reactions_type.name %></button>
+        <button data-action="reaction#onButtonClick" data-reaction-reaction-type-id-param="<%= reactions_type.id %>" class="btn text-lg w-24 h-24 rounded-full drop-shadow-md bg-white hover:bg-gray-100"><%= reactions_type.name %></button>
       <% end %>
     </div>
   </div>
