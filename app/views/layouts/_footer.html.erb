@@ -3,4 +3,10 @@
     <li><%= link_to '利用規約', terms_of_service_path %></li>
     <li><%= link_to 'プライバシーポリシー', privacy_policy_path %></li>
   </ul>
+  <ul class="flex items-center justify-center">
+    <li>© 2024 monyatto</li>
+    <li> <%= link_to "https://github.com/monyatto/erasugi", target: "_blank", class: "flex items-center justify-center", style: "width: 30px; height: 30px;" do %>
+        <%= image_tag("/github-mark.png", alt: "Logo", style: "width: 20px; height: 20px;") %>
+      <% end %></li>
+  </ul>
 </nav>
