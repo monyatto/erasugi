@@ -1,4 +1,7 @@
 <% content_for(:title, '新規登録') %>
+<% content_for :extra_head do %>
+  <meta name="description" content="新規登録画面です。">
+<% end %>
 <%= render "devise/shared/error_messages", resource: resource %>
 
 <div class="h-[80vh] flex flex-col justify-center items-center space-y-4">

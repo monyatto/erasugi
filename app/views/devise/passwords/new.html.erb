@@ -1,4 +1,8 @@
 <% content_for(:title, 'パスワード再設定') %>
+<% content_for :extra_head do %>
+  <meta name="description" content="パスワード再設定用のメールアドレス入力画面です。">
+<% end %>
+
 <%= render "devise/shared/error_messages", resource: resource %>
 
 <div class="h-[80vh] flex flex-col justify-center items-center space-y-4">
