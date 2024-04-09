@@ -10,7 +10,7 @@
 <% end %>
 <div id="container" style="position: absolute;"></div>
 <div class="flex flex-col justify-center h-[80vh]" id="loading">
-  <div data-controller="reaction" data-reaction-post-id-value="<%= @post.id %>" data-reaction-first-post-id-value="<%= @post.id %>" data-reaction-reactions-type-ids-value="<%= @post.associated_reaction_type_ids %>">
+  <div class="z-10" data-controller="reaction" data-reaction-post-id-value="<%= @post.id %>" data-reaction-first-post-id-value="<%= @post.id %>" data-reaction-reactions-type-ids-value="<%= @post.associated_reaction_type_ids %>">
     <div class="flex justify-center m-4 mb-4">
       <p class="text-5xl break-words text-center leading-relaxed"><%= @post.content %></p>
     </div>
