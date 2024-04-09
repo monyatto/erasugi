@@ -1,4 +1,7 @@
 <% content_for(:title, '新規投稿') %>
+<% content_for :extra_head do %>
+  <meta name="description" content="新規投稿画面です。">
+<% end %>
 <%= render "layouts/unlogin" %>
 <div data-controller="form-character-count" class="h-[80vh] flex flex-col justify-center items-center">
   <%= form_with(model: @post) do |form| %>

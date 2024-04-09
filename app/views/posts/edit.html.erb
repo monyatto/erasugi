@@ -1,4 +1,7 @@
 <%= turbo_frame_tag "post_#{@post.public_uid}" , class: "flex justify-center" do %>
+  <% content_for :extra_head do %>
+    <meta name="description" content="投稿編集画面です。">
+  <% end %>
   <div data-controller="form-character-count">
     <%= form_with(model: @post) do |form| %>
       <% if form.object.errors.any? %>
