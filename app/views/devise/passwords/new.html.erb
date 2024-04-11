@@ -5,12 +5,12 @@
 
 <%= render "devise/shared/error_messages", resource: resource %>
 
-<div class="h-[80vh] flex flex-col justify-center items-center space-y-4">
-  <h2 class="text-xl">パスワード再設定</h2>
+<div class="h-[80vh] flex flex-col justify-center items-center">
+  <h2 class="text-xl pb-2">パスワード再設定</h2>
 
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
 
-    <div class="field">
+    <div class="field pt-2">
       <%= f.label :email, class: "block" %>
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "block rounded-md w-[40vh]" %>
     </div>
@@ -20,7 +20,7 @@
     </div>
   <% end %>
 
-  <div class="field flex-col flex justify-center items-center">
+  <div class="field flex-col flex justify-center items-center pt-8">
     <%= render "devise/shared/links" %>
   </div>
 </div>
