@@ -1,5 +1,5 @@
 .swiper {
-  height: 80vh;
+  height: 80svh;
 }
 
 .swiper-slide,
@@ -18,11 +18,11 @@ swiper-slide {
 }
 
 .swiper-button-prev {
-  margin-top: 25vh !important;
+  margin-top: 18svh !important;
 }
 
 .swiper-button-next {
-  margin-bottom: 20vh !important;
+  margin-bottom: 16svh !important;
 }
 
 .swiper-button-next,

@@ -1,5 +1,5 @@
 <% if resource.errors.any? %>
-  <div class="flex justify-center items-center text-center bg-white bg-opacity-80 text-red-600 px-4 w-screen sm:w-[640px]">
+  <div class="flex justify-center items-center text-center bg-white bg-opacity-80 px-4 w-screen sm:w-[640px]">
     <div id="error_explanation" data-turbo-cache="false">
       <h2>
         <%= I18n.t("errors.messages.not_saved",
@@ -9,7 +9,7 @@
       </h2>
       <ul>
         <% resource.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+          <li class="error"><%= message %></li>
         <% end %>
       </ul>
     </div>

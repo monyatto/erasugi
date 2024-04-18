@@ -19,6 +19,15 @@
   font-family: "Zen Maru Gothic", serif;
 }
 
-#error_explanation {
-  color: #dc2626;
+body {
+  color: #333333;
 }
+
+.error {
+  color: #dc2626 !important;
+}
+
+#error_explanation {
+  color: #dc2626 !important;
+}
+

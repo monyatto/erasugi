@@ -2,16 +2,16 @@
   <% flash.each do |flash_type, message| %>
     <% if flash_type == "notice" %>
       <div data-controller="removals" class="animate-disappear flex justify-center" data-action="animationend->removals#remove">
-        <div class="flex justify-center items-center bg-white bg-opacity-80 h-[8vh] px-4 fixed w-screen sm:w-[640px]">
-          <div class="p-[2vh]">
+        <div class="flex justify-center items-center bg-white bg-opacity-80 h-[8svh] px-4 fixed w-screen sm:w-[640px]">
+          <div class="p-[2svh]">
             <%= message %>
           </div>
         </div>
       </div>
     <% elsif flash_type == "alert" %>
       <div class="flex justify-center">
-        <div class="flex justify-center items-center bg-white bg-opacity-80 h-[8vh] text-red-600 px-4 fixed w-screen sm:w-[640px]">
-          <div class="p-[2vh]">
+        <div class="flex justify-center items-center bg-white bg-opacity-80 h-[8svh] px-4 fixed w-screen sm:w-[640px]">
+          <div class="p-[2svh] error">
             <%= message %>
           </div>
         </div>
