@@ -3,14 +3,15 @@
   <meta name="description" content="ログイン中のユーザーの投稿一覧画面です。">
 <% end %>
 <% if @posts.count > 0 %>
-  <div class="pt-[8svh]" id="posts">
+  <div class="pt-[8svh] pb-[20svh]" id="posts">
     <%= turbo_frame_tag "posts-page-#{@posts.current_page}" do %>
       <%= render @posts %>
       <%= turbo_frame_tag "posts-page-#{@posts.next_page}", loading: :lazy, src: path_to_next_page(@posts) %>
     <% end %>
+
   </div>
 <% else %>
-  <div class="h-[80svh] flex flex-col justify-center items-center">
+  <div class="flex flex-col justify-center items-center">
     <p>まだえらすぎが投稿されていません</p>
     <p>右上の鉛筆マークから投稿してみましょう</p>
   </div>
