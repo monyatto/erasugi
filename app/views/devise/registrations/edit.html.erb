@@ -5,8 +5,8 @@
 
 <%= render "devise/shared/error_messages", resource: resource %>
 
-<div class="flex flex-col justify-center items-center h-[80vh] pb-2">
-  <div class="w-[40vh]">
+<div class="flex flex-col items-center pb-[20svh]">
+  <div class="w-[40svh]">
     <h2 class="text-xl text-center pb-2">登録情報変更</h2>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -42,7 +42,7 @@
       </div>
 
       <div class="actions pt-4">
-        <%= f.submit "更新する", class: "py-2 bg-gray-100 w-full shadow-md cursor-pointer hover:bg-opacity-50" %>
+        <%= f.submit "更新する", class: "py-2 bg-gray-100 w-full rounded-md shadow-md cursor-pointer hover:bg-opacity-50" %>
       </div>
     <% end %>
 

@@ -3,12 +3,12 @@
   <meta name="description" content="新規投稿画面です。">
 <% end %>
 <%= render "layouts/unlogin" %>
-<div data-controller="form-character-count" class="h-[80vh] flex flex-col justify-center items-center">
+<div data-controller="form-character-count" class="h-[80svh] flex flex-col justify-center items-center">
   <%= form_with(model: @post) do |form| %>
-    <div class="flex flex-col justify-center items-center space-y-4 w-screen h-[80vh]">
+    <div class="flex flex-col justify-center items-center space-y-4 w-screen h-[80svh]">
       <div>
         <% if form.object.errors.any? %>
-          <ul class="text-red-600">
+          <ul class="error">
             <% form.object.errors.full_messages.each do |message| %>
               <li><%= message %></li>
             <% end %>
@@ -19,11 +19,11 @@
         <%= form.label :content, 'あたらしいえらすぎ', class: "text-xl" %>
       </div>
       <div class="flex flex-col justify-center items-center ">
-        <%= form.text_area :content, placeholder: '午前中に起きた！', class: "block rounded-md h-[25vh] w-[40vh] placeholder-stone-400" %>
+        <%= form.text_area :content, placeholder: '午前中に起きた！', class: "block rounded-md h-[25svh] w-[40svh] placeholder-stone-400" %>
         <p class="text-sm" id="text-length"><%= form_character_count(@post) %></p>
       </div>
       <div>
-        <%= form.submit "投稿する", class: "py-2 bg-gray-100 w-[40vh] shadow-md cursor-pointer hover:bg-opacity-50" %>
+        <%= form.submit "投稿する", class: "py-2 bg-gray-100 w-[40svh] rounded-md shadow-md cursor-pointer hover:bg-opacity-50" %>
       </div>
     </div>
   <% end %>

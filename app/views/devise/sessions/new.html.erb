@@ -5,19 +5,19 @@
 
 <%= render "devise/shared/error_messages", resource: resource %>
 
-<div class="h-[80vh] flex flex-col justify-center items-center">
+<div class="h-[80svh] flex flex-col justify-center items-center">
   <h2 class="text-xl pb-2">ログイン</h2>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
     <div class="field pt-2">
       <%= f.label :email %><br/>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "block rounded-md w-[40vh]" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "block rounded-md w-[40svh]" %>
     </div>
 
     <div class="field pt-2">
       <%= f.label :password %><br/>
-      <%= f.password_field :password, autocomplete: "current-password", class: "block rounded-md w-[40vh]" %>
+      <%= f.password_field :password, autocomplete: "current-password", class: "block rounded-md w-[40svh]" %>
     </div>
 
     <% if devise_mapping.rememberable? %>
@@ -28,7 +28,7 @@
     <% end %>
 
     <div class="actions pt-4">
-      <%= f.submit "ログイン", class: "py-2 my-2 bg-gray-100 w-[40vh] shadow-md cursor-pointer hover:bg-opacity-50" %>
+      <%= f.submit "ログイン", class: "py-2 my-2 bg-gray-100 w-[40svh] rounded-md shadow-md cursor-pointer hover:bg-opacity-50" %>
     </div>
   <% end %>
 

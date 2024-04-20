@@ -5,13 +5,15 @@
     <% @posts.each do |post| %>
       <div class="swiper-slide flex flex-col justify-center">
         <div data-controller="reaction" data-reaction-post-id-value="<%= post.id %>" data-reaction-first-post-id-value="<%= @posts.first.id %>" data-reaction-reactions-type-ids-value="<%= post.associated_reaction_type_ids %>">
-          <div class="flex justify-center m-4 mb-4">
-            <p class="text-5xl break-words text-center leading-relaxed"><%= post.content %></p>
-          </div>
-          <div class="flex justify-evenly">
-            <% @reactions_types.each do |reactions_type| %>
-              <button data-action="reaction#onButtonClick" data-reaction-reaction-type-id-param="<%= reactions_type.id %>" class="btn text-lg w-24 h-24 rounded-full drop-shadow-md bg-white hover:bg-gray-100"><%= reactions_type.name %></button>
-            <% end %>
+          <div clasw="flex items-center">
+            <div class="flex justify-center">
+              <p class="text-4xl break-words text-center leading-relaxed"><%= post.content %></p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-4">
+              <% @reactions_types.each do |reactions_type| %>
+                <div><button data-action="reaction#onButtonClick" data-reaction-reaction-type-id-param="<%= reactions_type.id %>" class="btn text-lg w-24 h-24 rounded-full drop-shadow-md bg-white"><%= reactions_type.name %></button></div>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>

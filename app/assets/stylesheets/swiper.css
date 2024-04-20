@@ -1,5 +1,5 @@
 .swiper {
-  height: 80vh;
+  height: 80svh;
 }
 
 .swiper-slide,
@@ -18,14 +18,38 @@ swiper-slide {
 }
 
 .swiper-button-prev {
-  margin-top: 25vh !important;
+  margin-top: 20svh !important;
 }
 
 .swiper-button-next {
-  margin-bottom: 20vh !important;
+  margin-bottom: 20svh !important;
 }
 
 .swiper-button-next,
 .swiper-button-prev {
-  --swiper-navigation-color: #c0c0c0 !important;
+  --swiper-navigation-color: transparent;
+}
+
+/* 前へ次への矢印カスタマイズ */
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  bottom: 0;
+  content: "";
+  height: 0;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  width: 0;
+}
+
+.swiper-button-prev::after {
+  border-bottom: 20px solid transparent;
+  border-right: 20px solid #e5e7eb;
+  border-top: 20px solid transparent;
+}
+
+.swiper-button-next::after {
+  border-bottom: 20px solid transparent;
+  border-left: 20px solid #e5e7eb;
+  border-top: 20px solid transparent;
 }
