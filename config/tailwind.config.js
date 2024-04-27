@@ -14,13 +14,20 @@ module.exports = {
       },
       keyframes: {
         disappear: {
-          "0%": { opacity: 1 },
-          "100%": { opacity: 0 }
+          "0%": {opacity: 1},
+          "100%": {opacity: 0}
         }
       },
       animation: {
         disappear: "disappear 3s ease 2s 1 forwards"
-      }
+      },
+      textShadow: {
+        custom: '10px 10px 3px #fff'
+      },
+      borderWidth: {
+        '10': '10px',
+        '15': '15px'
+      },
     }
   },
   plugins: [
@@ -30,4 +37,5 @@ module.exports = {
     require("@tailwindcss/container-queries")
   ]
 };
+
 
