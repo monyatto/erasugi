@@ -10,7 +10,7 @@
           </div>
           <div class="flex flex-wrap justify-center gap-2 px-10 sm:px-0">
             <% @reactions_types.each do |reactions_type| %>
-              <button data-action="reaction#onButtonClick" data-reaction-reaction-type-id-param="<%= reactions_type.id %>" class="absolute bottom-24 h-20 hover:h-[79px] active:h-[69px] w-36 bg-stone-100 border-l-10 border-l-stone-50 border-r-10 border-r-stone-200 border-b-15 hover:border-b-14 active:border-b-4 border-b-stone-300 border-b-stone-300 rounded-md text-neutral-500"><%= reactions_type.name %></button>
+              <button data-action="reaction#onButtonClick" data-reaction-reaction-type-id-param="<%= reactions_type.id %>" class="absolute bottom-24 h-20 hover:h-[79px] active:h-[69px] w-32 bg-stone-100 border-l-10 border-l-stone-50 border-r-10 border-r-stone-200 border-b-15 hover:border-b-14 active:border-b-4 border-b-stone-300 border-b-stone-300 rounded-md text-neutral-500"><%= reactions_type.name %></button>
             <% end %>
           </div>
         </div>
