@@ -21,13 +21,20 @@ module.exports = {
       animation: {
         disappear: "disappear 3s ease 2s 1 forwards"
       },
-      textShadow: {
-        custom: '10px 10px 3px #fff'
-      },
       borderWidth: {
         '10': '10px',
+        '14': '14px',
         '15': '15px'
       },
+      userSelect: {
+        'none': 'none',
+      },
+    },
+  },
+  variants: {
+    extend: {
+      borderWidth: ['active', 'hover'],
+      height: ['active', 'hover']
     }
   },
   plugins: [

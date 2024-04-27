@@ -3,14 +3,14 @@
 <div class="swiper" id="swiper_id" data-controller="scroll" data-scroll-posts-ids-value="<%= @posts.pluck(:id) %>">
   <div class="swiper-wrapper">
     <% @posts.each do |post| %>
-      <div class="swiper-slide flex flex-col justify-center">
+      <div class="swiper-slide flex flex-col justify-center select-none">
         <div data-controller="reaction" data-reaction-post-id-value="<%= post.id %>" data-reaction-first-post-id-value="<%= @posts.first.id %>" data-reaction-reactions-type-ids-value="<%= post.associated_reaction_type_ids %>">
-          <div class="flex justify-center mb-[8svh] px-5 sm:px-0">
+          <div class="flex justify-center mb-[20svh] px-5 sm:px-0">
             <p class="text-4xl break-words text-center leading-relaxed"><%= post.content %></p>
           </div>
           <div class="flex flex-wrap justify-center gap-2 px-10 sm:px-0">
             <% @reactions_types.each do |reactions_type| %>
-              <button data-action="reaction#onButtonClick" data-reaction-reaction-type-id-param="<%= reactions_type.id %>" class="inline-block h-20 w-36 bg-stone-100 border-l-10 border-l-stone-50 border-r-10 border-r-stone-200 border-b-15 border-b-stone-300 rounded-md text-neutral-500"><%= reactions_type.name %></button>
+              <button data-action="reaction#onButtonClick" data-reaction-reaction-type-id-param="<%= reactions_type.id %>" class="absolute bottom-24 h-20 hover:h-[79px] active:h-[69px] w-36 bg-stone-100 border-l-10 border-l-stone-50 border-r-10 border-r-stone-200 border-b-15 hover:border-b-14 active:border-b-4 border-b-stone-300 border-b-stone-300 rounded-md text-neutral-500"><%= reactions_type.name %></button>
             <% end %>
           </div>
         </div>
