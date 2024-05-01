@@ -1,11 +1,11 @@
-import {Controller} from "@hotwired/stimulus";
+import { Controller } from "@hotwired/stimulus";
 import Konva from "konva";
 
 export default class extends Controller {
   static values = {
-    postId: {type: String},
-    firstPostId: {type: String},
-    reactionsTypeIds: {type: Array, default: []},
+    postId: { type: String },
+    firstPostId: { type: String },
+    reactionsTypeIds: { type: Array, default: [] },
   };
 
   imageCache = {};
@@ -129,18 +129,18 @@ export default class extends Controller {
 
   createSprite(imageObj) {
     const wordProbabilities = {
-      'えらい': 0.9,  // 50% の確率で出現
-      '最高': 0.05, // 25% の確率で出現
-      '神': 0.05  // 25% の確率で出現
+      えらい: 0.9, // 50% の確率で出現
+      最高: 0.05, // 25% の確率で出現
+      神: 0.05, // 25% の確率で出現
     };
     const randomWord = this.getRandomWord(wordProbabilities);
     const text = new Konva.Text({
       x: Math.floor(Math.random() * (window.innerWidth + 30)) - 50,
       y: Math.floor(Math.random() * (this.stage.height() - 50)),
-      text: randomWord,  // ランダムに選んだ文字を表示
+      text: randomWord, // ランダムに選んだ文字を表示
       fontSize: 20,
-      fontFamily: 'Zen Maru Gothic',
-      fill: 'grey',
+      fontFamily: "Zen Maru Gothic",
+      fill: "grey",
     });
     this.layer.add(text);
     if (this.layer.children.length > 100) {
@@ -153,7 +153,7 @@ export default class extends Controller {
   getRandomWord(wordProbabilities) {
     const sum = Object.values(wordProbabilities).reduce((a, b) => a + b, 0);
     let rand = Math.random() * sum;
-    for (let word in wordProbabilities) {
+    for (const word in wordProbabilities) {
       rand -= wordProbabilities[word];
       if (rand < 0) {
         return word;
