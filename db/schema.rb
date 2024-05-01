@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_24_061353) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_01_084112) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,13 +29,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_24_061353) do
     t.bigint "reactions_type_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "count", default: 0
     t.index ["post_id"], name: "index_reactions_on_post_id"
     t.index ["reactions_type_id"], name: "index_reactions_on_reactions_type_id"
   end
 
   create_table "reactions_types", force: :cascade do |t|
     t.string "name", null: false
-    t.string "image", null: false
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
