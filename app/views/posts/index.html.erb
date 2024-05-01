@@ -6,7 +6,7 @@
       <div class="swiper-slide flex flex-col justify-center select-none">
         <div data-controller="reaction" data-reaction-post-id-value="<%= post.id %>" data-reaction-first-post-id-value="<%= @posts.first.id %>" data-reaction-reactions-type-ids-value="<%= post.associated_reaction_type_ids %>">
           <div class="flex justify-center mb-[20svh] px-5 sm:px-0">
-            <p class="text-4xl break-words text-center leading-relaxed"><%= post.content %></p>
+            <p class="text-4xl break-words text-center leading-relaxed font-black"><%= post.content %></p>
           </div>
           <div class="flex flex-wrap justify-center gap-2 px-10 sm:px-0">
             <% @reactions_types.each do |reactions_type| %>

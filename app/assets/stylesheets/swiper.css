@@ -18,11 +18,11 @@ swiper-slide {
 }
 
 .swiper-button-prev {
-  margin-top: 20svh !important;
+  margin-top: 15svh !important;
 }
 
 .swiper-button-next {
-  margin-bottom: 20svh !important;
+  margin-bottom: 10svh !important;
 }
 
 .swiper-button-next,
@@ -43,13 +43,13 @@ swiper-slide {
 }
 
 .swiper-button-prev::after {
-  border-bottom: 20px solid transparent;
-  border-right: 20px solid #e5e7eb;
-  border-top: 20px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-right: 15px solid #e5e7eb;
+  border-top: 15px solid transparent;
 }
 
 .swiper-button-next::after {
-  border-bottom: 20px solid transparent;
-  border-left: 20px solid #e5e7eb;
-  border-top: 20px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-left: 15px solid #e5e7eb;
+  border-top: 15px solid transparent;
 }

@@ -128,23 +128,36 @@ export default class extends Controller {
   }
 
   createSprite(imageObj) {
-    const sprite = new Konva.Sprite({
-      x: Math.floor(Math.random() * window.innerWidth) - 150,
-      y: Math.floor(Math.random() * (this.stage.height() - 300)),
-      image: imageObj,
-      animation: "idle",
-      animations: {
-        idle: [0, 0, 300, 300, 300, 0, 300, 300],
-      },
-      frameRate: 7,
-      frameIndex: 0,
+    const wordProbabilities = {
+      えらい: 0.9, // 50% の確率で出現
+      最高: 0.05, // 25% の確率で出現
+      神: 0.05, // 25% の確率で出現
+    };
+    const randomWord = this.getRandomWord(wordProbabilities);
+    const text = new Konva.Text({
+      x: Math.floor(Math.random() * (window.innerWidth + 30)) - 50,
+      y: Math.floor(Math.random() * (this.stage.height() - 50)),
+      text: randomWord, // ランダムに選んだ文字を表示
+      fontSize: 20,
+      fontFamily: "Zen Maru Gothic",
+      fill: "grey",
     });
-    this.layer.add(sprite);
+    this.layer.add(text);
     if (this.layer.children.length > 100) {
       this.layer.children[0].destroy();
     }
-    sprite.start();
-    sprite.moveToTop();
+    text.moveToTop();
     this.layer.draw();
+  }
+
+  getRandomWord(wordProbabilities) {
+    const sum = Object.values(wordProbabilities).reduce((a, b) => a + b, 0);
+    let rand = Math.random() * sum;
+    for (const word in wordProbabilities) {
+      rand -= wordProbabilities[word];
+      if (rand < 0) {
+        return word;
+      }
+    }
   }
 }
