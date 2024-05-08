@@ -7,13 +7,10 @@ class PostsController < ApplicationController
   # GET /posts or /posts.json
   def index
     @posts = Post.order(id: :desc)
-    @reactions_types = ReactionsType.all
   end
 
   # GET /posts/1 or /posts/1.json
-  def show
-    @reactions_types = ReactionsType.all
-  end
+  def show; end
 
   # GET /posts/new
   def new
@@ -27,7 +24,6 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user ? current_user.id : User.guest.id
-    @reactions_types = ReactionsType.all
     respond_to do |format|
       if @post.save
         format.html { redirect_to post_url(@post), notice: 'えらすぎを投稿しました' }

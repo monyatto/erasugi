@@ -5,7 +5,7 @@ export default class extends Controller {
   static values = {
     postId: { type: String },
     firstPostId: { type: String },
-    reactionsTypeIds: { type: Array, default: [] },
+    associatedReactions: { type: Number },
   };
 
   imageCache = {};
@@ -32,7 +32,6 @@ export default class extends Controller {
       // 接続時に表示されている投稿のidと一致したらリアクションを表示する
       this.setupExistingReactions(this.postIdValue);
     }
-
     window.addEventListener("postIdChanged", this.boundHandlePostIdChanged);
   }
 
@@ -40,7 +39,7 @@ export default class extends Controller {
     // コントローラーの二重呼び出しが影響しないように対処
     this.postIdValue = undefined;
     this.firstPostIdValue = undefined;
-    this.reactionsTypeIdsValue = undefined;
+    this.associatedReactionsValue = undefined;
     window.removeEventListener("postIdChanged", this.boundHandlePostIdChanged);
   }
 
@@ -53,7 +52,6 @@ export default class extends Controller {
   }
 
   async onButtonClick(event) {
-    const reactionTypeId = String(event.params.reactionTypeId);
     await fetch("/reactions", {
       method: "POST",
       mode: "same-origin",
@@ -66,22 +64,18 @@ export default class extends Controller {
       },
       body: JSON.stringify({
         post_id: this.postIdValue,
-        reactions_type_id: reactionTypeId,
+        created_at: new Date().toISOString(),
       }),
     }).then((response) => {
       if (response.ok) {
-        this.renderReactionImages(reactionTypeId);
-        this.addNewReactionsTypeId(reactionTypeId);
+        this.renderReactionImages();
+        this.addNewReaction();
       }
     });
   }
 
-  addNewReactionsTypeId(reactionTypeId) {
-    // 非同期に更新されたreactionsTypeIdsValueを反映する
-    this.reactionsTypeIdsValue = [
-      ...this.reactionsTypeIdsValue,
-      reactionTypeId,
-    ];
+  addNewReaction() {
+    this.associatedReactionsValue++;
   }
 
   setupExistingReactions(targetPostId) {
@@ -95,50 +89,37 @@ export default class extends Controller {
     });
     this.layer = new Konva.Layer();
     this.stage.add(this.layer);
-    this.renderReactionImages(this.reactionsTypeIdsValue);
+    this.renderReactionImages(this.associatedReactionsValue);
   }
 
-  async renderReactionImages(reactionTypes) {
+  async renderReactionImages(associatedReactions = 1) {
     // 以前に押されたリアクション（複数）の表示と新しくボタンが押されたリアクション（単数）の両方に対応
-    for (let i = 0; i < reactionTypes.length; i++) {
-      const imageSrc = this.reactionTypeToImage[reactionTypes[i]];
-      if (imageSrc) {
-        await this.displayReaction(imageSrc);
-      }
+    for (let i = 0; i < associatedReactions; i++) {
+      await this.displayReaction();
     }
-    document.getElementById("loading").id = "loaded";
-    document.getElementById("button-off").id = "button-on";
+    // document.getElementById("loading").id = "loaded";
+    // document.getElementById("button-off").id = "button-on";
   }
 
-  async displayReaction(imageSrc) {
+  async displayReaction() {
     return new Promise((resolve, reject) => {
-      if (this.imageCache[imageSrc]) {
-        this.createSprite(this.imageCache[imageSrc]);
-        resolve();
-      } else {
-        const imageObj = new Image();
-        imageObj.onload = () => {
-          this.imageCache[imageSrc] = imageObj;
-          this.createSprite(imageObj);
-          resolve();
-        };
-        imageObj.src = imageSrc;
-      }
+      this.createSprite();
+      resolve();
     });
   }
 
-  createSprite(imageObj) {
+  createSprite() {
     const wordProbabilities = {
-      えらい: 0.9, // 50% の確率で出現
-      最高: 0.05, // 25% の確率で出現
-      神: 0.05, // 25% の確率で出現
+      えらい: 0.9,
+      最高: 0.05,
+      神: 0.05,
     };
     const randomWord = this.getRandomWord(wordProbabilities);
     const text = new Konva.Text({
       x: Math.floor(Math.random() * (window.innerWidth + 30)) - 50,
       y: Math.floor(Math.random() * (this.stage.height() - 50)),
       text: randomWord, // ランダムに選んだ文字を表示
-      fontSize: 20,
+      fontSize: 18,
       fontFamily: "Zen Maru Gothic",
       fill: "grey",
     });

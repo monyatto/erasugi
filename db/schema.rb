@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_01_084112) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_02_135339) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -26,19 +26,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_01_084112) do
 
   create_table "reactions", force: :cascade do |t|
     t.bigint "post_id", null: false
-    t.bigint "reactions_type_id", null: false
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "count", default: 0
     t.index ["post_id"], name: "index_reactions_on_post_id"
-    t.index ["reactions_type_id"], name: "index_reactions_on_reactions_type_id"
-  end
-
-  create_table "reactions_types", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -48,15 +37,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_01_084112) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name"
+    t.string "public_uid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "public_uid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["public_uid"], name: "index_users_on_public_uid", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "posts", "users"
   add_foreign_key "reactions", "posts"
-  add_foreign_key "reactions", "reactions_types"
 end
