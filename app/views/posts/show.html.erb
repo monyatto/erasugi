@@ -10,16 +10,16 @@
   <meta name="twitter:card" content="summary_large_image"/>
 <% end %>
 <div id="container" style="position: absolute;"></div>
-<div class="flex flex-col justify-center h-[80svh]" id="loading">
-  <div class="z-10" data-controller="reaction" data-reaction-post-id-value="<%= @post.id %>" data-reaction-first-post-id-value="<%= @post.id %> data-reaction-associated_reactions-value="<%= @post.id %>">
-    <div class="flex justify-center m-4 mb-4">
-      <p class="text-5xl break-words text-center leading-relaxed"><%= @post.content %></p>
+<div class="h-[80svh] flex flex-col justify-center select-none">
+  <div class="z-10" data-controller="reaction" data-reaction-post-id-value="<%= @post.id %>" data-reaction-first-post-id-value="<%= @post.id %>" data-reaction-associated-reactions-value="<%= @post.reactions_count %>">
+    <div class="flex justify-center items-center px-5 sm:px-0 mb-[4svh]">
+      <p class="text-4xl break-words text-center leading-relaxed font-black bg-white bg-opacity-50"><%= @post.content %></p>
     </div>
-    <div class="flex justify-evenly" id="button-off">
-        <button data-action="reaction#onButtonClick" class="btn text-lg w-24 h-24 rounded-full drop-shadow-md bg-white hover:bg-gray-100">えらい</button>
+    <div class="z-30 flex justify-center mb-[16svh]">
+      <%= render "share" %>
     </div>
-  </div>
-  <div class="py-4 z-30">
-    <%= render "share" %>
+    <div class="flex justify-center px-10 sm:px-0">
+      <button data-action="reaction#onButtonClick" class="absolute bottom-[165px] h-20 hover:h-[79px] active:h-[69px] w-32 bg-stone-100 border-l-10 border-l-stone-50 border-r-10 border-r-stone-200 border-b-15 hover:border-b-14 active:border-b-4 border-b-stone-300 border-b-stone-300 rounded-md text-neutral-500">えらい</button>
+    </div>
   </div>
 </div>
