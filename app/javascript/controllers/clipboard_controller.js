@@ -4,6 +4,7 @@ export default class extends Controller {
   static targets = ["url"];
 
   copy(event) {
+    console.log("コントローラー接続")
     event.preventDefault();
     navigator.clipboard.writeText(this.urlTarget);
     this.flashMessage("URLをコピーしました");
