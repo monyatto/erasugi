@@ -1,5 +1,5 @@
 <% if current_user.nil? %>
-  <div class="flex flex-col justify-center items-center h-[8svh] fixed z-10 bottom-[10svh] bg-gray-100 bg-opacity-80 sm:w-[640px] w-full">
+  <div class="flex flex-col justify-center items-center h-[8svh] fixed z-10 bottom-[10svh] bg-gray-100 bg-opacity-80 sm:w-[640px] w-full text-sm">
     <p>会員登録すると過去の投稿が見やすくなります</p>
     <p>
       <%= link_to "新規登録", new_user_registration_path, class: "underline" %>
