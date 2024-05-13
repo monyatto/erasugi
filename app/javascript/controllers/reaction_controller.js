@@ -8,35 +8,20 @@ export default class extends Controller {
     associatedReactions: { type: Number },
   };
 
-  imageCache = {};
   activePostId = this.firstPostIdValue;
-  reactionTypeToImage = {
-    1: "/assets/test.png",
-    2: "/assets/test1.png",
-    3: "/assets/test2.png",
-  };
 
   initialize() {
     this.boundHandlePostIdChanged = this.handlePostIdChanged.bind(this);
-    Object.values(this.reactionTypeToImage).forEach((url) => {
-      const img = new Image();
-      img.onload = () => {
-        this.imageCache[url] = img;
-      };
-      img.src = url;
-    });
   }
 
   connect() {
     if (this.postIdValue === this.firstPostIdValue) {
-      // 接続時に表示されている投稿のidと一致したらリアクションを表示する
       this.setupExistingReactions(this.postIdValue);
     }
     window.addEventListener("postIdChanged", this.boundHandlePostIdChanged);
   }
 
   disconnect() {
-    // コントローラーの二重呼び出しが影響しないように対処
     this.postIdValue = undefined;
     this.firstPostIdValue = undefined;
     this.associatedReactionsValue = undefined;
@@ -46,13 +31,12 @@ export default class extends Controller {
   handlePostIdChanged(e) {
     this.activePostId = e.detail;
     if (this.postIdValue === this.activePostId) {
-      // スライド切り替え時に表示された投稿のidと一致したらリアクションを表示する
       this.setupExistingReactions(this.postIdValue);
     }
   }
 
-  async onButtonClick(event) {
-    await fetch("/reactions", {
+  onButtonClick(event) {
+    fetch("/reactions", {
       method: "POST",
       mode: "same-origin",
       referrerPolicy: "no-referrer",
@@ -89,26 +73,16 @@ export default class extends Controller {
     });
     this.layer = new Konva.Layer();
     this.stage.add(this.layer);
-    this.renderReactionImages(this.associatedReactionsValue);
+    this.renderReactions(this.associatedReactionsValue);
   }
 
-  async renderReactionImages(associatedReactions = 1) {
-    // 以前に押されたリアクション（複数）の表示と新しくボタンが押されたリアクション（単数）の両方に対応
+  renderReactions(associatedReactions = 1) {
     for (let i = 0; i < associatedReactions; i++) {
-      await this.displayReaction();
+      setTimeout(() => this.createText(), i * 100);
     }
-    // document.getElementById("loading").id = "loaded";
-    // document.getElementById("button-off").id = "button-on";
   }
 
-  async displayReaction() {
-    return new Promise((resolve, reject) => {
-      this.createSprite();
-      resolve();
-    });
-  }
-
-  createSprite() {
+  createText() {
     const wordProbabilities = {
       えらい: 0.9,
       最高: 0.05,
@@ -118,17 +92,31 @@ export default class extends Controller {
     const text = new Konva.Text({
       x: Math.floor(Math.random() * (window.innerWidth + 30)) - 50,
       y: Math.floor(Math.random() * (this.stage.height() - 50)),
-      text: randomWord, // ランダムに選んだ文字を表示
+      text: randomWord,
       fontSize: 18,
       fontFamily: "Zen Maru Gothic",
       fill: "grey",
+      opacity: 1,
     });
     this.layer.add(text);
-    if (this.layer.children.length > 100) {
-      this.layer.children[0].destroy();
-    }
     text.moveToTop();
     this.layer.draw();
+    this.fadeIn(text);
+  }
+
+  fadeIn(text) {
+    return new Promise((resolve, reject) => {
+      const tween = new Konva.Tween({
+        node: text,
+        duration: 1.0,
+        opacity: 0,
+        onFinish: () => {
+          text.destroy();
+          resolve();
+        },
+      });
+      tween.play();
+    });
   }
 
   getRandomWord(wordProbabilities) {
