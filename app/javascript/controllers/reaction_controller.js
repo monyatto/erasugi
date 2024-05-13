@@ -52,7 +52,7 @@ export default class extends Controller {
       }),
     }).then((response) => {
       if (response.ok) {
-        this.renderReactionImages();
+        this.renderReactions();
         this.addNewReaction();
       }
     });
@@ -84,10 +84,17 @@ export default class extends Controller {
 
   createText() {
     const wordProbabilities = {
-      えらい: 0.9,
-      最高: 0.05,
-      神: 0.05,
-    };
+      "えらい": 0.80,
+      "すてき": 0.03,
+      "ええやん": 0.03,
+      "とても良い": 0.03,
+      "素晴らしい": 0.03,
+      "最高": 0.02,
+      "神": 0.02,
+      "セクシー": 0.02,
+      "パーフェクト": 0.02,
+      "今夜はお寿司": 0.01
+    }
     const randomWord = this.getRandomWord(wordProbabilities);
     const text = new Konva.Text({
       x: Math.floor(Math.random() * (window.innerWidth + 30)) - 50,
