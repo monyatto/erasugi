@@ -1,12 +1,10 @@
-# frozen_string_literal: true
-
 class Post::Image
   FRAME_IMAGE_PATH = Rails.root.join('app/assets/images/flame.png')
   FONT_SIZE = 25
   INTERLINE_SPACING = (FONT_SIZE * 0.5).round
-  COLOR_CODE = '#252828'
-  START_X = 65
-  START_Y = 60
+  COLOR_CODE = '#333333'
+  IMAGE_WIDTH = 640
+  IMAGE_HEIGHT = 315
   MAX_ROWS = 5
   COLS = 20
   ROWS = 10
@@ -29,12 +27,12 @@ class Post::Image
   def image
     image = MiniMagick::Image.open(FRAME_IMAGE_PATH)
     image.combine_options do |c|
-      c.gravity 'northwest'
+      c.gravity 'Center'
       c.pointsize FONT_SIZE
       c.font font_path
       c.interline_spacing INTERLINE_SPACING
       c.stroke COLOR_CODE
-      c.annotate "+#{START_X}+#{START_Y},0", formated_body
+      c.annotate "+0+0", formated_body
     end
   end
 
