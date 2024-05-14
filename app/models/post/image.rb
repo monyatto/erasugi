@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Post::Image
   FRAME_IMAGE_PATH = Rails.root.join('app/assets/images/flame.png')
   FONT_SIZE = 25
@@ -32,7 +34,7 @@ class Post::Image
       c.font font_path
       c.interline_spacing INTERLINE_SPACING
       c.stroke COLOR_CODE
-      c.annotate "+0+0", formated_body
+      c.annotate '+0+0', formated_body
     end
   end
 
