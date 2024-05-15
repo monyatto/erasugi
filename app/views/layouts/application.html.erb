@@ -4,6 +4,12 @@
   <title><%= full_title(yield(:title)) %></title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="えらすぎは匿名で気軽に褒めたり褒められたりできる無料のWebサービスです。">
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://erasugi.onrender.com/"/>
+  <meta property="og:image" content="<%= image_url('ogp.png')%>"/>
+  <meta property="og:site_name" content="えらすぎ"/>
+  <meta property="og:description" content="えらすぎは匿名で気軽に褒めたり褒められたりできる無料のWebサービスです。"/>
+  <meta name="twitter:card" content="summary_large_image"/>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <%= stylesheet_link_tag "tailwind", "inter-font" %>
@@ -12,7 +18,9 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
   <%= javascript_importmap_tags %>
+
   <%= yield :extra_head %>
 </head>
 <body>

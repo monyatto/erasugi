@@ -10,7 +10,7 @@ class Post::Image
   MAX_ROWS = 5
   COLS = 20
   ROWS = 10
-  OMMIT_MESSAGE = '…（省略させてください。）'
+  OMMIT_MESSAGE = '…'
 
   attr_reader :post
 
