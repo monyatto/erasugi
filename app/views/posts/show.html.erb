@@ -1,13 +1,9 @@
 <% content_for(:title, '投稿詳細') %>
 <% content_for :extra_head do %>
   <meta name="description" content="投稿詳細画面です。">
-  <meta property="og:title" content="えらすぎ"/>
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="#{post_url(@post)"/>
   <meta property="og:image" content="<%= @post.image.path %>"/>
-  <meta property="og:site_name" content="えらすぎ"/>
-  <meta property="og:description" content="<%= @post.content %>"/>
-  <meta name="twitter:card" content="summary_large_image"/>
 <% end %>
 <div id="container" style="position: absolute;"></div>
 <div class="h-[80svh] flex flex-col justify-center select-none">
