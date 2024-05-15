@@ -52,7 +52,8 @@ export default class extends Controller {
       }),
     }).then((response) => {
       if (response.ok) {
-        this.renderReactions();
+        const isButtonPressed = true;
+        this.renderReactions(1, isButtonPressed);
         this.addNewReaction();
       }
     });
@@ -73,42 +74,46 @@ export default class extends Controller {
     });
     this.layer = new Konva.Layer();
     this.stage.add(this.layer);
-    this.renderReactions(this.associatedReactionsValue);
+    const isButtonPressed = false;
+    this.renderReactions(this.associatedReactionsValue, isButtonPressed);
   }
 
-  renderReactions(associatedReactions = 1) {
+  renderReactions(associatedReactions, isButtonPressed) {
     for (let i = 0; i < associatedReactions; i++) {
-      setTimeout(() => this.createText(), i * 100);
+      this.createText(i * 100, isButtonPressed);
     }
   }
 
-  createText() {
-    const wordProbabilities = {
-      えらい: 0.8,
-      すてき: 0.03,
-      ええやん: 0.03,
-      とても良い: 0.03,
-      素晴らしい: 0.03,
-      最高: 0.02,
-      神: 0.02,
-      セクシー: 0.02,
-      パーフェクト: 0.02,
-      今夜はお寿司: 0.01,
-    };
-    const randomWord = this.getRandomWord(wordProbabilities);
-    const text = new Konva.Text({
-      x: Math.floor(Math.random() * (window.innerWidth + 30)) - 50,
-      y: Math.floor(Math.random() * (this.stage.height() - 50)),
-      text: randomWord,
-      fontSize: 18,
-      fontFamily: "Zen Maru Gothic",
-      fill: "grey",
-      opacity: 1,
-    });
-    this.layer.add(text);
-    text.moveToTop();
-    this.layer.draw();
-    this.fadeIn(text);
+  createText(delay, isButtonPressed) {
+    setTimeout(() => {
+      const wordProbabilities = {
+        えらい: 0.8,
+        すてき: 0.03,
+        ええやん: 0.03,
+        とても良い: 0.03,
+        素晴らしい: 0.03,
+        最高: 0.02,
+        優勝: 0.02,
+        神: 0.02,
+        パーフェクト: 0.02,
+        今夜はお寿司: 0.01,
+      };
+      const randomWord = this.getRandomWord(wordProbabilities);
+      const text = new Konva.Text({
+        x: Math.floor(Math.random() * (window.innerWidth + 30)) - 50,
+        y: Math.floor(Math.random() * (this.stage.height() - 50)),
+        text: randomWord,
+        fontSize: isButtonPressed ? "22" : "18",
+        fontStyle: isButtonPressed ? "bold" : "normal",
+        fontFamily: "Zen Maru Gothic",
+        fill: isButtonPressed ? "black" : "gray",
+        opacity: 1,
+      });
+      this.layer.add(text);
+      text.moveToTop();
+      this.layer.draw();
+      this.fadeIn(text);
+    }, delay);
   }
 
   fadeIn(text) {
