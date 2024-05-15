@@ -7,7 +7,7 @@ class Post < ApplicationRecord
 
   validates :content,
             presence: true,
-            length: { maximum: 140 }
+            length: { maximum: 60 }
 
   POSTS_PER_PAGE = 20
 
