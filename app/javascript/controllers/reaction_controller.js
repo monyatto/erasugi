@@ -41,7 +41,7 @@ export default class extends Controller {
     fetch("/reactions", {
       method: "POST",
       mode: "same-origin",
-      referrerPolicy: "no-referrer",
+      referrerPolicy: "same-origin",
       headers: {
         "Content-Type": "application/json",
         "X-CSRF-Token": document
