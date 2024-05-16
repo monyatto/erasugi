@@ -22,6 +22,8 @@ export default class extends Controller {
   }
 
   disconnect() {
+    this.stage.destroy();
+    this.layer.destroy();
     this.postIdValue = undefined;
     this.firstPostIdValue = undefined;
     this.associatedReactionsValue = undefined;
@@ -72,7 +74,9 @@ export default class extends Controller {
       width: window.innerWidth,
       height: availableHeight,
     });
-    this.layer = new Konva.Layer();
+    this.layer = new Konva.Layer({
+      listening: false,
+    });
     this.stage.add(this.layer);
     const isButtonPressed = false;
     this.renderReactions(this.associatedReactionsValue, isButtonPressed);
@@ -109,6 +113,8 @@ export default class extends Controller {
         fill: isButtonPressed ? "black" : "gray",
         opacity: 1,
       });
+      text.listening(false);
+      text.perfectDrawEnabled(false);
       this.layer.add(text);
       text.moveToTop();
       this.layer.draw();
@@ -124,6 +130,7 @@ export default class extends Controller {
         opacity: 0,
         onFinish: () => {
           text.destroy();
+          tween.destroy();
           resolve();
         },
       });
