@@ -113,8 +113,8 @@ export default class extends Controller {
         fill: isButtonPressed ? "black" : "gray",
         opacity: 1,
       });
-      text.listening(false)
-      text.perfectDrawEnabled(false)
+      text.listening(false);
+      text.perfectDrawEnabled(false);
       this.layer.add(text);
       text.moveToTop();
       this.layer.draw();
