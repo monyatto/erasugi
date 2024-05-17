@@ -80,6 +80,8 @@ export default class extends Controller {
     this.stage.add(this.layer);
     const isButtonPressed = false;
     this.renderReactions(this.associatedReactionsValue, isButtonPressed);
+    document.getElementById("loading").id = "loaded";
+    document.getElementById("button-off").id = "button-on";
   }
 
   renderReactions(associatedReactions, isButtonPressed) {
