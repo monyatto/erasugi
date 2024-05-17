@@ -1,6 +1,5 @@
 import { Controller } from "@hotwired/stimulus";
 
-// Connects to data-controller="form-character-count"
 export default class extends Controller {
   connect() {
     const textArea = document.getElementById("post_content");

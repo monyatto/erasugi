@@ -2,7 +2,7 @@
   <% content_for :extra_head do %>
     <meta name="description" content="投稿編集画面です。">
   <% end %>
-  <div data-controller="form-character-count">
+  <div data-controller="count">
     <%= form_with(model: @post) do |form| %>
       <% if form.object.errors.any? %>
         <div class="error">
@@ -15,7 +15,7 @@
       <% end %>
       <div class="flex flex-col space-x-1 justify-center items-center pb-4">
         <%= form.text_area :content, class: "block rounded-md h-[10svh] w-[36svh]" %>
-        <p class="text-sm" id="text-length"><%= form_character_count(@post) %></p>
+        <p class="text-sm" id="text-length"><%= count_characters(@post) %></p>
       </div>
       <div class="flex justify-center space-x-4">
         <%= form.submit "更新する", class: "py-2 bg-gray-100 w-[16svh] rounded-md shadow-md cursor-pointer hover:bg-opacity-50" %>
