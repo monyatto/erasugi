@@ -1,0 +1,5 @@
+#!/bin/bash
+
+bundle exec rubocop
+npx eslint app/javascript/**/*.js --max-warnings=0
+npx prettier app/javascript/**/*.js --check
