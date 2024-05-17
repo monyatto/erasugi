@@ -9,17 +9,13 @@
 ## 使い方
 
 1. 投稿にリアクションをする
-![Image](https://github.com/users/monyatto/projects/1/assets/83024928/6ef7ba4d-fd2d-4535-b638-71151389e59f)
-
+![Image](https://github.com/users/monyatto/projects/1/assets/83024928/83fd55c3-dcfb-4905-8d94-a0626b30ce56)
 2. 会員登録をする
-![Image](https://github.com/users/monyatto/projects/1/assets/83024928/d1d477de-c77a-4ae8-93d2-b35caece2223)
-
+![Image](https://github.com/users/monyatto/projects/1/assets/83024928/ac435c0a-6868-4c43-bd03-56c1b1b97b54)
 3. 投稿をする
-![Image](https://github.com/users/monyatto/projects/1/assets/83024928/221e1dc5-a1a4-471e-9d8e-3d7b8bfa8775)
-
+![Image](https://github.com/users/monyatto/projects/1/assets/83024928/e4f9a423-5d76-43c4-a251-6f7f7d1b9291)
 4. 過去の投稿を観覧、編集、削除する
-![Image](https://github.com/users/monyatto/projects/1/assets/83024928/f4af0d23-fe43-4770-b95e-fcc588795d35)
-
+![Image](https://github.com/users/monyatto/projects/1/assets/83024928/fad25c80-be80-4f44-88b1-1e0822bd43ea)
 
 ## 技術スタック
 Ruby 3.1.0
