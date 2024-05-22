@@ -6,10 +6,10 @@
   <meta property="og:image" content="<%= @post.image.path %>"/>
 <% end %>
 <div id="container" style="position: absolute;"></div>
-<div class="h-[80svh] flex flex-col justify-center select-none" id="loading">
+<div class="h-[80svh] flex flex-col justify-center select-none" id="<%= @post.id %>-loading">
   <div class="z-10" data-controller="reaction" data-reaction-post-id-value="<%= @post.id %>" data-reaction-first-post-id-value="<%= @post.id %>" data-reaction-associated-reactions-value="<%= @post.reactions_count %>">
     <div class="flex justify-center items-center px-5 sm:px-0 mb-[4svh]">
-      <p class="text-4xl break-words text-center leading-relaxed font-black bg-white bg-opacity-50" id="button-off"><%= @post.content %></p>
+      <p class="text-4xl break-words text-center leading-relaxed font-black bg-white bg-opacity-50" id="<%= @post.id %>-button-off"><%= @post.content %></p>
     </div>
     <div class="z-30 flex justify-center mb-[16svh]">
       <%= render "share" %>
