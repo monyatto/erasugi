@@ -140,5 +140,5 @@ ja:
       not_found: は見つかりませんでした
       not_locked: はロックされていません
       not_saved:
-        one:
-        other:
+        one: エラーが発生したため変更が保存されませんでした
+        other: "%{count} 件のエラーが発生したため変更は保存されませんでした"
