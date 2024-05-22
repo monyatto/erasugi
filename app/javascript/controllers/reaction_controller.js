@@ -80,9 +80,12 @@ export default class extends Controller {
     this.stage.add(this.layer);
     const isButtonPressed = false;
     this.renderReactions(this.associatedReactionsValue, isButtonPressed);
-    //以下2行はテストのための設定
-    if (document.getElementById(this.postIdValue + "-loading")) document.getElementById(this.postIdValue + "-loading").id = "loaded";
-    if (document.getElementById(this.postIdValue + "-button-off")) document.getElementById(this.postIdValue + "-button-off").id = "button-on";
+    // 以下はテストのための設定
+    if (document.getElementById(this.postIdValue + "-loading"))
+      document.getElementById(this.postIdValue + "-loading").id = "loaded";
+    if (document.getElementById(this.postIdValue + "-button-off"))
+      document.getElementById(this.postIdValue + "-button-off").id =
+        "button-on";
   }
 
   renderReactions(associatedReactions, isButtonPressed) {
