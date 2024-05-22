@@ -22,8 +22,6 @@ export default class extends Controller {
   }
 
   disconnect() {
-    this.stage.destroy();
-    this.layer.destroy();
     this.postIdValue = undefined;
     this.firstPostIdValue = undefined;
     this.associatedReactionsValue = undefined;
@@ -55,14 +53,10 @@ export default class extends Controller {
     }).then((response) => {
       if (response.ok) {
         const isButtonPressed = true;
-        this.renderReactions(1, isButtonPressed);
-        this.addNewReaction();
+        this.createText(0, isButtonPressed);
+        this.associatedReactionsValue++;
       }
     });
-  }
-
-  addNewReaction() {
-    this.associatedReactionsValue++;
   }
 
   setupExistingReactions(targetPostId) {
@@ -79,19 +73,14 @@ export default class extends Controller {
     });
     this.stage.add(this.layer);
     const isButtonPressed = false;
-    this.renderReactions(this.associatedReactionsValue, isButtonPressed);
-    // 以下はテストのための設定
+    for (let i = 0; i < this.associatedReactionsValue; i++) {
+      this.createText(i * 100, isButtonPressed);
+    }
     if (document.getElementById(this.postIdValue + "-loading"))
       document.getElementById(this.postIdValue + "-loading").id = "loaded";
     if (document.getElementById(this.postIdValue + "-button-off"))
       document.getElementById(this.postIdValue + "-button-off").id =
         "button-on";
-  }
-
-  renderReactions(associatedReactions, isButtonPressed) {
-    for (let i = 0; i < associatedReactions; i++) {
-      this.createText(i * 100, isButtonPressed);
-    }
   }
 
   createText(delay, isButtonPressed) {
@@ -110,13 +99,17 @@ export default class extends Controller {
       };
       const randomWord = this.getRandomWord(wordProbabilities);
       const text = new Konva.Text({
-        x: Math.floor(Math.random() * (window.innerWidth + 30)) - 50,
-        y: Math.floor(Math.random() * (this.stage.height() - 50)),
+        x: isButtonPressed
+          ? window.innerWidth / 2 - randomWord.length * 10
+          : Math.floor(Math.random() * (window.innerWidth + 30)) - 50,
+        y: isButtonPressed
+          ? window.innerHeight / 2
+          : Math.floor(Math.random() * (this.stage.height() - 50)),
         text: randomWord,
-        fontSize: isButtonPressed ? "22" : "18",
+        fontSize: isButtonPressed ? "20" : "18",
         fontStyle: isButtonPressed ? "bold" : "normal",
         fontFamily: "Zen Maru Gothic",
-        fill: isButtonPressed ? "black" : "gray",
+        fill: isButtonPressed ? "#303030" : "gray",
         opacity: 1,
       });
       text.listening(false);
@@ -124,7 +117,7 @@ export default class extends Controller {
       this.layer.add(text);
       text.moveToTop();
       this.layer.draw();
-      this.fadeIn(text);
+      isButtonPressed ? this.moveUp(text) : this.fadeIn(text);
     }, delay);
   }
 
@@ -135,6 +128,23 @@ export default class extends Controller {
         duration: 1.0,
         opacity: 0,
         onFinish: () => {
+          text.destroy();
+          tween.destroy();
+          resolve();
+        },
+      });
+      tween.play();
+    });
+  }
+
+  moveUp(text) {
+    return new Promise((resolve, reject) => {
+      const tween = new Konva.Tween({
+        node: text,
+        duration: 0.5,
+        y: text.y() - 150,
+        opacity: 0,
+        onFinish: function () {
           text.destroy();
           tween.destroy();
           resolve();
