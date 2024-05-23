@@ -4,7 +4,7 @@ export default class extends Controller {
   connect() {
     const textArea = document.getElementById("post_content");
     const textLength = document.getElementById("text-length");
-    const textLimit = 140;
+    const textLimit = 60;
     if (textArea) {
       textArea.addEventListener("keyup", function () {
         const count = textArea.value.length;
