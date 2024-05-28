@@ -5,13 +5,15 @@
 
 <div class="h-[80svh] flex flex-col justify-center items-center space-y-4">
   <h2 class="text-xl">登録情報</h2>
-<p>
-  <strong>メールアドレス: </strong>
-  <%= @user.email %>
-</p>
-<p>
-  <strong>ユーザー名:</strong>
-  <%= @user.name %>
-</p>
-<p class="pt-4"><%= link_to '登録情報を変更する', edit_user_registration_path, class: "underline" %></p>
+  <dl class="space-y-2">
+    <div class="flex flex-col items-center px-4">
+      <dt>メールアドレス</dt>
+      <dd class="break-all"><%= @user.email %></dd>
+    </div>
+    <div class="flex flex-col items-center">
+      <dt>ユーザー名</dt>
+      <dd><%= @user.name %></dd>
+    </div>
+  </dl>
+  <p class="pt-2"><%= link_to '登録情報を変更する', edit_user_registration_path, class: "underline" %></p>
 </div>

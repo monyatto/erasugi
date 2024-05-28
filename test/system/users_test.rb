@@ -28,8 +28,8 @@ class UsersTest < ApplicationSystemTestCase
     visit root_path
     find('.hamburger').click
     click_on '登録情報'
-    assert_text "メールアドレス: #{@user.email}"
-    assert_text "ユーザー名: #{@user.name}"
+    assert_text @user.email.to_s
+    assert_text @user.name.to_s
   end
 
   test 'create user' do
@@ -52,8 +52,8 @@ class UsersTest < ApplicationSystemTestCase
     assert_selector('#flash-message', text: 'アカウント情報を変更しました')
 
     visit user_path(@user.public_uid)
-    assert_text 'メールアドレス: change@example.com'
-    assert_text 'ユーザー名: テスト変更'
+    assert_text 'change@example.com'
+    assert_text 'テスト変更'
   end
 
   test 'delete user' do
