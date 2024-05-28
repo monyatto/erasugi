@@ -1,4 +1,4 @@
-<div class="flex justify-center space-x-5">
+<div class="flex justify-center gap-5">
   <%= link_to "https://twitter.com/intent/tweet?text=#{@post.content}%20#{post_url(@post)}%20%23えらすぎ", target: "_blank", class: "bg-black rounded-md flex items-center justify-center sm:w-8 sm:h-8 w-10 h-10", id: "x-share" do %>
     <%= image_tag("/x.png", alt: "Xへのシェア", class: "sm:w-4 sm:h-4 w-5 h-5") %>
   <% end %>
