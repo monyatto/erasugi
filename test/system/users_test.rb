@@ -28,8 +28,8 @@ class UsersTest < ApplicationSystemTestCase
     visit root_path
     find('.hamburger').click
     click_on '登録情報'
-    assert_text "#{@user.email}"
-    assert_text "#{@user.name}"
+    assert_text @user.email.to_s
+    assert_text @user.name.to_s
   end
 
   test 'create user' do
