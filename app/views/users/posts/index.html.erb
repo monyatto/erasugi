@@ -2,13 +2,14 @@
 <% content_for :extra_head do %>
   <meta name="description" content="ログイン中のユーザーの投稿一覧画面です。">
 <% end %>
+
+<h2 class="flex justify-center pt-12 text-xl"><%= @user.name %>の投稿一覧</h2>
 <% if @posts.count > 0 %>
-  <div class="pt-[8svh] pb-[20svh]" id="posts">
+  <div class="pt-[4svh] pb-[20svh]" id="posts">
     <%= turbo_frame_tag "posts-page-#{@posts.current_page}" do %>
       <%= render @posts %>
       <%= turbo_frame_tag "posts-page-#{@posts.next_page}", loading: :lazy, src: path_to_next_page(@posts) %>
     <% end %>
-
   </div>
 <% else %>
   <div class="flex flex-col justify-center items-center h-[80svh]">
