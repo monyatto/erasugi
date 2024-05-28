@@ -4,7 +4,7 @@
       <div class="ms-0">
         <%= post.created_at.to_date.strftime("%Y年%m月%d日") %>
       </div>
-      <div class="me-0 flex justify-center space-x-2">
+      <div class="me-0 flex justify-center gap-2">
         <div>
           <%= button_to edit_post_path(post.public_uid), method: :get, id: "edit-button" do %>
             <svg class="w-7 h-7 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
