@@ -22,8 +22,8 @@
 
     <% if devise_mapping.rememberable? %>
       <div class="field flex justify-center items-center pt-2">
-        <%= f.check_box :remember_me %>
-        <%= f.label :remember_me %>
+        <%= f.check_box :remember_me, class: "rounded"%>
+        <%= f.label :remember_me, class: "ml-2"%>
       </div>
     <% end %>
 
