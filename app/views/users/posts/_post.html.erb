@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "post_#{post.public_uid}", class: "flex flex-col mr-5 ml-5 mt-2 mb-2 p-4 pb-6  border border-stone-900 rounded-lg" do %>
+<%= turbo_frame_tag "post_#{post.public_uid}", class: "flex flex-col mr-5 ml-5 mt-2 mb-2 p-3 pb-4  border border-stone-900 rounded-lg" do %>
   <%= link_to post_path(post.public_uid), target: "_top", class: "flex flex-col" do %>
     <div class="flex items-center justify-between">
       <div class="ms-0">
