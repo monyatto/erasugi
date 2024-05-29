@@ -16,13 +16,13 @@
     <div class="invisible absolute top-16 right-10" id="menu-items">
       <ul tabindex="0" class="shadow bg-white rounded-lg p-4">
         <% if user_signed_in? %>
-          <li class="hover:bg-gray-100"><%= link_to 'みんなの投稿一覧', posts_path, class: "px-4 py-2 block" %></li>
-          <li class="hover:bg-gray-100"><%= link_to "#{current_user.name}の投稿一覧", user_posts_path(current_user), class: "px-4 py-2 block" %></li>
-          <li class="hover:bg-gray-100"><%= link_to '登録情報', user_path(current_user), class: "px-4 py-2 block" %></li>
-          <li class="hover:bg-gray-100"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "px-4 py-2 block" %></li>
+          <li class="hover:bg-neutral-100"><%= link_to 'みんなの投稿一覧', posts_path, class: "px-4 py-2 block" %></li>
+          <li class="hover:bg-neutral-100"><%= link_to "#{current_user.name}の投稿一覧", user_posts_path(current_user), class: "px-4 py-2 block" %></li>
+          <li class="hover:bg-neutral-100"><%= link_to '登録情報', user_path(current_user), class: "px-4 py-2 block" %></li>
+          <li class="hover:bg-neutral-100"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "px-4 py-2 block" %></li>
         <% else %>
-          <li class="hover:bg-gray-100"><%= link_to "新規登録", new_user_registration_path, class: "px-4 py-2 block" %></li>
-          <li class="hover:bg-gray-100"><%= link_to "ログイン", new_user_session_path, class: "px-4 py-2 block" %></li>
+          <li class="hover:bg-neutral-100"><%= link_to "新規登録", new_user_registration_path, class: "px-4 py-2 block" %></li>
+          <li class="hover:bg-neutral-100"><%= link_to "ログイン", new_user_session_path, class: "px-4 py-2 block" %></li>
         <% end %>
       </ul>
     </div>
