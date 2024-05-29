@@ -40,16 +40,17 @@ swiper-slide {
   position: absolute;
   top: 0;
   width: 0;
+  opacity: 0.8;
 }
 
 .swiper-button-prev::after {
   border-bottom: 15px solid transparent;
-  border-right: 15px solid #e5e7eb;
+  border-right: 15px solid #e5e5e5;
   border-top: 15px solid transparent;
 }
 
 .swiper-button-next::after {
   border-bottom: 15px solid transparent;
-  border-left: 15px solid #e5e7eb;
+  border-left: 15px solid #e5e5e5;
   border-top: 15px solid transparent;
 }
