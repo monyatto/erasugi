@@ -15,7 +15,7 @@
       <% end %>
       <div class="flex flex-col justify-center items-center pb-4">
         <%= form.text_area :content, class: "block rounded-md h-[10svh] w-[36svh]" %>
-        <p class="text-sm" id="text-length"><%= count_characters(@post) %></p>
+        <p class="text-sm mt-2" id="text-length"><%= count_characters(@post) %></p>
       </div>
       <div class="flex justify-center gap-4 text-sm">
         <%= form.submit "更新する", class: "py-2 bg-gray-100 w-[16svh] rounded-md shadow-md cursor-pointer hover:bg-opacity-50" %>
