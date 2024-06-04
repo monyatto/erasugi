@@ -92,3 +92,5 @@ end
 gem 'kaminari'
 
 gem 'tailwindcss-rails', '~> 2.4'
+
+gem 'hanmoto'
