@@ -1,0 +1,9 @@
+<% content_for(:title, '500 Internal Server Error') %>
+<% content_for :extra_head do %>
+  <meta name="description" content="500エラーページです。">
+<% end %>
+<h1 class="text-2xl">500 Internal Server Error</h1>
+<div class="flex flex-col items-center justify-center gap-4">
+  <p class="text-sm">ページが表示できません。</p>
+</div>
+<%= link_to 'トップページに戻る', root_path, class: 'underline text-sm' %>
