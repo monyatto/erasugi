@@ -48,7 +48,6 @@ export default class extends Controller {
       },
       body: JSON.stringify({
         post_id: this.postIdValue,
-        created_at: new Date().toISOString(),
       }),
     }).then((response) => {
       if (response.ok) {
