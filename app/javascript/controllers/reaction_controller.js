@@ -36,7 +36,7 @@ export default class extends Controller {
   }
 
   onButtonClick(event) {
-    fetch("/reactions", {
+    fetch(`/posts/${this.postIdValue}/reactions`, {
       method: "POST",
       mode: "same-origin",
       referrerPolicy: "same-origin",
