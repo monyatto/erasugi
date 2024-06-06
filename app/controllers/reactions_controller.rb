@@ -2,7 +2,7 @@
 
 class ReactionsController < ApplicationController
   def create
-    @reaction = Reaction.new(post_id: params[:post_id], created_at: params[:created_at])
-    nil unless @reaction.save!
+    @post = Post.find(params[:post_id])
+    @reaction = @post.reactions.create!(post_id: params[:post_id])
   end
 end
