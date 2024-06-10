@@ -18,14 +18,29 @@
 ![Image](https://github.com/users/monyatto/projects/1/assets/83024928/fad25c80-be80-4f44-88b1-1e0822bd43ea)
 
 ## 技術スタック
-Ruby 3.1.0
-Ruby on Rails 7.0.8.1
+Ruby 3.3.0
+Ruby on Rails 7.1.3.4
 Hotwire
 
 ## 環境構築
+
+1. 任意のディレクトリにこのリポジトリのクローンを保存します。
 ```
 git clone https://github.com/monyatto/erasugi.git
+```
+
+2. リポジトリに移動します。
+```
 cd erasugi
+```
+
+3. PostgreSQLをインストール(既にPostgreSQLをインストール済の場合は不要です)。
+```
+brew install postgresql
+```
+
+4. セットアップを実行します。
+```
 bin/setup
 ```
 
@@ -36,7 +51,7 @@ bin/dev
 
 ## Test
 ```
-rails test:all
+bin/rails test:all
 ```
 
 ## Lint
