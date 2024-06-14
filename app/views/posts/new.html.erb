@@ -3,7 +3,7 @@
   <meta name="description" content="新規投稿画面です。">
 <% end %>
 <%= render "layouts/unlogin" %>
-<div data-controller="count" class="h-[80svh] flex flex-col justify-center items-center">
+<div data-controller="count" data-count-text-limit-value="<%= Post::TEXT_LIMIT %>" class="h-[80svh] flex flex-col justify-center items-center">
   <%= form_with(model: @post) do |form| %>
     <div class="flex flex-col justify-center items-center space-y-4 w-screen h-[80svh]">
       <div>

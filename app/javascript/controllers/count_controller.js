@@ -1,10 +1,15 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
+  static values = {
+    textLimit: { type: String },
+  };
+
   connect() {
     const textArea = document.getElementById("post_content");
     const textLength = document.getElementById("text-length");
-    const textLimit = 60;
+    const textLimit = this.textLimitValue;
+
     if (textArea) {
       textArea.addEventListener("keyup", function () {
         const count = textArea.value.length;
