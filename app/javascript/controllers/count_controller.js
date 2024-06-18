@@ -1,29 +1,21 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static values = {
-    textLimit: { type: String },
-  };
+  static values = { textLimit: String };
+  static targets = ["input", "display"];
 
   connect() {
-    const textArea = document.getElementById("post_content");
-    const textLength = document.getElementById("text-length");
-    const textLimit = this.textLimitValue;
+    this.inputTarget.addEventListener("keyup", this.updateDisplay.bind(this));
+  }
 
-    if (textArea) {
-      textArea.addEventListener("keyup", function () {
-        const count = textArea.value.length;
-        if (count <= textLimit) {
-          if (textArea.classList.contains("err")) {
-            textArea.classList.remove("err");
-          }
-          textLength.innerHTML =
-            "残り" + (textLimit - count) + "文字入力できます";
-        } else {
-          textArea.classList.add("err");
-          textLength.innerHTML = count - textLimit + "文字オーバーしています";
-        }
-      });
+  updateDisplay() {
+    const remainingCharacters =
+      this.textLimitValue - this.inputTarget.value.length;
+
+    if (remainingCharacters >= 0) {
+      this.displayTarget.textContent = `残り${remainingCharacters}文字入力できます`;
+    } else {
+      this.displayTarget.textContent = `${-remainingCharacters}文字オーバーしています`;
     }
   }
 }
