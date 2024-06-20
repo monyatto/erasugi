@@ -4,10 +4,6 @@ export default class extends Controller {
   static values = { textLimit: String };
   static targets = ["input", "display"];
 
-  connect() {
-    this.inputTarget.addEventListener("keyup", this.updateDisplay.bind(this));
-  }
-
   updateDisplay() {
     const remainingCharacters =
       this.textLimitValue - this.inputTarget.value.length;

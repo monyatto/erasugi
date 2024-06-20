@@ -19,7 +19,7 @@
         <%= form.label :content, 'あたらしいえらすぎ', class: "text-xl" %>
       </div>
       <div class="flex flex-col justify-center items-center ">
-        <%= form.text_area :content, placeholder: '午前中に起きた！', class: "block rounded-md h-[25svh] w-[40svh] placeholder-stone-400", data: { count_target: "input"} %>
+        <%= form.text_area :content, placeholder: '午前中に起きた！', class: "block rounded-md h-[25svh] w-[40svh] placeholder-stone-400", data: { count_target: "input", action: "keyup->count#updateDisplay" } %>
         <p class="text-sm mt-2" data-count-target="display"><%= count_characters(@post) %></p>
       </div>
       <div>
