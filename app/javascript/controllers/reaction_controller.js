@@ -18,14 +18,12 @@ export default class extends Controller {
     if (this.postIdValue === this.firstPostIdValue) {
       this.setupExistingReactions(this.postIdValue);
     }
-    window.addEventListener("postIdChanged", this.boundHandlePostIdChanged);
   }
 
   disconnect() {
     this.postIdValue = undefined;
     this.firstPostIdValue = undefined;
     this.associatedReactionsValue = undefined;
-    window.removeEventListener("postIdChanged", this.boundHandlePostIdChanged);
   }
 
   handlePostIdChanged(e) {
