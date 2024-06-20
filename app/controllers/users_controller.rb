@@ -1,16 +1,10 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[show edit update destroy]
-  before_action :correct_user, only: %i[show edit update destroy]
+  before_action :set_user, only: %i[show]
+  before_action :correct_user, only: %i[show]
 
   def show; end
-
-  def edit; end
-
-  def update; end
-
-  def destroy; end
 
   private
 
