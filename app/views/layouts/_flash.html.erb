@@ -1,21 +1,23 @@
-<div id="flash-message">
-  <% flash.each do |flash_type, message| %>
-    <% if flash_type == "notice" %>
-      <div data-controller="removal" class="animate-disappear flex justify-center" data-action="animationend->removals#remove">
-        <div class="flex justify-center items-center bg-white bg-opacity-80 h-[8svh] px-4 fixed w-screen sm:w-[640px]">
-          <div class="p-[2svh] text-[#7FBE17]">
-            <%= message %>
+<div id="flash" data-controller="flash" data-action="clipboard:copy@window->flash#displayMessage" data-flash-target="flash">
+  <div id="flash-message" data-flash-target="message">
+    <% flash.each do |flash_type, message| %>
+      <% if flash_type == "notice" %>
+        <div data-controller="removal" class="animate-disappear flex justify-center" data-action="animationend->removal#remove">
+          <div class="flex justify-center items-center bg-white bg-opacity-80 h-[8svh] px-4 fixed w-screen sm:w-[640px]">
+            <div class="p-[2svh] text-[#7FBE17]">
+              <%= message %>
+            </div>
           </div>
         </div>
-      </div>
-    <% elsif flash_type == "alert" %>
-      <div class="flex justify-center">
-        <div class="flex justify-center items-center bg-white bg-opacity-80 h-[8svh] px-4 fixed w-screen sm:w-[640px]">
-          <div class="p-[2svh] error">
-            <%= message %>
+      <% elsif flash_type == "alert" %>
+        <div class="flex justify-center">
+          <div class="flex justify-center items-center bg-white bg-opacity-80 h-[8svh] px-4 fixed w-screen sm:w-[640px]">
+            <div class="p-[2svh] error">
+              <%= message %>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>
