@@ -2,7 +2,7 @@
   <% content_for :extra_head do %>
     <meta name="description" content="投稿編集画面です。">
   <% end %>
-  <div data-controller="count">
+  <div data-controller="count" data-count-text-limit-value="<%= Post::TEXT_LIMIT %>">
     <%= form_with(model: @post) do |form| %>
       <% if form.object.errors.any? %>
         <div class="error">
@@ -14,8 +14,8 @@
         </div>
       <% end %>
       <div class="flex flex-col justify-center items-center pb-4">
-        <%= form.text_area :content, class: "block rounded-md h-[10svh] w-[36svh]" %>
-        <p class="text-sm mt-2" id="text-length"><%= count_characters(@post) %></p>
+        <%= form.text_area :content, class: "block rounded-md h-[10svh] w-[36svh]", data: { count_target: "input", action: "keyup->count#updateDisplay" } %>
+        <p class="text-sm mt-2" data-count-target="display"><%= count_characters(@post) %></p>
       </div>
       <div class="flex justify-center gap-4 text-sm">
         <%= form.submit "更新する", class: "py-2 bg-neutral-100 w-[16svh] rounded-md shadow-md cursor-pointer hover:bg-opacity-50" %>
