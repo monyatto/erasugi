@@ -9,11 +9,11 @@
       </svg>
     <% end %>
   </div>
-  <nav>
-    <svg tabindex="0" xmlns="http://www.w3.org/2000/svg" fill="#303030" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="hamburger w-7 h-7 outline-none cursor-pointer" data-controller="hamburger" data-action="click->hamburger#openAndClose">
+  <nav data-controller="hamburger">
+    <svg tabindex="0" xmlns="http://www.w3.org/2000/svg" fill="#303030" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="hamburger w-7 h-7 outline-none cursor-pointer" data-hamburger-target="svg" data-action="click->hamburger#openAndClose">
       <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25"/>
     </svg>
-    <div class="invisible absolute top-16 right-10" id="menu-items">
+    <div class="invisible absolute top-16 right-10" data-hamburger-target="menuItems">
       <ul tabindex="0" class="shadow bg-white rounded-lg p-4">
         <% if user_signed_in? %>
           <li class="hover:bg-neutral-100"><%= link_to 'みんなの投稿一覧', posts_path, class: "px-4 py-2 block" %></li>
