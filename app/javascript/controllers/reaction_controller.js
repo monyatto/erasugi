@@ -8,11 +8,9 @@ export default class extends Controller {
     associatedReactions: { type: Number },
   };
 
-  activePostId = this.firstPostIdValue;
+  static targets = ["load", "button"];
 
-  initialize() {
-    this.postIdChanged = this.postIdChanged.bind(this);
-  }
+  activePostId = this.firstPostIdValue;
 
   connect() {
     if (this.postIdValue === this.firstPostIdValue) {
@@ -73,11 +71,9 @@ export default class extends Controller {
     for (let i = 0; i < this.associatedReactionsValue; i++) {
       this.createText(i * 100, isButtonPressed);
     }
-    if (document.getElementById(this.postIdValue + "-loading"))
-      document.getElementById(this.postIdValue + "-loading").id = "loaded";
-    if (document.getElementById(this.postIdValue + "-button-off"))
-      document.getElementById(this.postIdValue + "-button-off").id =
-        "button-on";
+    // テスト用にidを付与
+    this.loadTarget.id = "loaded";
+    this.buttonTarget.id = "on";
   }
 
   createText(delay, isButtonPressed) {

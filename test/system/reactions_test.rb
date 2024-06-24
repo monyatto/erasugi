@@ -18,7 +18,7 @@ class ReactionsTest < ApplicationSystemTestCase
     assert_difference '@first_post.reactions_count' do
       find_by_id('loaded', wait: 10)
       click_on 'えらい'
-      find_by_id('button-on', wait: 10)
+      find_by_id('on', wait: 10)
     end
   end
 
@@ -27,7 +27,7 @@ class ReactionsTest < ApplicationSystemTestCase
     assert_difference '@second_post.reactions_count' do
       find_by_id('loaded', wait: 10)
       click_on 'えらい'
-      find_by_id('button-on', wait: 10)
+      find_by_id('on', wait: 10)
     end
   end
 end
