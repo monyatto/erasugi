@@ -17,17 +17,20 @@ export default class extends Controller {
       },
       on: {
         slideChange: () => {
-          const activeIndex = this.swiper.activeIndex;
-          const activePostId = this.postsIdsValue[activeIndex];
-          const event = new CustomEvent("postIdChanged", {
-            detail: String(activePostId),
-          });
-          window.dispatchEvent(event);
+          this.setActivePostId();
         },
       },
     });
     window.onpopstate = function (event) {
       location.reload();
     };
+  }
+
+  setActivePostId() {
+    const activeIndex = this.swiper.activeIndex;
+    const activePostId = this.postsIdsValue[activeIndex];
+    this.dispatch("setActivePostId", {
+      detail: { content: activePostId.toString() },
+    });
   }
 }

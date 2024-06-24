@@ -11,7 +11,7 @@ export default class extends Controller {
   activePostId = this.firstPostIdValue;
 
   initialize() {
-    this.boundHandlePostIdChanged = this.handlePostIdChanged.bind(this);
+    this.postIdChanged = this.postIdChanged.bind(this);
   }
 
   connect() {
@@ -26,8 +26,8 @@ export default class extends Controller {
     this.associatedReactionsValue = undefined;
   }
 
-  handlePostIdChanged(e) {
-    this.activePostId = e.detail;
+  postIdChanged({ detail: { content } }) {
+    this.activePostId = content;
     if (this.postIdValue === this.activePostId) {
       this.setupExistingReactions(this.postIdValue);
     }
