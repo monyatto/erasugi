@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static values = {text: { type: String }};
+  static values = { text: { type: String } };
   static targets = ["flash", "message"];
 
   displayMessage() {
