@@ -6,15 +6,7 @@
 <div data-controller="count" data-count-text-limit-value="<%= Post::TEXT_LIMIT %>" class="h-[80svh] flex flex-col justify-center items-center">
   <%= form_with(model: @post) do |form| %>
     <div class="flex flex-col justify-center items-center space-y-4 w-screen h-[80svh]">
-      <div>
-        <% if form.object.errors.any? %>
-          <ul class="error">
-            <% form.object.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        <% end %>
-      </div>
+        <%= render "posts/error_messages", form: form %>
       <div>
         <%= form.label :content, 'あたらしいえらすぎ', class: "text-xl" %>
       </div>
