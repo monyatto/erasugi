@@ -63,9 +63,7 @@ export default class extends Controller {
       width: window.innerWidth,
       height: availableHeight,
     });
-    this.layer = new Konva.Layer({
-      listening: false,
-    });
+    this.layer = new Konva.Layer();
     this.stage.add(this.layer);
     const isButtonPressed = false;
     for (let i = 0; i < this.associatedReactionsValue; i++) {
