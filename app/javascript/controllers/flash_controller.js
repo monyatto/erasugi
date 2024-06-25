@@ -1,13 +1,14 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
+  static values = {text: { type: String }};
   static targets = ["flash", "message"];
 
   displayMessage() {
     const message = this.messageTarget;
     const flash = this.flashTarget;
 
-    message.innerText = "URLをコピーしました";
+    message.innerText = this.textValue;
     message.className =
       "animate-disappear flex items-center justify-center bg-white fixed w-screen sm:w-[640px] animate-disappear";
 

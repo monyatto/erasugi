@@ -1,4 +1,4 @@
-<div id="flash" data-controller="flash" data-action="clipboard:copy@window->flash#displayMessage" data-flash-target="flash">
+<div id="flash" data-controller="flash" data-action="clipboard:copy@window->flash#displayMessage" data-flash-text-value="URLをコピーしました" data-flash-target="flash">
   <div id="flash-message" data-flash-target="message">
     <% flash.each do |flash_type, message| %>
       <% if flash_type == "notice" %>
