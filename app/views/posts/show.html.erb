@@ -12,7 +12,7 @@
       <p class="text-4xl break-words text-center leading-relaxed font-black bg-white bg-opacity-50" id="<%= @post.id %>-button-off"><%= @post.content %></p>
     </div>
     <div class="z-30 flex justify-center mb-[16svh]">
-      <%= render "share" %>
+      <%= render "share", post: @post %>
     </div>
     <div class="flex justify-center px-10 sm:px-0">
       <button data-action="reaction#onButtonClick" class="absolute bottom-[200px] h-20 hover:h-[79px] active:h-[69px] w-32 bg-stone-200 border-l-10 border-l-stone-100 border-r-10 border-r-stone-300 border-b-15 hover:border-b-14 active:border-b-4 border-b-stone-400 rounded-md text-neutral-600 opacity-65 hover:opacity-65 active:opacity-65 transition-all duration-200 ease-out">えらい</button>
