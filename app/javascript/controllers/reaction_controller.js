@@ -69,9 +69,9 @@ export default class extends Controller {
     for (let i = 0; i < this.associatedReactionsValue; i++) {
       this.createText(i * 100, isButtonPressed);
     }
-    // テスト用にidを付与
-    this.loadTarget.id = "loaded";
-    this.buttonTarget.id = "on";
+    // テスト用にclassを付与
+    this.loadTarget.classList.add("test-loaded");
+    this.buttonTarget.classList.add("test-on");
   }
 
   createText(delay, isButtonPressed) {
