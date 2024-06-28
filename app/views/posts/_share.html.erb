@@ -1,12 +1,12 @@
 <div class="flex justify-center gap-5">
-  <%= link_to "https://twitter.com/intent/tweet?text=#{@post.content}%20#{post_url(@post)}%20%23えらすぎ", target: "_blank", class: "bg-black rounded-md flex items-center justify-center sm:w-8 sm:h-8 w-10 h-10", id: "x-share" do %>
+  <%= link_to "https://twitter.com/intent/tweet?text=#{post.content}%20#{post_url(post)}%20%23えらすぎ", target: "_blank", class: "bg-black rounded-md flex items-center justify-center sm:w-8 sm:h-8 w-10 h-10", id: "x-share" do %>
     <%= image_tag("/x.png", alt: "Xへのシェア", class: "sm:w-4 sm:h-4 w-5 h-5") %>
   <% end %>
-  <%= link_to "https://social-plugins.line.me/lineit/share?url=#{post_url(@post)}", target: "_blank", class: "flex items-center justify-center", id: "line-share" do %>
+  <%= link_to "https://social-plugins.line.me/lineit/share?url=#{post_url(post)}", target: "_blank", class: "flex items-center justify-center", id: "line-share" do %>
     <%= image_tag("/line.png", alt: "Lineへのシェア", class: "sm:w-8 sm:h-8 w-10 h-10") %>
   <% end %>
   <div data-controller="clipboard" class="flex items-center justify-center">
-    <%= link_to "", target: "_blank", class: "bg-stone-400 rounded-md flex items-center justify-center sm:w-8 sm:h-8 w-10 h-10", id: "url-copy", data: { action: "clipboard#copy", "clipboard-target": "url" }, value: post_url(@post) do %>
+    <%= link_to "", target: "_blank", class: "bg-stone-400 rounded-md flex items-center justify-center sm:w-8 sm:h-8 w-10 h-10", id: "url-copy", data: { action: "clipboard#copy", "clipboard-target": "url" }, value: post_url(post) do %>
       <%= image_tag("/link.png", alt: "URLをコピー", class: "sm:w-5 sm:h-5 w-6 h-6") %>
     <% end %>
   </div>
