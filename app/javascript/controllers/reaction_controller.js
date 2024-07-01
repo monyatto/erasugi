@@ -8,28 +8,24 @@ export default class extends Controller {
     associatedReactions: { type: Number },
   };
 
-  activePostId = this.firstPostIdValue;
+  static targets = ["load", "button"];
 
-  initialize() {
-    this.boundHandlePostIdChanged = this.handlePostIdChanged.bind(this);
-  }
+  activePostId = this.firstPostIdValue;
 
   connect() {
     if (this.postIdValue === this.firstPostIdValue) {
       this.setupExistingReactions(this.postIdValue);
     }
-    window.addEventListener("postIdChanged", this.boundHandlePostIdChanged);
   }
 
   disconnect() {
     this.postIdValue = undefined;
     this.firstPostIdValue = undefined;
     this.associatedReactionsValue = undefined;
-    window.removeEventListener("postIdChanged", this.boundHandlePostIdChanged);
   }
 
-  handlePostIdChanged(e) {
-    this.activePostId = e.detail;
+  postIdChanged({ detail: { content } }) {
+    this.activePostId = content;
     if (this.postIdValue === this.activePostId) {
       this.setupExistingReactions(this.postIdValue);
     }
@@ -67,19 +63,15 @@ export default class extends Controller {
       width: window.innerWidth,
       height: availableHeight,
     });
-    this.layer = new Konva.Layer({
-      listening: false,
-    });
+    this.layer = new Konva.Layer();
     this.stage.add(this.layer);
     const isButtonPressed = false;
     for (let i = 0; i < this.associatedReactionsValue; i++) {
       this.createText(i * 100, isButtonPressed);
     }
-    if (document.getElementById(this.postIdValue + "-loading"))
-      document.getElementById(this.postIdValue + "-loading").id = "loaded";
-    if (document.getElementById(this.postIdValue + "-button-off"))
-      document.getElementById(this.postIdValue + "-button-off").id =
-        "button-on";
+    // テスト用にclassを付与
+    this.loadTarget.classList.add("test-loaded");
+    this.buttonTarget.classList.add("test-on");
   }
 
   createText(delay, isButtonPressed) {
