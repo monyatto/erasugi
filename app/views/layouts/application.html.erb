@@ -7,7 +7,7 @@
   <meta name="keyword" content="えらすぎ, 褒められる, 褒める, えらい, ポジティブ, フィードバック, コミュニティ, モチベーション, やる気, Ruby, Rails, Rails 7, Hotwire, Swiper, Konva">
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://erasugi.onrender.com/"/>
-  <meta property="og:image" content="<%= image_url('ogp.png')%>"/>
+  <meta property="og:image" content="<%= image_url('ogp.png') %>"/>
   <meta property="og:site_name" content="えらすぎ"/>
   <meta property="og:description" content="えらすぎは匿名で気軽に褒めたり褒められたりできる無料のWebサービスです。"/>
   <meta name="twitter:card" content="summary_large_image"/>
@@ -29,17 +29,15 @@
     <%= render "layouts/header" %>
   </header>
   <div id="container" class="absolute"></div>
-    <main class="w-full sm:w-[640px]">
-      <div id="flash">
-        <%= render "layouts/flash" %>
-      </div>
-      <div class="h-[80svh]">
-        <%= yield %>
-      </div>
-    </main>
-    <footer class="h-[10svh] flex items-center justify-center fixed bottom-0 z-50 bg-white bg-opacity-80 w-screen sm:w-[640px]">
-      <%= render "layouts/footer" %>
-    </footer>
-  </div>
+  <main class="w-full sm:w-[640px]">
+    <%= render "layouts/flash" %>
+    <div class="h-[80svh]">
+      <%= yield %>
+    </div>
+  </main>
+  <footer class="h-[10svh] flex items-center justify-center fixed bottom-0 z-50 bg-white bg-opacity-80 w-screen sm:w-[640px]">
+    <%= render "layouts/footer" %>
+  </footer>
+</div>
 </body>
 </html>
