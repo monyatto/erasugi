@@ -37,7 +37,7 @@ ja:
       send_paranoid_instructions: メールアドレスが登録済みの場合、本人確認用のメールが数分以内に送信されます
     failure:
       already_authenticated: すでにログインしています
-      inactive: アカウントが有効化されていませんメールに記載された手順にしたがって、アカウントを有効化してください
+      inactive: メールに記載された手順にしたがって、アカウントを有効化してください
       invalid: "%{authentication_keys}またはパスワードが違います"
       last_attempt: もう一回誤るとアカウントがロックされます
       locked: アカウントはロックされています
@@ -50,16 +50,16 @@ ja:
         action: メールアドレスの確認
         greeting: "%{recipient}様"
         instruction: 以下のリンクをクリックし、メールアドレスの確認手続を完了させてください
-        subject: メールアドレス確認メール
+        subject: 【えらすぎ】メールアドレスの確認
       email_changed:
         greeting: こんにちは、%{recipient}様
         message: メールアドレスの（%{email}）変更が完了したため、メールを送信しています
         message_unconfirmed: メールアドレスが（%{email}）変更されたため、メールを送信しています
-        subject: メール変更完了
+        subject: 【えらすぎ】メール変更完了
       password_change:
         greeting: "%{recipient}様"
         message: パスワードが再設定されました
-        subject: パスワードの変更について
+        subject: 【えらすぎ】パスワードの変更について
       reset_password_instructions:
         action: パスワード変更
         greeting: "%{recipient}様"
@@ -72,7 +72,7 @@ ja:
         greeting: "%{recipient}様"
         instruction: アカウントのロックを解除するには下のリンクをクリックしてください
         message: ログイン失敗が繰り返されたため、アカウントはロックされています
-        subject: アカウントのロック解除について
+        subject: 【えらすぎ】アカウントのロック解除について
     omniauth_callbacks:
       failure: "%{kind} アカウントによる認証に失敗しました理由：（%{reason}）"
       success: "%{kind} アカウントによる認証に成功しました"
@@ -106,10 +106,10 @@ ja:
       signed_up: アカウント登録が完了しました
       signed_up_but_inactive: ログインするためには、アカウントを有効化してください
       signed_up_but_locked: アカウントがロックされているためログインできません
-      signed_up_but_unconfirmed: 本人確認用のメールを送信しましたメール内のリンクからアカウントを有効化させてください
-      update_needs_confirmation: アカウント情報を変更しました変更されたメールアドレスの本人確認のため、本人確認用メールより確認処理をおこなってください
+      signed_up_but_unconfirmed: 本人確認用のメールを送信しました
+      update_needs_confirmation: 変更後のアドレスに本人確認用のメールを送信しました
       updated: アカウント情報を変更しました
-      updated_but_not_signed_in: あなたのアカウントは正常に更新されましたが、パスワードが変更されたため、再度ログインしてください
+      updated_but_not_signed_in: パスワードが変更されたため、再度ログインしてください
     sessions:
       already_signed_out: 既にログアウト済みです
       new:
@@ -134,11 +134,11 @@ ja:
       unlocked: アカウントをロック解除しました
   errors:
     messages:
-      already_confirmed: は既に登録済みですログインしてください
-      confirmation_period_expired: の期限が切れました%{period} までに確認する必要があります 新しくリクエストしてください
-      expired: の有効期限が切れました新しくリクエストしてください
-      not_found: は見つかりませんでした
-      not_locked: はロックされていません
+      already_confirmed: 既に登録済みです ログインしてください
+      confirmation_period_expired: 本人確認の期限が切れました　%{period} までに確認する必要があります 新しくリクエストしてください
+      expired: 有効期限が切れました　新しくリクエストしてください
+      not_found: 見つかりませんでした
+      not_locked: ロックされていません
       not_saved:
         one: エラーが発生したため変更が保存されませんでした
         other: "%{count} 件のエラーが発生したため変更は保存されませんでした"
