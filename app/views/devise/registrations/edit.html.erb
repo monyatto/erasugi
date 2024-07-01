@@ -13,10 +13,10 @@
 
       <div class="field pt-2">
         <%= f.label :email, class: "block" %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "block rounded-md w-full" %>
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <span class="text-sm"><%= resource.unconfirmed_email %>に送信したメールから本人確認を完了させてください</span>
         <% end %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "block rounded-md w-full" %>
       </div>
 
       <div class="field pt-2">
