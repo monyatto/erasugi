@@ -1,3 +1,8 @@
+<% content_for(:title, '本人確認メールの再送') %>
+<% content_for :extra_head do %>
+  <meta name="description" content="本人確認メールの再送画面です。">
+<% end %>
+
 <%= render "devise/shared/error_messages", resource: resource %>
 
 <div class="h-[80svh] flex flex-col justify-center items-center">
