@@ -1,6 +1,6 @@
 <% content_for(:title, '投稿一覧') %>
 <%= render "layouts/unlogin" %>
-<div class="swiper" id="swiper_id" data-controller="scroll" data-scroll-posts-ids-value="<%= @posts.pluck(:id) %>">
+<div class="swiper" id="swiper_id" data-controller="scroll" data-scroll-posts-ids-value="<%= @posts.map(&:id) %>">
   <div class="swiper-wrapper">
     <% @posts.each do |post| %>
       <div data-controller="reaction" data-reaction-post-id-value="<%= post.id %>" data-reaction-first-post-id-value="<%= @posts.first.id %>" data-reaction-associated-reactions-value="<%= post.reactions_count %>" data-reaction-target="load" data-action="scroll:setActivePostId@window->reaction#postIdChanged" class="swiper-slide flex flex-col justify-center select-none">
