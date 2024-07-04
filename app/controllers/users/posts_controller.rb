@@ -1,20 +1,45 @@
 # frozen_string_literal: true
 
 class Users::PostsController < ApplicationController
-  before_action :set_user, only: %i[index]
-  before_action :correct_user, only: %i[index]
+  before_action :set_post, only: %i[edit update destroy]
+  before_action :correct_user, only: %i[index update edit destroy]
 
   def index
     @posts = current_user.posts.order(created_at: :desc).page(params[:page])
   end
 
+  def edit; end
+
+  def update
+    respond_to do |format|
+      if @post.update(post_params)
+        format.turbo_stream { flash.now[:notice] = 'えらすぎを更新しました' }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def destroy
+    @post.destroy
+    respond_to do |format|
+      format.turbo_stream { flash.now[:notice] = 'えらすぎを削除しました' }
+    end
+  end
+
   private
 
-  def set_user
-    @user = User.find_by(public_uid: params[:user_id])
+  def set_post
+    @post = Post.find_by(public_uid: params[:id])
+  end
+
+  def post_params
+    params.require(:post).permit(:content, :user_id, :public_uid)
   end
 
   def correct_user
+    @user = User.find_by(public_uid: params[:user_id])
+
     if current_user.nil?
       redirect_to(new_user_session_path)
     elsif !current_user?(@user)

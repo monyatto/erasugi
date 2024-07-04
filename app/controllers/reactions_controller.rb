@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ReactionsController < ApplicationController
+class ReactionsController < PublicApplicationController
   def create
     @post = Post.find(params[:post_id])
     @reaction = @post.reactions.create!
