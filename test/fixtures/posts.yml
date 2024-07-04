@@ -3,12 +3,12 @@ test_post1:
   id: 1
   user: test_user1
   public_uid: <%= SecureRandom.alphanumeric(20) %>
-  created_at: <%= Time.now - 1.week %>
+  created_at: <%= Time.current - 1.week %>
 
 test_post2:
   id: 2
   content: "テスト投稿2"
   user: test_user2
   public_uid: <%= SecureRandom.alphanumeric(20) %>
-  created_at: <%= Time.now %>
+  created_at: <%= Time.current %>
 
