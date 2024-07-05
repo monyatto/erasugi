@@ -25,6 +25,7 @@ class ReactionsTest < ApplicationSystemTestCase
   test 'create reaction on first post in index page' do
     visit posts_path
     posts = { @post1.id => @post1.content, @post2.id => @post2.content }
+    # 最初に表示された投稿のidを取得
     first_post_id = posts.key(find('.test-post-content').text)
 
     assert_difference 'Post.find(first_post_id).reactions_count' do
@@ -37,7 +38,9 @@ class ReactionsTest < ApplicationSystemTestCase
   test 'create reaction on second post in index page' do
     visit posts_path
     posts = { @post1.id => @post1.content, @post2.id => @post2.content }
+    # 最初に表示された投稿のidを取得
     first_post_id =  posts.key(find('.test-post-content').text)
+    # postsから最初の投稿を除き、二番目の投稿のidを取得
     second_post_id = posts.delete_if { |key| key == first_post_id }.keys.first
 
     find_by_id('swiper-button-next').click
