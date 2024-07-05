@@ -50,6 +50,11 @@ export default class extends Controller {
         const isButtonPressed = true;
         this.createText(0, isButtonPressed);
         this.associatedReactionsValue++;
+
+        // テスト用にclassを付与
+        this.buttonTarget.classList.add(
+          `test-clicked-button-${this.postIdValue}`,
+        );
       }
     });
   }
@@ -69,9 +74,6 @@ export default class extends Controller {
     for (let i = 0; i < this.associatedReactionsValue; i++) {
       this.createText(i * 100, isButtonPressed);
     }
-    // テスト用にclassを付与
-    this.loadTarget.classList.add("test-loaded");
-    this.buttonTarget.classList.add("test-on");
   }
 
   createText(delay, isButtonPressed) {

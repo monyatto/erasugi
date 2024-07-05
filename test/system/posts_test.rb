@@ -15,9 +15,17 @@ class PostsTest < ApplicationSystemTestCase
     assert_text @post1.content
   end
 
-  test 'show posts index page' do
+  test 'show second post index page' do
     visit posts_path
-    assert_text @post2.content
+    posts = { @post1.id => @post1.content, @post2.id => @post2.content }
+    # 最初に表示された投稿のidを取得
+    first_post_id = posts.key(find('.test-post-content').text)
+    # postsから最初の投稿を除き、二番目の投稿のidを取得
+    second_post_id, second_post_content = posts.delete_if { |key| key == first_post_id }.first
+
+    find_by_id('swiper-button-next').click
+    assert page.has_css?(".test-display-button-#{second_post_id}", wait: 10)
+    assert_text second_post_content
   end
 
   test 'show user posts index page' do
