@@ -5,10 +5,10 @@
     <% @posts.each do |post| %>
       <div data-controller="reaction" data-reaction-post-id-value="<%= post.id %>" data-reaction-first-post-id-value="<%= @posts.first.id %>" data-reaction-associated-reactions-value="<%= post.reactions_count %>" data-reaction-target="load" data-action="scroll:setActivePostId@window->reaction#postIdChanged" class="swiper-slide flex flex-col justify-center select-none">
         <div class="flex justify-center mb-[20svh] px-5 sm:px-0">
-          <p class="text-4xl break-words text-center leading-relaxed font-black bg-white bg-opacity-50"><%= post.content %></p>
+          <p class="text-4xl break-words text-center leading-relaxed font-black bg-white bg-opacity-50 test-post-content"><%= post.content %></p>
         </div>
         <div class="flex flex-wrap justify-center gap-2 px-10 sm:px-0">
-          <button data-action="reaction#onButtonClick" data-reaction-target="button" class="absolute bottom-32 h-20 hover:h-[79px] active:h-[69px] w-32 bg-stone-200 border-l-10 border-l-stone-100 border-r-10 border-r-stone-300 border-b-15 hover:border-b-14 active:border-b-4 border-b-stone-400 rounded-md text-neutral-600 opacity-65 hover:opacity-65 active:opacity-65 transition-all duration-200 ease-out">えらい</button>
+          <button data-action="reaction#onButtonClick" data-reaction-target="button" class="absolute bottom-32 h-20 hover:h-[79px] active:h-[69px] w-32 bg-stone-200 border-l-10 border-l-stone-100 border-r-10 border-r-stone-300 border-b-15 hover:border-b-14 active:border-b-4 border-b-stone-400 rounded-md text-neutral-600 opacity-65 hover:opacity-65 active:opacity-65 transition-all duration-200 ease-out test-display-button-<%= post.id %>">えらい</button>
         </div>
       </div>
     <% end %>

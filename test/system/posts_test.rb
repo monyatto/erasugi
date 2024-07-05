@@ -17,7 +17,13 @@ class PostsTest < ApplicationSystemTestCase
 
   test 'show posts index page' do
     visit posts_path
-    assert_text @post2.content
+    posts = { @post1.id => @post1.content, @post2.id => @post2.content }
+    first_post_id = posts.key(find('.test-post-content').text)
+    second_post_id, second_post_content = posts.delete_if { |key| key == first_post_id }.first
+
+    find_by_id('swiper-button-next').click
+    assert page.has_css?(".test-display-button-#{second_post_id}", wait: 10)
+    assert_text second_post_content
   end
 
   test 'show user posts index page' do
