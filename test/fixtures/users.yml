@@ -3,9 +3,11 @@ test_user1:
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   name: "テスト一郎"
   public_uid: <%= SecureRandom.alphanumeric(20) %>
+  confirmed_at: <%= Time.current %>
 
 test_user2:
   email: "test2@example.com"
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   name: "テスト二郎"
   public_uid: <%= SecureRandom.alphanumeric(20) %>
+  confirmed_at: <%= Time.current %>
