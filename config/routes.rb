@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :users, only: [:show] do
-    resources :posts, only: [:index, :edit, :update, :destroy], module: :users
+    resources :posts, only: %i[index edit update destroy], module: :users
   end
 
-  resources :posts, only: [:index, :new, :create, :show] do
+  resources :posts, only: %i[index new create show] do
     resources :reactions, only: [:create]
   end
 
