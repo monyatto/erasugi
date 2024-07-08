@@ -34,7 +34,7 @@ class Users::PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:content, :user_id, :public_uid)
+    params.require(:post).permit(:content)
   end
 
   def correct_user
