@@ -30,7 +30,7 @@ class PostsTest < ApplicationSystemTestCase
 
   test 'show user posts index page' do
     sign_in @user
-    visit user_posts_path(@user.public_uid)
+    visit users_posts_path(@user.public_uid)
     assert_text @post1.content
     assert_no_text @post2.content
   end
@@ -45,7 +45,7 @@ class PostsTest < ApplicationSystemTestCase
 
   test 'update post' do
     sign_in @user
-    visit user_posts_path(@user.public_uid)
+    visit users_posts_path(@user.public_uid)
     assert_no_text '編集後投稿'
     click_on 'edit-button'
     fill_in 'post_content', with: '編集後投稿'
@@ -56,7 +56,7 @@ class PostsTest < ApplicationSystemTestCase
 
   test 'delete post' do
     sign_in @user
-    visit user_posts_path(@user.public_uid)
+    visit users_posts_path(@user.public_uid)
     assert_text 'テスト投稿1'
     accept_confirm do
       click_on 'delete-button'

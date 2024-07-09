@@ -3,8 +3,8 @@
     <meta name="description" content="投稿編集画面です。">
   <% end %>
   <div data-controller="count" data-count-text-limit-value="<%= Post::TEXT_LIMIT %>">
-    <%= form_with(model: [current_user, @post]) do |form| %>
-      <%= render "posts/error_messages", form: form %>
+    <%= form_with(model: [:users, @post]) do |form| %>
+  <%= render "posts/error_messages", form: form %>
       <div class="flex flex-col justify-center items-center pb-4">
         <%= form.text_area :content, class: "block rounded-md h-[10svh] w-[36svh]", data: { count_target: "input", action: "keyup->count#updateDisplay" } %>
         <p class="text-sm mt-2" data-count-target="display"><%= count_characters(@post) %></p>
