@@ -3,8 +3,8 @@
   <meta name="description" content="ログイン中のユーザーの投稿一覧画面です。">
 <% end %>
 
-<h2 class="flex justify-center pt-14 text-xl"><%= @user.name %>の投稿一覧</h2>
 <% if @posts.count > 0 %>
+  <h2 class="flex justify-center pt-14 text-xl"><%= current_user.name %>の投稿一覧</h2>
   <div class="pt-[4svh] pb-[20svh]" id="posts">
     <%= turbo_frame_tag "posts-page-#{@posts.current_page}" do %>
       <%= render @posts %>

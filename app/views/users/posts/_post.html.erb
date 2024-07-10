@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "post_#{post.public_uid}", class: "flex flex-col mr-5 ml-5 mt-2 mb-2 p-3 pb-4  border border-stone-900 rounded-lg" do %>
+<%= turbo_frame_tag "post_#{post.public_uid}", class: "flex flex-col mr-5 ml-5 mt-2 mb-2 p-3 pb-4 border border-stone-900 rounded-lg" do %>
   <%= link_to post_path(post.public_uid), target: "_top", class: "flex flex-col" do %>
     <div class="flex items-center justify-between">
       <div class="ms-0">
@@ -6,14 +6,14 @@
       </div>
       <div class="me-0 flex justify-center gap-2">
         <div>
-          <%= button_to edit_post_path(post.public_uid), method: :get, id: "edit-button" do %>
+          <%= button_to edit_users_post_path(id: post.public_uid), method: :get, id: "edit-button" do %>
             <svg class="w-7 h-7 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
               <path stroke="#303030" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m14.3 4.8 2.9 2.9M7 7H4a1 1 0 0 0-1 1v10c0 .6.4 1 1 1h11c.6 0 1-.4 1-1v-4.5m2.4-10a2 2 0 0 1 0 3l-6.8 6.8L8 14l.7-3.6 6.9-6.8a2 2 0 0 1 2.8 0Z"/>
             </svg>
           <% end %>
         </div>
         <div>
-          <%= button_to post, method: :delete, id: "delete-button", data: { turbo_confirm: "本当に削除しますか？" } do %>
+          <%= button_to users_post_path(post), method: :delete, id: "delete-button", data: { turbo_confirm: "本当に削除しますか？" } do %>
             <svg class="w-7 h-7 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 25 25">
               <path stroke="#303030" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
             </svg>
