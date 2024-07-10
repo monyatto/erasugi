@@ -6,7 +6,7 @@ class PostsController < PublicApplicationController
   end
 
   def show
-    @post = Post.find_by(public_uid: params[:id])
+    @post = Post.find_by!(public_uid: params[:id])
   end
 
   def new
