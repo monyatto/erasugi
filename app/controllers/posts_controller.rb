@@ -18,6 +18,8 @@ class PostsController < PublicApplicationController
     @post.user_id = current_user ? current_user.id : User.guest.id
     respond_to do |format|
       if @post.save
+        @post.ogp.attach(io: File.open("public/posts/#{@post.image.path}"), filename: @post.image.path.to_s, content_type: 'image/png')
+        File.delete("public/posts/#{@post.image.path}")
         format.html { redirect_to post_url(@post), notice: 'えらすぎを投稿しました' }
       else
         format.html { render :new, status: :unprocessable_entity }

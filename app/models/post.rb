@@ -4,6 +4,7 @@ class Post < ApplicationRecord
   delegate :path, to: :image, prefix: true
   belongs_to :user
   has_many :reactions, dependent: :destroy
+  has_one_attached :ogp
 
   TEXT_LIMIT = 60
 
