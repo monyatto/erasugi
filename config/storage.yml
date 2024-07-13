@@ -7,13 +7,12 @@ local:
   root: <%= Rails.root.join("storage") %>
 
 supabase:
-  host: <%= ENV['APP_DATABASE_HOST'] %>
   service: S3
   endpoint: <%= ENV['DATABASE_ENDPOINT'] %>
   access_key_id: <%= ENV['DATABASE_ACCESS_KEY'] %>
   secret_access_key: <%= ENV['DATABASE_SECRET_KEY'] %>
   region: ap-southeast-1
-  bucket: <%= ENV['DATABASE_BUCKET_NAME'] %>
+  bucket: <%= ENV['DATABASE_BUCKET_NAME'] %>-<%= Rails.env %>
 
 # Use bin/rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:
