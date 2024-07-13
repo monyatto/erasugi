@@ -7,6 +7,7 @@ local:
   root: <%= Rails.root.join("storage") %>
 
 supabase:
+  host: <%= ENV['APP_DATABASE_HOST'] %>
   service: S3
   endpoint: <%= ENV['DATABASE_ENDPOINT'] %>
   access_key_id: <%= ENV['DATABASE_ACCESS_KEY'] %>
