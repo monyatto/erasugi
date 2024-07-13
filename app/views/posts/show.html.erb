@@ -5,6 +5,7 @@
   <meta property="og:url" content="#{post_url(@post)"/>
   <meta property="og:image" content="#{url_for(@post.ogp)}"/>
 <% end %>
+<%= image_tag @post.ogp %>
 <div id="container" class="absolute"></div>
 <div data-controller="reaction" data-reaction-post-id-value="<%= @post.id %>" data-reaction-first-post-id-value="<%= @post.id %>" data-reaction-associated-reactions-value="<%= @post.reactions_count %>" data-reaction-target="load" class="h-[80svh] flex flex-col justify-center select-none">
   <div class="z-10">
