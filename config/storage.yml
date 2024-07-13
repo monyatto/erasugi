@@ -13,7 +13,6 @@ supabase:
   secret_access_key: <%= ENV['DATABASE_SECRET_KEY'] %>
   region: ap-southeast-1
   bucket: <%= ENV['DATABASE_BUCKET_NAME'] %>
-  force_path_style: true
 
 # Use bin/rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:
