@@ -81,8 +81,8 @@ test:
 #
 production:
   <<: *default
+  host: <%= ENV["APP_DATABASE_HOST"] %>
   database: postgres
+  port: 6543
   user: <%= ENV["APP_DATABASE_USER"] %>
   password: <%= ENV["APP_DATABASE_PASSWORD"] %>
-  url: <%= ENV['DATABASE_URL'] %>
-  port: 6543
