@@ -85,3 +85,4 @@ production:
   username: <%= ENV["APP_DATABASE_USER"] %>
   password: <%= ENV["APP_DATABASE_PASSWORD"] %>
   url: <%= ENV['DATABASE_URL'] %>
+  port: 6543
