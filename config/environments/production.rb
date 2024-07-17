@@ -108,5 +108,5 @@ Rails.application.configure do
     enable_starttls_auto: true
   }
 
-  config.active_storage.service_urls_expire_in = 10.second
+  config.active_storage.service_urls_expire_in = 100.second
 end
