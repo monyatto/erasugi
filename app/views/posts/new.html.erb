@@ -1,6 +1,7 @@
 <% content_for(:title, '新規投稿') %>
 <% content_for :extra_head do %>
   <meta name="description" content="新規投稿画面です。">
+  <meta name="referrer" content="no-referrer-when-downgrade"/>
 <% end %>
 <%= render "layouts/unlogin" %>
 <div data-controller="count" data-count-text-limit-value="<%= Post::TEXT_LIMIT %>" class="h-[80svh] flex flex-col justify-center items-center">
