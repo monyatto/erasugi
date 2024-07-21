@@ -11,7 +11,7 @@ class SocialSharingTest < ApplicationSystemTestCase
   test 'share to x' do
     sign_in @user
     visit post_path(@post.public_uid)
-    assert_equal "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode(@post.content)}%20#{post_url(@post)}%20#{ERB::Util.url_encode('#えらすぎ')}",
+    assert_equal "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode(@post.content)}%20#{ERB::Util.url_encode('#えらすぎ')}%0A#{post_url(@post)}",
                  find_by_id('x-share')['href']
   end
 
