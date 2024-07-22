@@ -2,7 +2,7 @@
 
 class PostsController < PublicApplicationController
   def index
-    @posts = Post.where(created_at: 1.week.ago..).order('RANDOM()').limit(10)
+    @posts = Post.order(created_at: :desc).limit(100).order('RANDOM()').limit(10)
   end
 
   def show
