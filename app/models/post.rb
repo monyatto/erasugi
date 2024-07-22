@@ -5,7 +5,7 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :reactions, dependent: :destroy
 
-  TEXT_LIMIT = 60
+  TEXT_LIMIT = 20
 
   validates :content,
             presence: true,
