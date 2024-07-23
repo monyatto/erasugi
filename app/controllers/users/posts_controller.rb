@@ -10,19 +10,16 @@ class Users::PostsController < ApplicationController
   def edit; end
 
   def update
-    delete_ogp_image
     respond_to do |format|
       if @post.update(post_params)
         format.turbo_stream { flash.now[:notice] = 'えらすぎを更新しました' }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
-      create_ogp_image
     end
   end
 
   def destroy
-    delete_ogp_image
     @post.destroy
     respond_to do |format|
       format.turbo_stream { flash.now[:notice] = 'えらすぎを削除しました' }
@@ -41,14 +38,5 @@ class Users::PostsController < ApplicationController
 
   def current_user?(user)
     user == current_user
-  end
-
-  def create_ogp_image
-    @post.image.path
-  end
-
-  def delete_ogp_image
-    path = "public/posts/#{@post.image.path}"
-    FileUtils.rm_f(path)
   end
 end

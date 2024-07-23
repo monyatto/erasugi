@@ -3,11 +3,11 @@
   <meta name="description" content="投稿詳細画面です。">
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="#{post_url(@post)"/>
-  <meta property="og:image" content="<%= request.base_url + "/posts/#{@post.image.path}" %>"/>
+  <meta property="og:image" content="<%= post_ogp_image_url(@post) %>"/>
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="えらすぎ">
   <meta name="twitter:description" content="<%= @post.content %>">
-  <meta name="twitter:image" content="<%= request.base_url + "/posts/#{@post.image.path}" %>">
+  <meta name="twitter:image" content="<%= post_ogp_image_url(@post) %>">
 <% end %>
 <div id="container" class="absolute"></div>
 <div data-controller="reaction" data-reaction-post-id-value="<%= @post.id %>" data-reaction-first-post-id-value="<%= @post.id %>" data-reaction-associated-reactions-value="<%= @post.reactions_count %>" data-reaction-target="load" class="h-[80svh] flex flex-col justify-center select-none">
