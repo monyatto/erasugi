@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   resources :posts, only: %i[index new create show] do
     resources :reactions, only: [:create]
-    get 'ogp_image', to: 'posts#ogp_image', as: :ogp_image
+    get 'ogp_image', to: 'posts#ogp_image', on: :member
   end
 
   get 'terms_of_service', to: 'top#terms_of_service'
