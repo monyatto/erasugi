@@ -26,7 +26,7 @@ class PostsController < PublicApplicationController
   end
 
   def ogp_image
-    @post = Post.find_by!(public_uid: params[:post_id])
+    @post = Post.find_by!(public_uid: params[:id])
     image_path = generate_image_path(@post)
     @post.image.create_ogp(image_path) unless File.exist?(image_path)
     send_file image_path, type: 'image/png', disposition: 'inline'
