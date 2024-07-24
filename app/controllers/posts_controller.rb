@@ -43,6 +43,6 @@ class PostsController < PublicApplicationController
   end
 
   def generate_image_path(post)
-    Rails.public_path.join('posts', "#{post.public_uid}_#{post.updated_at.to_i}.png").to_s
+    Rails.root.join('tmp', 'ogp_image', "#{post.public_uid}_#{post.updated_at.to_i}.png").to_s
   end
 end
