@@ -10,7 +10,6 @@ class Post::Image
   MAX_ROWS = 5
   COLS = 20
   ROWS = 10
-  OMMIT_MESSAGE = '…'
 
   attr_reader :post
 
@@ -18,13 +17,12 @@ class Post::Image
     @post = post
   end
 
-  def path
-    path = "#{post.public_uid}_#{post.updated_at.to_i}.png"
-    local_path = Rails.public_path.join('posts', path)
-    FileUtils.mkdir_p(File.dirname(local_path)) unless File.directory?(File.dirname(local_path))
-    image.write(local_path) unless File.exist?(local_path)
-    path
+  def create_ogp(image_path)
+    FileUtils.mkdir_p(File.dirname(image_path)) unless File.directory?(File.dirname(image_path))
+    image.write(image_path)
   end
+
+  private
 
   def image
     image = MiniMagick::Image.open(FRAME_IMAGE_PATH)
@@ -47,4 +45,6 @@ class Post::Image
   def font_path
     Rails.root.join('app/assets/fonts/ZenMaruGothic-Regular.ttf')
   end
+
+  private_constant :FRAME_IMAGE_PATH, :FONT_SIZE, :INTERLINE_SPACING, :COLOR_CODE, :IMAGE_WIDTH, :IMAGE_HEIGHT, :MAX_ROWS, :COLS, :ROWS
 end

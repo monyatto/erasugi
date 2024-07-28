@@ -25,6 +25,13 @@ class PostsController < PublicApplicationController
     end
   end
 
+  def ogp_image
+    @post = Post.find_by!(public_uid: params[:id])
+    image_path = generate_image_path(@post)
+    @post.image.create_ogp(image_path) unless File.exist?(image_path)
+    send_file image_path, type: 'image/png', disposition: 'inline'
+  end
+
   private
 
   def post_params
@@ -33,5 +40,9 @@ class PostsController < PublicApplicationController
 
   def current_user?(user)
     user == current_user
+  end
+
+  def generate_image_path(post)
+    Rails.root.join('tmp', 'ogp_image', "#{post.public_uid}_#{post.updated_at.to_i}.png").to_s
   end
 end
